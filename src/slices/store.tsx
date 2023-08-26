@@ -3,7 +3,7 @@ import  formReducer  from './formReducer';
 
 const store = configureStore({
   reducer: {
-    formData: formReducer,
+    formCollection: formReducer,
   },
 });
 

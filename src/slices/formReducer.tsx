@@ -1,5 +1,4 @@
-import { createSlice, createReducer, createAction, PayloadAction } from '@reduxjs/toolkit';
-import exp from 'constants';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface experience {
   id: number;
@@ -64,7 +63,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  name: '',
+  name: '3m ibrahim',
   email: '',
   title: '',
   phone: '',
@@ -86,7 +85,8 @@ export type FormCollectionKey = "experience" | "education" | "skills" | "languag
 
 
 const add = (state: FormCollectionState, action: PayloadAction<any>, newInterface: FormCollectionKey) => { //called whenever the user clicks the add button and id must be assigned on creation
-  state[newInterface].push(action.payload);
+  const newItem = action.payload;
+  state[newInterface].push(newItem);
 }
 
 const edit = (state: FormCollectionState, action: PayloadAction<{ id: number; updated: Partial<any> }>, newInterface: FormCollectionKey) => {

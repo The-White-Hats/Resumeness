@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./slices/store";
 import Navbar from "./components/Navbar/Navbar";
+import Preview from "./pages/resume/sub/preview";
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/"></Route>
-          <Route path="/resume"></Route>
+          <Route path="/resume" Component={Preview}></Route> {/*Just For Testing*/}
           <Route path="/cover-letter"></Route>
           <Route path="/about"></Route>
         </Routes>
