@@ -1,4 +1,5 @@
 import { createSlice, createReducer, createAction, PayloadAction } from '@reduxjs/toolkit';
+import exp from 'constants';
 
 interface experience {
   id: number;
@@ -46,6 +47,7 @@ interface FormCollectionState {
 
   name: string;
   email: string;
+  title: string;
   phone: string;
   address: string;
   linkedInURL: string;
@@ -64,6 +66,7 @@ interface FormCollectionState {
 const initialState: FormCollectionState = {
   name: '',
   email: '',
+  title: '',
   phone: '',
   address: '',
   linkedInURL: '',
@@ -77,7 +80,7 @@ const initialState: FormCollectionState = {
   volunteering: [],
   interests: [],
 };
-type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "volunteering" | "interests";
+export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "volunteering" | "interests";
 
 
 
@@ -86,16 +89,24 @@ const add = (state: FormCollectionState, action: PayloadAction<any>, newInterfac
   state[newInterface].push(action.payload);
 }
 
-/*const edit = (state: FormCollectionState, action: PayloadAction<{ id: number; updatedExperience: Partial<FormCollectionKey> }>) => {
-  const { id, updatedExperience } = action.payload;
-  const experienceIndex = state.experience.findIndex(item => item.id === id);
-  if (experienceIndex !== -1) {
-    state.experience[experienceIndex] = {
-      ...state.experience[experienceIndex],
-      ...updatedExperience,
+const edit = (state: FormCollectionState, action: PayloadAction<{ id: number; updated: Partial<any> }>, newInterface: FormCollectionKey) => {
+  const { id, updated } = action.payload;
+  const index = state[newInterface].findIndex(item => item.id === id);
+  if (index !== -1) {
+    state[newInterface][index] = {
+      ...state[newInterface][index],
+      ...updated,
     };
   }
-}*/
+}
+
+const deleteItem = (state: FormCollectionState, action: PayloadAction<number>, newInterface: FormCollectionKey) => { //called whenever the user clicks the delete button
+  const id = action.payload;
+  const index = state[newInterface].findIndex(item => item.id === id);
+  if (index !== -1) {
+    state[newInterface].splice(index, 1);
+  }
+}
 
 const formCollection = createSlice({
   name: 'formCollection',
@@ -106,6 +117,9 @@ const formCollection = createSlice({
     },
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
+    },
+    setTitle: (state, action: PayloadAction<string>) => {
+      state.title = action.payload;
     },
     setAddress: (state, action: PayloadAction<string>) => {
       state.address = action.payload;
@@ -122,7 +136,7 @@ const formCollection = createSlice({
     setProfessionalSummary: (state, action: PayloadAction<string>) => {
       state.professionalSummary = action.payload;
     },
-    //use the add function to add new experience, education, skill, language, certification, volunteering, interest
+
     addExperience: (state, action: PayloadAction<experience>) => { add(state, action, 'experience'); },
     addEducation: (state, action: PayloadAction<education>) => { add(state, action, 'education'); },
     addSkill: (state, action: PayloadAction<skill>) => { add(state, action, 'skills'); },
@@ -131,44 +145,43 @@ const formCollection = createSlice({
     addVolunteering: (state, action: PayloadAction<experience>) => { add(state, action, 'volunteering'); },
     addInterest: (state, action: PayloadAction<interest>) => { add(state, action, 'interests'); },
 
-    editExperience: (state, action: PayloadAction<{ id: number; updatedExperience: Partial<experience> }>) => {
-      const { id, updatedExperience } = action.payload;
-      const experienceIndex = state.experience.findIndex(item => item.id === id);
-      if (experienceIndex !== -1) {
-        state.experience[experienceIndex] = {
-          ...state.experience[experienceIndex],
-          ...updatedExperience,
-        };
-      }
-    },
-    deleteExperience: (state, action: PayloadAction<number>) => { //called whenever the user clicks the delete button
-      const id = action.payload;
-      const experienceIndex = state.experience.findIndex(item => item.id === id);
-      if (experienceIndex !== -1) {
-        state.experience.splice(experienceIndex, 1);
-      }
-    },
-    editEducation: ( //called whenever the user change the value of any field in the education form
-      state,
-      action: PayloadAction<{ id: number; updatedEducation: Partial<education> }>
-    ) => {
-      const { id, updatedEducation } = action.payload;
-      const educationIndex = state.education.findIndex(item => item.id === id);
-      if (educationIndex !== -1) {
-        state.education[educationIndex] = {
-          ...state.education[educationIndex],
-          ...updatedEducation,
-        };
-      }
-    },
+    editExperience: (state, action: PayloadAction<{ id: number; updated: Partial<experience> }>) => { edit(state, action, 'experience');},
+    editEducation: (state, action: PayloadAction<{ id: number; updated: Partial<education> }>) => { edit(state, action, 'education');},
+    editSkill: (state, action: PayloadAction<{ id: number; updated: Partial<skill> }>) => { edit(state, action, 'skills');},
+    editLanguage: (state, action: PayloadAction<{ id: number; updated: Partial<language> }>) => { edit(state, action, 'languages');},
+    editCertification: (state, action: PayloadAction<{ id: number; updated: Partial<certification> }>) => { edit(state, action, 'certifications');},
+    editVolunteering: (state, action: PayloadAction<{ id: number; updated: Partial<experience> }>) => { edit(state, action, 'volunteering');},
+    editInterest: (state, action: PayloadAction<{ id: number; updated: Partial<interest> }>) => { edit(state, action, 'interests');},
+
+    deleteExperience: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'experience'); },
+    deleteEducation: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'education'); },
+    deleteSkill: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'skills'); },
+    deleteLanguage: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'languages'); },
+    deleteCertification: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'certifications'); },
+    deleteVolunteering: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'volunteering'); },
+    deleteInterest: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'interests'); },
+
+    
 
   },
 });
 
-export const selectName = (state: { formCollection: FormCollectionState }) =>
-  state.formCollection.name;
-export const selectEmail = (state: { formCollection: FormCollectionState }) =>
-  state.formCollection.email;
+export const selectName = (state: { formCollection: FormCollectionState }) => state.formCollection.name;
+export const selectEmail = (state: { formCollection: FormCollectionState }) => state.formCollection.email;
+export const selectTitle = (state: { formCollection: FormCollectionState }) => state.formCollection.title;
+export const selectAddress = (state: { formCollection: FormCollectionState }) => state.formCollection.address;
+export const selectPhone = (state: { formCollection: FormCollectionState }) => state.formCollection.phone;
+export const selectLinkedInURL = (state: { formCollection: FormCollectionState }) => state.formCollection.linkedInURL;
+export const selectPortfolioURL = (state: { formCollection: FormCollectionState }) => state.formCollection.portfolioURL;
+export const selectProfessionalSummary = (state: { formCollection: FormCollectionState }) => state.formCollection.professionalSummary;
+export const selectExperience = (state: { formCollection: FormCollectionState }) => state.formCollection.experience;
+export const selectEducation = (state: { formCollection: FormCollectionState }) => state.formCollection.education;
+export const selectSkills = (state: { formCollection: FormCollectionState }) => state.formCollection.skills;
+export const selectLanguages = (state: { formCollection: FormCollectionState }) => state.formCollection.languages;
+export const selectCertifications = (state: { formCollection: FormCollectionState }) => state.formCollection.certifications;
+export const selectVolunteering = (state: { formCollection: FormCollectionState }) => state.formCollection.volunteering;
+export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
-export const { setName, setEmail } = formCollection.actions;
+
+export const { setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, addExperience, addEducation, addSkill, addLanguage, addCertification, addVolunteering, addInterest, editExperience, editEducation, editSkill, editLanguage, editCertification, editVolunteering, editInterest, deleteExperience, deleteEducation, deleteSkill, deleteLanguage, deleteCertification, deleteVolunteering, deleteInterest } = formCollection.actions;
 export default formCollection.reducer;
