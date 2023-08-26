@@ -1,0 +1,32 @@
+@mixin flexCenter () {
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+
+  background-color: white;
+
+  @include flexCenter();
+  justify-content: space-between;
+
+  padding: 1rem;
+
+  #links {
+    @include flexCenter();
+    gap: 20px;
+
+    span {
+      text-decoration: none;
+      color: black;
+      display: inline-block;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  }
+}
