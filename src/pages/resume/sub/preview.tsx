@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as form from '../../../slices/formReducer';
 
 
+let i = 0;
 
 const Preview = () => {
 
@@ -22,17 +23,16 @@ const Preview = () => {
   const volunteeringArr = useSelector(form.selectVolunteering);
   const interestArr = useSelector(form.selectInterests);
 
-  const dispatch = useDispatch();
+  {/* FOR TESTING PURPOSES ONLY */   /*THIS CODE BELONGS TO FORM COMPONENT (HAMED PART)*/ }
+    const dispatch = useDispatch();
 
-  const setEmail = (email: string) => dispatch(form.setEmail(email));
-  const addSkill = (newSkill: any) => dispatch(form.addSkill(newSkill));
-  let i = 0;
-  const wrapper = () =>
-  {
-    return addSkill({id:i++, skill:"none"})
-  }
-  setEmail('Johnnnnnnnnn cenaaaaaaaaaa Doe');
-  
+    const setEmail = (email: string) => dispatch(form.setEmail(email));
+    const setSkills = (skills: form.skill[]) => dispatch(form.setSkills(skills));
+    const wrapper = () => {
+      return setSkills([...skillArr, { id: i++, skill: 'new skill' }]);
+    }
+    setEmail('Johnnnnnnnnn cenaaaaaaaaaa Doe');
+    
   return (
     <div className="preview">
       <div className="side-bar">
@@ -57,7 +57,7 @@ const Preview = () => {
           <h2>Skills</h2>
           {skillArr.map((skill) => {
             return (
-              <h6>{skill.skill}</h6>
+              <h6 key={skill.id} id={skill.id.toString()}>{skill.skill}</h6>
             );
           })}
         </div>

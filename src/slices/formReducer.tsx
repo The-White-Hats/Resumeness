@@ -84,29 +84,7 @@ export type FormCollectionKey = "experience" | "education" | "skills" | "languag
 
 
 
-const add = (state: FormCollectionState, action: PayloadAction<any>, newInterface: FormCollectionKey) => { //called whenever the user clicks the add button and id must be assigned on creation
-  const newItem = action.payload;
-  state[newInterface].push(newItem);
-}
 
-const edit = (state: FormCollectionState, action: PayloadAction<{ id: number; updated: Partial<any> }>, newInterface: FormCollectionKey) => {
-  const { id, updated } = action.payload;
-  const index = state[newInterface].findIndex(item => item.id === id);
-  if (index !== -1) {
-    state[newInterface][index] = {
-      ...state[newInterface][index],
-      ...updated,
-    };
-  }
-}
-
-const deleteItem = (state: FormCollectionState, action: PayloadAction<number>, newInterface: FormCollectionKey) => { //called whenever the user clicks the delete button
-  const id = action.payload;
-  const index = state[newInterface].findIndex(item => item.id === id);
-  if (index !== -1) {
-    state[newInterface].splice(index, 1);
-  }
-}
 
 const formCollection = createSlice({
   name: 'formCollection',
@@ -136,30 +114,29 @@ const formCollection = createSlice({
     setProfessionalSummary: (state, action: PayloadAction<string>) => {
       state.professionalSummary = action.payload;
     },
+    setExperience: (state, action:PayloadAction<experience[]>) => {
+      state.experience = action.payload;
+    },
+    setEducation: (state, action:PayloadAction<education[]>) => {
+      state.education = action.payload;
+    },
+    setSkills: (state, action:PayloadAction<skill[]>) => {
+      state.skills = action.payload;
+    },
+    setLanguages: (state, action:PayloadAction<language[]>) => {
+      state.languages = action.payload;
+    },
+    setCertifications: (state, action:PayloadAction<certification[]>) => {
+      state.certifications = action.payload;
+    },
+    setVolunteering: (state, action:PayloadAction<experience[]>) => {
+      state.volunteering = action.payload;
+    },
+    setInterests: (state, action:PayloadAction<interest[]>) => {
+      state.interests = action.payload;
+    },
+    
 
-    addExperience: (state, action: PayloadAction<experience>) => { add(state, action, 'experience'); },
-    addEducation: (state, action: PayloadAction<education>) => { add(state, action, 'education'); },
-    addSkill: (state, action: PayloadAction<skill>) => { add(state, action, 'skills'); },
-    addLanguage: (state, action: PayloadAction<language>) => { add(state, action, 'languages'); },
-    addCertification: (state, action: PayloadAction<certification>) => { add(state, action, 'certifications'); },
-    addVolunteering: (state, action: PayloadAction<experience>) => { add(state, action, 'volunteering'); },
-    addInterest: (state, action: PayloadAction<interest>) => { add(state, action, 'interests'); },
-
-    editExperience: (state, action: PayloadAction<{ id: number; updated: Partial<experience> }>) => { edit(state, action, 'experience');},
-    editEducation: (state, action: PayloadAction<{ id: number; updated: Partial<education> }>) => { edit(state, action, 'education');},
-    editSkill: (state, action: PayloadAction<{ id: number; updated: Partial<skill> }>) => { edit(state, action, 'skills');},
-    editLanguage: (state, action: PayloadAction<{ id: number; updated: Partial<language> }>) => { edit(state, action, 'languages');},
-    editCertification: (state, action: PayloadAction<{ id: number; updated: Partial<certification> }>) => { edit(state, action, 'certifications');},
-    editVolunteering: (state, action: PayloadAction<{ id: number; updated: Partial<experience> }>) => { edit(state, action, 'volunteering');},
-    editInterest: (state, action: PayloadAction<{ id: number; updated: Partial<interest> }>) => { edit(state, action, 'interests');},
-
-    deleteExperience: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'experience'); },
-    deleteEducation: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'education'); },
-    deleteSkill: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'skills'); },
-    deleteLanguage: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'languages'); },
-    deleteCertification: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'certifications'); },
-    deleteVolunteering: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'volunteering'); },
-    deleteInterest: (state, action: PayloadAction<number>) => { deleteItem(state, action, 'interests'); },
 
     
 
@@ -182,6 +159,6 @@ export const selectCertifications = (state: { formCollection: FormCollectionStat
 export const selectVolunteering = (state: { formCollection: FormCollectionState }) => state.formCollection.volunteering;
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
-
-export const { setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, addExperience, addEducation, addSkill, addLanguage, addCertification, addVolunteering, addInterest, editExperience, editEducation, editSkill, editLanguage, editCertification, editVolunteering, editInterest, deleteExperience, deleteEducation, deleteSkill, deleteLanguage, deleteCertification, deleteVolunteering, deleteInterest } = formCollection.actions;
+export type {experience, education, skill, language, certification, interest};
+export const { setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
 export default formCollection.reducer;
