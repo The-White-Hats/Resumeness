@@ -1,9 +1,39 @@
-.form-container {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 55vw;
-    height:auto;
-    background-color: aliceblue;
-    z-index: -1;
+.Form {
+  width: 60%;
 }
+.Form .title {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.Form .sub-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+.Form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-block: 1rem;
+  padding-inline: 3rem;
+}
+.Form form .form-element {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.Form form .form-element label {
+  font-size: 1.2rem;
+  font-weight: lighter;
+  margin-bottom: 0.5rem;
+}
+.Form form .form-element input {
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background-color: #cccccc;
+  font-size: 1rem;
+}/*# sourceMappingURL=Form.css.map */

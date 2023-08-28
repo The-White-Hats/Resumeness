@@ -1,0 +1,43 @@
+$input-color: #cccccc;
+
+.Form {
+    width: 60%;
+    .title {
+        font-size: 2rem;
+        font-weight: 600;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .sub-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 1rem;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-block: 1rem;
+        padding-inline: 3rem;
+        .form-element {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin-bottom: 1rem;
+            label {
+                font-size: 1.2rem;
+                font-weight: lighter;
+                margin-bottom: 0.5rem;
+            }
+            input {
+                padding: 0.5rem;
+                border: 1px solid $input-color;
+                border-radius: 5px;
+                background-color: $input-color;
+                font-size: 1rem;
+            }
+        }
+    }
+}

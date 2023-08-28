@@ -1,5 +1,5 @@
 import Wrapper from "./sub/preview-wrapper/preview-wrapper";
-import Form from "./sub/form/form"
+import Form from "./sub/form/Form"
 import "./resume.css"
 const Resume = ()=>{
      return (
