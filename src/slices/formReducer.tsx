@@ -4,8 +4,8 @@ interface experience {
   id: number;
   jobTitle: string;
   company: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   jobDescription: string;
   achievements: string;
 }
@@ -15,7 +15,7 @@ interface education {
   degree: string;
   studyField: string;
   school: string;
-  graduationDate: Date;
+  graduationDate: string;
   awards: string;
 }
 
@@ -27,13 +27,13 @@ interface skill {
 interface language {
   id: number;
   language: string;
-  fluency: string;
+  fluency: number;
 }
 
 interface certification {
   id: number;
   certification: string;
-  date: Date;
+  date: string;
 }
 
 interface interest {
@@ -43,7 +43,7 @@ interface interest {
 
 
 interface FormCollectionState {
-
+  picURL: string;
   name: string;
   email: string;
   title: string;
@@ -63,21 +63,22 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
+  picURL: 'https://cdn.shopify.com/s/files/1/2393/5817/products/Despicable-Me-Minion-Face-Boys-Pyjamas-Logo-Web_1400x.jpg?v=1549882040',
   name: '3m ibrahim',
-  email: '',
-  title: '',
-  phone: '',
-  address: '',
+  email: '3mkw3m3yalk@hema.com',
+  title: 'CEO at Mazarita Company',
+  phone: '05557000',
+  address: '221B tabona Street, Tar4oo5 el leef',
   linkedInURL: '',
   portfolioURL: '',
-  professionalSummary: '',
-  experience: [],
-  education: [],
-  skills: [],
-  languages: [],
-  certifications: [],
-  volunteering: [],
-  interests: [],
+  professionalSummary: 'I am a very good person, better than you',
+  experience: [{ id: 0, jobTitle: 'CEO', company: 'Mazarita', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'I am a very good person, better than you', achievements: 'I am a very good person, better than you'}],
+  education: [{id: 0, degree:'bachelor', school:'kottab sede ma7roos', studyField:'fela7a', graduationDate: '18/4/2003', awards:'I am a very good person, better than you'}],
+  skills: [{ id: 0, skill: 'smart'}, { id: 1, skill: 'fela7a'}],
+  languages: [{ id: 0, language: 'Russian', fluency: 80}],
+  certifications: [{ id: 0, certification: 'Flla7 of the month', date: '18/4/2003'}],
+  volunteering: [{ id: 0, jobTitle: 'CTO', company: 'taran4at', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'I am a very good person, better than you', achievements: 'I am a very good person, better than you'}],
+  interests: [{ id: 0, interest: 'fela7a'}],
 };
 export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "volunteering" | "interests";
 
@@ -90,6 +91,9 @@ const formCollection = createSlice({
   name: 'formCollection',
   initialState,
   reducers: {
+    setPicURL: (state, action: PayloadAction<string>) => {
+      state.picURL = action.payload;
+    },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
@@ -143,6 +147,7 @@ const formCollection = createSlice({
   },
 });
 
+export const selectPicURL = (state: { formCollection: FormCollectionState }) => state.formCollection.picURL;
 export const selectName = (state: { formCollection: FormCollectionState }) => state.formCollection.name;
 export const selectEmail = (state: { formCollection: FormCollectionState }) => state.formCollection.email;
 export const selectTitle = (state: { formCollection: FormCollectionState }) => state.formCollection.title;
@@ -160,5 +165,5 @@ export const selectVolunteering = (state: { formCollection: FormCollectionState 
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
 export type {experience, education, skill, language, certification, interest};
-export const { setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
+export const {setPicURL, setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
 export default formCollection.reducer;
