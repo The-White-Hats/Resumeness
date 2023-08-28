@@ -7,7 +7,7 @@ interface experience {
   startDate: string;
   endDate: string;
   jobDescription: string;
-  achievements: string;
+  achievements: string[];
 }
 
 interface education {
@@ -16,7 +16,7 @@ interface education {
   studyField: string;
   school: string;
   graduationDate: string;
-  awards: string;
+  awards: string[];
 }
 
 interface skill {
@@ -71,13 +71,13 @@ const initialState: FormCollectionState = {
   address: '221B tabona Street, Tar4oo5 el leef',
   linkedInURL: '',
   portfolioURL: '',
-  professionalSummary: 'I am a very good person, better than you',
-  experience: [{ id: 0, jobTitle: 'CEO', company: 'Mazarita', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'I am a very good person, better than you', achievements: 'I am a very good person, better than you'}],
-  education: [{id: 0, degree:'bachelor', school:'kottab sede ma7roos', studyField:'fela7a', graduationDate: '18/4/2003', awards:'I am a very good person, better than you'}],
+  professionalSummary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  experience: [{ id: 0, jobTitle: 'CEO', company: 'Mazarita', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', achievements: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit']}, { id: 1, jobTitle: 'CEO', company: 'Mazarita', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', achievements: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit']}],
+  education: [{id: 0, degree:'bachelor', school:'kottab sede ma7roos', studyField:'fela7a', graduationDate: '18/4/2003', awards:['Lorem ipsum dolor sit amet, consectetur adipiscing elit']}],
   skills: [{ id: 0, skill: 'smart'}, { id: 1, skill: 'fela7a'}],
   languages: [{ id: 0, language: 'Russian', fluency: 80}],
   certifications: [{ id: 0, certification: 'Flla7 of the month', date: '18/4/2003'}],
-  volunteering: [{ id: 0, jobTitle: 'CTO', company: 'taran4at', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'I am a very good person, better than you', achievements: 'I am a very good person, better than you'}],
+  volunteering: [{ id: 0, jobTitle: 'CTO', company: 'taran4at', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', achievements: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit']}],
   interests: [{ id: 0, interest: 'fela7a'}],
 };
 export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "volunteering" | "interests";
