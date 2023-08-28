@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as form from "../../../../../slices/formReducer";
 import "./style.css"
 
-let i = 3;
 type PreviewProps = {
   color: string;
 };
 const Preview = ({ color }: PreviewProps) => {
   const picURL = useSelector(form.selectPicURL);
-  const name = useSelector(form.selectName);
+  const firstName = useSelector(form.selectFirstName);
+  const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);
   const title = useSelector(form.selectTitle);
   const phone = useSelector(form.selectPhone);
@@ -25,32 +25,6 @@ const Preview = ({ color }: PreviewProps) => {
   const volunteeringArr = useSelector(form.selectVolunteering);
   const interestArr = useSelector(form.selectInterests);
 
-  {
-    /* FOR TESTING PURPOSES ONLY */
-    /*THIS CODE BELONGS TO FORM COMPONENT (HAMED PART)*/
-  }
-  const dispatch = useDispatch();
-
-  const setEmail = (email: string) => dispatch(form.setEmail(email));
-  const setPhone = (phone: string) => dispatch(form.setPhone(phone));
-  const setAddress = (address: string) => dispatch(form.setAddress(address));
-  const setLinkedInURL = (linkedInURL: string) =>
-    dispatch(form.setLinkedInURL(linkedInURL));
-  const setPortfolioURL = (portfolioURL: string) =>
-    dispatch(form.setPortfolioURL(portfolioURL));
-  const setProfessionalSummary = (professionalSummary: string) =>
-    dispatch(form.setProfessionalSummary(professionalSummary));
-  const setExperience = (experience: form.experience[]) =>
-    dispatch(form.setExperience(experience));
-  const setEducation = (education: form.education[]) =>
-    dispatch(form.setEducation(education));
-
-  const setSkills = (skills: form.skill[]) => dispatch(form.setSkills(skills));
-  const wrapper = () => {
-    return setSkills([...skillArr, { id: i++, skill: "new skill" }]);
-  };
-  //setEmail('Johnnnnnnnnn cenaaaaaaaaaa Doe');
-
   return (
     <div className="preview">
       <div className="side-bar" style={{ backgroundColor: color }}>
@@ -60,7 +34,7 @@ const Preview = ({ color }: PreviewProps) => {
             alt="profile picture"
             className={picURL === "" ? "hide" : ""}
           />
-          <h1>{name}</h1>
+          <h1>{firstName} {lastName}</h1>
           <hr />
           <h6>{title}</h6>
         </div>
@@ -78,7 +52,7 @@ const Preview = ({ color }: PreviewProps) => {
         </div>
         <div
           className={
-            "links" + (linkedInURL === "" && portfolioURL === "") ? "hide" : ""
+            "links" + ((linkedInURL === "" && portfolioURL === "") ? "hide" : "")
           }
         >
           <h2>Links</h2>
@@ -135,7 +109,6 @@ const Preview = ({ color }: PreviewProps) => {
             })}
           </ul>
         </div>
-        <button onClick={wrapper}>add a new skill</button>
       </div>
       <div className="main">
         <div className="summary">

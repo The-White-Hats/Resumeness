@@ -44,7 +44,8 @@ interface interest {
 
 interface FormCollectionState {
   picURL: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   title: string;
   phone: string;
@@ -64,7 +65,8 @@ interface FormCollectionState {
 
 const initialState: FormCollectionState = {
   picURL: 'https://cdn.shopify.com/s/files/1/2393/5817/products/Despicable-Me-Minion-Face-Boys-Pyjamas-Logo-Web_1400x.jpg?v=1549882040',
-  name: '3m ibrahim',
+  firstName: '3m',
+  lastName: 'ibrahim',
   email: '3mkw3m3yalk@hema.com',
   title: 'CEO at Mazarita Company',
   phone: '05557000',
@@ -94,8 +96,11 @@ const formCollection = createSlice({
     setPicURL: (state, action: PayloadAction<string>) => {
       state.picURL = action.payload;
     },
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+    setFirstName: (state, action: PayloadAction<string>) => {
+      state.firstName = action.payload;
+    },
+    setLastName: (state, action: PayloadAction<string>) => {
+      state.lastName = action.payload;
     },
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
@@ -148,7 +153,8 @@ const formCollection = createSlice({
 });
 
 export const selectPicURL = (state: { formCollection: FormCollectionState }) => state.formCollection.picURL;
-export const selectName = (state: { formCollection: FormCollectionState }) => state.formCollection.name;
+export const selectFirstName = (state: { formCollection: FormCollectionState }) => state.formCollection.firstName;
+export const selectLastName = (state: { formCollection: FormCollectionState }) => state.formCollection.lastName;
 export const selectEmail = (state: { formCollection: FormCollectionState }) => state.formCollection.email;
 export const selectTitle = (state: { formCollection: FormCollectionState }) => state.formCollection.title;
 export const selectAddress = (state: { formCollection: FormCollectionState }) => state.formCollection.address;
@@ -165,5 +171,5 @@ export const selectVolunteering = (state: { formCollection: FormCollectionState 
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
 export type {experience, education, skill, language, certification, interest};
-export const {setPicURL, setName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
+export const {setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
 export default formCollection.reducer;
