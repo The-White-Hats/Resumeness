@@ -1,0 +1,9 @@
+.form-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 55vw;
+    height:auto;
+    background-color: aliceblue;
+    z-index: -1;
+}

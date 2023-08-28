@@ -1,24 +1,22 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./slices/store";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Preview from "./pages/resume/sub/preview/preview";
-
+import Resume from "./pages/resume/resume";
+import store from "./slices/store";
 const App = () => {
-
   return (
     <Provider store={store}>
       <Router>
         <Navbar />
         <Routes>
           <Route path="/"></Route>
-          <Route path="/resume" Component={() => Preview("#224286d6")}></Route> {/*Just For Testing*/}
+          <Route path="/resume" Component={Resume}></Route>
           <Route path="/cover-letter"></Route>
           <Route path="/about"></Route>
         </Routes>
       </Router>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;

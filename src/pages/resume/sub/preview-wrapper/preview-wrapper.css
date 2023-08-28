@@ -1,0 +1,14 @@
+.wrapper{
+    position: fixed;
+    right:0;
+    top: 59px;
+    background-color: #656e83;
+    width: 45vw;
+}
+.container{
+    transform: scale(.9);
+    display: flex;
+    flex-direction: row;
+    background-color: #656e83;
+    justify-content: center;
+}

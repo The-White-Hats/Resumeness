@@ -1,0 +1,24 @@
+nav {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+nav #links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+nav #links span {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: bold;
+}/*# sourceMappingURL=NavBar.css.map */
