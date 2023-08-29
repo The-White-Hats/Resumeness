@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 let idCounter = 2
 const Form = () => {
     const dispatch = useDispatch()
-    
+
     //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
     const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName))
     const SetLastName = (lName: string) => dispatch(form.setLastName(lName))
@@ -63,7 +63,6 @@ const Form = () => {
                 jobDescription: '',
                 achievements: [],
             }
-            console.log(idCounter)
             idCounter++
             SetExperience([...experienceArr, newExperience])
         },
@@ -80,90 +79,233 @@ const Form = () => {
             if (secondIndex === -1) {
                 updatedObject = {
                     ...updatedObject,
-                    [property]:event.target.value
+                    [property]: event.target.value,
                 }
-            }
-            else {
+            } else {
                 const achievements = [...updatedObject.achievements]
                 achievements[secondIndex] = event.target.value
                 updatedObject = {
                     ...updatedObject,
-                    achievements: achievements
+                    achievements: achievements,
                 }
             }
             newArray[index] = updatedObject
             SetExperience(newArray)
         },
-        addAchievement: (index: number) => {
-            const newAchievement: string = ''
+        updateAchievement: (index: number, secondIndex: number = -1) => {
             const newArray = [...experienceArr]
             let updatedObject = { ...newArray[index] }
-            updatedObject.achievements = [
-                ...updatedObject.achievements,
-                newAchievement,
+            const achievements = [
+                ...updatedObject.achievements.slice(0, secondIndex),
+                ...updatedObject.achievements.slice(secondIndex + 1),
             ]
+            updatedObject.achievements =
+                secondIndex === -1
+                    ? [...updatedObject.achievements, '']
+                    : achievements
             newArray[index] = updatedObject
             SetExperience(newArray)
         },
-    }
-    const addEducation = () => {
-        const newEducation: form.education = {
-            id: idCounter,
-            degree: '',
-            studyField: '',
-            school: '',
-            graduationDate: '',
-            awards: [],
+        deleteExperience: (index: number) => {
+            const newArray = [
+                ...experienceArr.slice(0, index),
+                ...experienceArr.slice(index + 1),
+            ]
+            SetExperience(newArray)
         }
-        idCounter++
-        SetEducation([...educationArr, newEducation])
     }
-    const addSkill = () => {
-        const newSkill: form.skill = {
-            id: idCounter,
-            skill: '',
+    const handleEducation = {
+        addEducation: () => {
+            const newEducation: form.education = {
+                id: idCounter,
+                degree: '',
+                studyField: '',
+                school: '',
+                graduationDate: '',
+                awards: [],
+            }
+            idCounter++
+            SetEducation([...educationArr, newEducation])
+        },
+        updateEducation: (
+            event:
+                | React.ChangeEvent<HTMLInputElement>
+                | React.ChangeEvent<HTMLTextAreaElement>,
+            index: number,
+            property: keyof form.education,
+            secondIndex: number = -1
+        ) => {
+            const newArray = [...educationArr]
+            let updatedObject = { ...newArray[index] }
+            if (secondIndex === -1) {
+                updatedObject = {
+                    ...updatedObject,
+                    [property]: event.target.value,
+                }
+            } else {
+                const awards = [...updatedObject.awards]
+                awards[secondIndex] = event.target.value
+                updatedObject = {
+                    ...updatedObject,
+                    awards: awards,
+                }
+            }
+            newArray[index] = updatedObject
+            SetEducation(newArray)
+        },
+        updateAward: (index: number, secondIndex: number = -1) => {
+            const newArray = [...educationArr]
+            let updatedObject = { ...newArray[index] }
+            const achievements = [
+                ...updatedObject.awards.slice(0, secondIndex),
+                ...updatedObject.awards.slice(secondIndex + 1),
+            ]
+            updatedObject.awards =
+                secondIndex === -1
+                    ? [...updatedObject.awards, '']
+                    : achievements
+            newArray[index] = updatedObject
+            SetEducation(newArray)
+        },
+        deleteEducation: (index: number) => {
+            const newArray = [
+                ...educationArr.slice(0, index),
+                ...educationArr.slice(index + 1),
+            ]
+            SetEducation(newArray)
         }
-        idCounter++
-        SetSkills([...skillArr, newSkill])
     }
-    const addLanguage = () => {
-        const newLanguage: form.language = {
-            id: idCounter,
-            language: '',
-            fluency: 0,
+    const handleSkill = {
+        addSkill: () => {
+            const newSkill: form.skill = {
+                id: idCounter,
+                skill: '',
+            }
+            idCounter++
+            SetSkills([...skillArr, newSkill])
+        },
+        updateSkill: (
+            event:
+                | React.ChangeEvent<HTMLInputElement>
+                | React.ChangeEvent<HTMLTextAreaElement>,
+            index: number,
+        ) => {
+            const newArray = [...skillArr]
+            let updatedObject = { ...newArray[index] }
+                updatedObject = {
+                    ...updatedObject,
+                    skill: event.target.value,
+                }
+            newArray[index] = updatedObject
+            SetSkills(newArray)
+        },
+        deleteSkill: (index: number) => {
+            const newArray = [
+                ...skillArr.slice(0, index),
+                ...skillArr.slice(index + 1),
+            ]
+            SetSkills(newArray)
         }
-        idCounter++
-        SetLanguages([...languageArr, newLanguage])
     }
-    const addCertification = () => {
-        const newCertification: form.certification = {
-            id: idCounter,
-            certification: '',
-            date: '',
+    const handleLnaugage = {
+        addLanguage: () => {
+            const newLanguage: form.language = {
+                id: idCounter,
+                language: '',
+                fluency: 0,
+            }
+            idCounter++
+            SetLanguages([...languageArr, newLanguage])
+        },
+        updateLanguage: (
+            event:
+                | React.ChangeEvent<HTMLInputElement>
+                | React.ChangeEvent<HTMLTextAreaElement>,
+            property: keyof form.language,
+            index: number,
+        ) => {
+            const newArray = [...languageArr]
+            let updatedObject = { ...newArray[index] }
+                updatedObject = {
+                    ...updatedObject,
+                    [property]: event.target.value,
+                }
+            newArray[index] = updatedObject
+            SetLanguages(newArray)
+        },
+        deleteLanguage: (index: number) => {
+            const newArray = [
+                ...languageArr.slice(0, index),
+                ...languageArr.slice(index + 1),
+            ]
+            SetLanguages(newArray)
         }
-        idCounter++
-        SetCertifications([...certificationArr, newCertification])
     }
-    const addVolunteering = () => {
-        const newVolunteering: form.experience = {
-            id: idCounter,
-            jobTitle: '',
-            company: '',
-            startDate: '',
-            endDate: '',
-            jobDescription: '',
-            achievements: [],
+    const handleCertification = {
+        addCertification: () => {
+            const newCertification: form.certification = {
+                id: idCounter,
+                certification: '',
+                date: '',
+            }
+            idCounter++
+            SetCertifications([...certificationArr, newCertification])
+        },
+        updateCertification: (
+            event:
+                | React.ChangeEvent<HTMLInputElement>
+                | React.ChangeEvent<HTMLTextAreaElement>,
+            property: keyof form.certification,
+            index: number,
+        ) => {
+            const newArray = [...certificationArr]
+            let updatedObject = { ...newArray[index] }
+                updatedObject = {
+                    ...updatedObject,
+                    [property]: event.target.value,
+                }
+            newArray[index] = updatedObject
+            SetCertifications(newArray)
+        },
+        deleteCertification: (index: number) => {
+            const newArray = [
+                ...certificationArr.slice(0, index),
+                ...certificationArr.slice(index + 1),
+            ]
+            SetCertifications(newArray)
         }
-        idCounter++
-        SetVolunteering([...volunteeringArr, newVolunteering])
     }
-    const addInterest = () => {
-        const newInterest: form.interest = {
-            id: idCounter,
-            interest: '',
+    const handleInterest = {
+        addInterest: () => {
+            const newInterest: form.interest = {
+                id: idCounter,
+                interest: '',
+            }
+            idCounter++
+            SetInterests([...interestArr, newInterest])
+        },
+        updateInterest: (
+            event:
+                | React.ChangeEvent<HTMLInputElement>
+                | React.ChangeEvent<HTMLTextAreaElement>,
+            index: number,
+        ) => {
+            const newArray = [...interestArr]
+            let updatedObject = { ...newArray[index] }
+                updatedObject = {
+                    ...updatedObject,
+                    interest: event.target.value,
+                }
+            newArray[index] = updatedObject
+            SetInterests(newArray)
+        },
+        deleteInterest: (index: number) => {
+            const newArray = [
+                ...interestArr.slice(0, index),
+                ...interestArr.slice(index + 1),
+            ]
+            SetInterests(newArray)
         }
-        idCounter++
-        SetInterests([...interestArr, newInterest])
     }
 
     return (
@@ -263,10 +405,18 @@ const Form = () => {
                 <button type="button" onClick={handleExperience.addExperience}>
                     Add Experience
                 </button>
-                <div className="Sec-form">
+                <div>
                     {experienceArr.map((experience, index) => {
                         return (
                             <div className="Form" key={experience.id}>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        handleExperience.deleteExperience(index)
+                                    }
+                                >
+                                    <img src="/delete.png" alt="delete" />
+                                </button>
                                 <div className="form-element">
                                     <label>Job Title</label>
                                     <input
@@ -341,18 +491,23 @@ const Form = () => {
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            handleExperience.addAchievement(
+                                            handleExperience.updateAchievement(
                                                 index
                                             )
                                         }
                                     >
                                         Add Achievements
                                     </button>
-                                    {
-                                        experience.achievements.map(
+                                    {experience.achievements.map(
                                         (achievement, secondIndex) => {
                                             return (
-                                                <div key={String(experience.id) + String(secondIndex)} className="form-element achievement">
+                                                <div
+                                                    key={
+                                                        String(experience.id) +
+                                                        String(secondIndex)
+                                                    }
+                                                    className="form-element achievement"
+                                                >
                                                     <textarea
                                                         defaultValue={
                                                             achievement
@@ -366,6 +521,20 @@ const Form = () => {
                                                             )
                                                         }
                                                     />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            handleExperience.updateAchievement(
+                                                                index,
+                                                                secondIndex
+                                                            )
+                                                        }
+                                                    >
+                                                        <img
+                                                            src="/delete.png"
+                                                            alt="delete"
+                                                        />
+                                                    </button>
                                                 </div>
                                             )
                                         }
