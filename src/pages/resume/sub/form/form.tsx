@@ -28,8 +28,6 @@ const Form = () => {
         dispatch(form.setLanguages(languages))
     const SetCertifications = (certifications: form.certification[]) =>
         dispatch(form.setCertifications(certifications))
-    const SetVolunteering = (volunteering: form.experience[]) =>
-        dispatch(form.setVolunteering(volunteering))
     const SetInterests = (interests: form.interest[]) =>
         dispatch(form.setInterests(interests))
 
@@ -38,7 +36,6 @@ const Form = () => {
     const skillArr = useSelector(form.selectSkills)
     const languageArr = useSelector(form.selectLanguages)
     const certificationArr = useSelector(form.selectCertifications)
-    const volunteeringArr = useSelector(form.selectVolunteering)
     const interestArr = useSelector(form.selectInterests)
 
     type setter = (value: string) => void

@@ -22,7 +22,6 @@ const Preview = ({ color }: PreviewProps) => {
   const skillArr = useSelector(form.selectSkills);
   const languageArr = useSelector(form.selectLanguages);
   const certificationArr = useSelector(form.selectCertifications);
-  const volunteeringArr = useSelector(form.selectVolunteering);
   const interestArr = useSelector(form.selectInterests);
 
   return (
@@ -190,40 +189,6 @@ const Preview = ({ color }: PreviewProps) => {
                 <h3>
                   <i>{certification.date}</i>
                 </h3>
-              </div>
-            );
-          })}
-        </div>
-        <div
-          className={
-            "volunteering " + (volunteeringArr.length === 0 ? "hide" : "")
-          }
-        >
-          <h2>Volunteering</h2>
-          {volunteeringArr.map((volunteering) => {
-            return (
-              <div key={volunteering.id}>
-                <h3>
-                  {volunteering.jobTitle}, {volunteering.company}
-                </h3>
-                <h3>
-                  <i>
-                    {volunteering.startDate} - {volunteering.endDate}
-                  </i>
-                </h3>
-                <p>{volunteering.jobDescription}</p>
-                <h3
-                  className={
-                    volunteering.achievements.length === 0 ? "hide" : ""
-                  }
-                >
-                  Achievements
-                </h3>
-                <ul>
-                  {volunteering.achievements.map((achievement) => {
-                    return <li key={achievement}>{achievement}</li>;
-                  })}
-                </ul>
               </div>
             );
           })}

@@ -58,7 +58,6 @@ interface FormCollectionState {
   skills: skill[];
   languages: language[];
   certifications: certification[];
-  volunteering: experience[];
   interests: interest[];
 }
 
@@ -78,10 +77,9 @@ const initialState: FormCollectionState = {
   skills: [{ id: 0, skill: 'smart'}, { id: 1, skill: 'fela7a'}],
   languages: [{ id: 0, language: 'Russian', fluency: 80}],
   certifications: [{ id: 0, certification: 'Flla7 of the month', date: '18/4/2003'}],
-  volunteering: [{ id: 0, jobTitle: 'CTO', company: 'taran4at', startDate: '18/4/2003', endDate: '18/4/2003', jobDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', achievements: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit']}],
   interests: [{ id: 0, interest: 'fela7a'}],
 };
-export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "volunteering" | "interests";
+export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "interests";
 
 
 
@@ -137,9 +135,6 @@ const formCollection = createSlice({
     setCertifications: (state, action:PayloadAction<certification[]>) => {
       state.certifications = action.payload;
     },
-    setVolunteering: (state, action:PayloadAction<experience[]>) => {
-      state.volunteering = action.payload;
-    },
     setInterests: (state, action:PayloadAction<interest[]>) => {
       state.interests = action.payload;
     }
@@ -161,9 +156,8 @@ export const selectEducation = (state: { formCollection: FormCollectionState }) 
 export const selectSkills = (state: { formCollection: FormCollectionState }) => state.formCollection.skills;
 export const selectLanguages = (state: { formCollection: FormCollectionState }) => state.formCollection.languages;
 export const selectCertifications = (state: { formCollection: FormCollectionState }) => state.formCollection.certifications;
-export const selectVolunteering = (state: { formCollection: FormCollectionState }) => state.formCollection.volunteering;
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
 export type {experience, education, skill, language, certification, interest};
-export const {setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setVolunteering, setInterests } = formCollection.actions;
+export const {setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setInterests } = formCollection.actions;
 export default formCollection.reducer;
