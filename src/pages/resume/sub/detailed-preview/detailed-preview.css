@@ -1,0 +1,83 @@
+.detailed-preview-wrapper {
+  background-color: #656e83;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+.scale {
+  transform: scale(1.2);
+  margin-top: 190px;
+  padding-bottom: 90px;
+}
+.fixed {
+  position: fixed;
+  top: 59px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.customize {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+}
+input[type="color"] {
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 24px;
+}
+
+.black-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.plus {
+  width: 15px;
+  height: 15px;
+}
+.customize-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.colored-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient(
+    from 135deg at 50% 50%,
+    rgb(228, 58, 58) 0deg,
+    rgb(224, 202, 83) 45deg,
+    rgb(103, 199, 69) 95deg,
+    rgb(66, 218, 163) 145deg,
+    rgb(49, 187, 231) 190deg,
+    rgb(56, 81, 214) 230deg,
+    rgb(143, 0, 255) 280deg,
+    rgb(231, 54, 160) 320deg,
+    rgb(201, 73, 73) 360deg
+  );
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}

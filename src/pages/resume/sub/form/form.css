@@ -5,5 +5,10 @@
     width: 55vw;
     height:auto;
     background-color: aliceblue;
-    z-index: -1;
+    z-index: -10000;
+}
+@media (max-width: 1280px) {
+    .form-container {
+        width: 100vw;
+    }
 }
