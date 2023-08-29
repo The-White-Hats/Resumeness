@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
       </div>
       <div id="bottom">
-        <p><img src='/public/egypt.png' width='24px'/> International</p>
+        <p><img src='/egypt.png' width='24px'/> International</p>
         <p>&#169; 2023, Resumeness</p>
       </div>
     </div>
