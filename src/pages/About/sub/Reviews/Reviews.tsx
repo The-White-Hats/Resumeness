@@ -1,4 +1,4 @@
-import {data} from './data/data.json';
+import {data} from './data.json';
 import './Reviews.css';
 
 function Reviews() {
