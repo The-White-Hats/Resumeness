@@ -56,19 +56,25 @@ const Preview = ({ color }: PreviewProps) => {
           }
         >
           <h2>Links</h2>
-          <a href={linkedInURL} className={linkedInURL === "" ? "hide" : ""}>
+          <a href={linkedInURL}>
             <img
+              className={linkedInURL === "" ? " hide" : ""}
               src="https://img.icons8.com/fluent/48/000000/linkedin.png"
               alt="linkedin"
-            />{" "}
-            <h6>LinkedIn</h6>
+            />
+            <h6
+              className={linkedInURL === "" ? " hide" : ""}
+            > LinkedIn</h6>
           </a>
-          <a href={portfolioURL} className={portfolioURL === "" ? "hide" : ""}>
+          <a href={portfolioURL}>
             <img
+              className={portfolioURL === "" ? " hide" : ""}
               src="https://img.icons8.com/fluent/48/000000/domain.png"
               alt="portfolio"
             />
-            <h6>Portfolio</h6>
+            <h6
+              className={portfolioURL === "" ? " hide" : ""}
+            > Portfolio</h6>
           </a>
         </div>
         <div className={"skills " + (skillArr.length === 0 ? "hide" : "")}>
@@ -122,10 +128,10 @@ const Preview = ({ color }: PreviewProps) => {
           {experienceArr.map((experience) => {
             return (
               <div key={experience.id}>
-                <h3>
+                <h3 className={(experience.jobTitle === "" && experience.company === "") ? "hide" : ""}>
                   {experience.jobTitle}, {experience.company}
                 </h3>
-                <h3>
+                <h3 className={(experience.startDate === "" && experience.endDate === "") ? "hide" : ""}>
                   <i>
                     {experience.startDate} - {experience.endDate}
                   </i>
