@@ -1,16 +1,23 @@
-import { useState } from "react";
+import type { TypedUseSelectorHook } from "react-redux";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../../slices/store";
+import PreviewButton from "../preview-button/preview-button";
 import Colors from "./colors/colors";
 import "./preview-wrapper.css";
 import Preview from "./preview/preview";
 const Wrapper = () => {
-  const [color, setColor] = useState("#224286d6");
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const { color } = useAppSelector((state) => state.color);
   return (
-    <div className="wrapper">
-      <div className="container">
-      <Preview color={color} />
-      <Colors setColor={setColor} />
+    <>
+      <div className="wrapper">
+        <div className="container">
+          <Colors />
+          <Preview color={color} />
+        </div>
       </div>
-    </div>
+      <PreviewButton />
+    </>
   );
 };
 
