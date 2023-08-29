@@ -1,23 +1,37 @@
 #about h2 {
   font-size: 1.9rem;
 }
-
-#we-are {
+#about #we-are {
   background-color: rgb(237, 237, 237);
   display: flex;
   justify-content: center;
   padding: 70px 0;
 }
-#we-are div {
+#about #we-are div {
   width: 60vw;
   max-width: 600px;
   margin-left: 3vw;
 }
-#we-are div h2 {
+#about #we-are div h2 {
   padding: 15px 0;
 }
-#we-are div p {
+#about #we-are div p {
   font-size: 1.4rem;
   padding: 8px 0;
   text-indent: 8px;
+}
+#about #across-globe {
+  background-color: goldenrod;
+  padding: 3vh 0;
+  text-align: center;
+}
+#about #across-globe h2, #about #across-globe p {
+  color: white;
+}
+#about #across-globe h1 {
+  font-size: 2.5rem;
+  margin: 10px;
+}
+#about #across-globe p {
+  font-size: 1.4rem;
 }

@@ -20,6 +20,11 @@ const About = () => {
       </article>
       <Creators />
       <Reviews />
+      <section id="across-globe">
+        <h2>Winning Hearts Across the Globe</h2>
+        <h1>300K+</h1>
+        <p>Resumes and Cover-Letters Created daily</p>
+      </section>
     </section>
   );
 }
