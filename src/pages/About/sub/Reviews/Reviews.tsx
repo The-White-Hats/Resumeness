@@ -1,17 +1,21 @@
 import data from './data/data';
+import './.css';
 
 function Reviews() {
   return (
     <div id="reviews">
+      <h2>Reviews</h2>
+      <div id="reviews-container">
       {data.map((reviewer) => (
         <article key={reviewer.id}>
           <img src={reviewer.image} alt={reviewer.name} />
-          <h4>{reviewer.name}</h4>
-          <p>{reviewer.position}</p>
-          <p>{reviewer.review}</p>
+          <h3>{reviewer.name}</h3>
+          <p className="reviewer-position">{reviewer.position}</p>
+          <p className="reviewer-opinion">{reviewer.review}</p>
         </article>
       )
       )}
+     </div>
     </div>
   );
 }
