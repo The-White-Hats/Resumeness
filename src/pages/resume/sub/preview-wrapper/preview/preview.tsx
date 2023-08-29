@@ -52,7 +52,7 @@ const Preview = ({ color }: PreviewProps) => {
         </div>
         <div
           className={
-            "links" + ((linkedInURL === "" && portfolioURL === "") ? "hide" : "")
+            "links " + ((linkedInURL === "" && portfolioURL === "") ? "hide" : "")
           }
         >
           <h2>Links</h2>
