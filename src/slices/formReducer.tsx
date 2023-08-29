@@ -60,7 +60,6 @@ interface FormCollectionState {
   certifications: certification[];
   volunteering: experience[];
   interests: interest[];
-
 }
 
 const initialState: FormCollectionState = {
