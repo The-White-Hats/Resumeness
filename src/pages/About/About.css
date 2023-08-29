@@ -1,0 +1,23 @@
+#about h2 {
+  font-size: 1.9rem;
+}
+
+#we-are {
+  background-color: rgb(237, 237, 237);
+  display: flex;
+  justify-content: center;
+  padding: 70px 0;
+}
+#we-are div {
+  width: 60vw;
+  max-width: 600px;
+  margin-left: 3vw;
+}
+#we-are div h2 {
+  padding: 15px 0;
+}
+#we-are div p {
+  font-size: 1.4rem;
+  padding: 8px 0;
+  text-indent: 8px;
+}

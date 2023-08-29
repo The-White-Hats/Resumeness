@@ -1,5 +1,5 @@
-import data from './data/data';
-import './.css';
+import {data} from './data/data.json';
+import './Reviews.css';
 
 function Reviews() {
   return (
