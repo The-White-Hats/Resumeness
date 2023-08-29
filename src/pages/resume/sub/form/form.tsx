@@ -6,7 +6,6 @@ let idCounter = 2
 const Form = () => {
     const dispatch = useDispatch()
     
-    let key = 0;
     //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
     const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName))
     const SetLastName = (lName: string) => dispatch(form.setLastName(lName))
@@ -353,7 +352,7 @@ const Form = () => {
                                         experience.achievements.map(
                                         (achievement, secondIndex) => {
                                             return (
-                                                <div key={key++} className="form-element achievement">
+                                                <div key={String(experience.id) + String(secondIndex)} className="form-element achievement">
                                                     <textarea
                                                         defaultValue={
                                                             achievement
