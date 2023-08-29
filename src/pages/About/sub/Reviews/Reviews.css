@@ -1,10 +1,11 @@
 #reviews {
   background-color: rgb(129, 1, 146);
+  color: white;
+  padding: 3vh 0;
 }
 #reviews h2 {
   text-align: center;
-  padding-top: 8px;
-  color: white;
+  padding: 20px 0 12px 0;
 }
 #reviews #reviews-container {
   display: flex;
@@ -15,7 +16,6 @@
 }
 #reviews #reviews-container article {
   background-color: rgb(54, 54, 54);
-  color: white;
   width: 30vw;
   min-height: 240px;
   display: flex;

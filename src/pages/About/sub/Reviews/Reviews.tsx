@@ -4,7 +4,7 @@ import './Reviews.css';
 function Reviews() {
   return (
     <div id="reviews">
-      <h2>Reviews</h2>
+      <h2>Helping Others is a Passion</h2>
       <div id="reviews-container">
       {data.map((reviewer) => (
         <article key={reviewer.id}>
