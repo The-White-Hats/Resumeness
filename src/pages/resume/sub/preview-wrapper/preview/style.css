@@ -1,13 +1,13 @@
 .preview {
   aspect-ratio: 1/1.4142;
-  width: 600px;
+  width: 33vw;
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  margin: auto;
-  margin: 20px;
+  background-color: transparent;
+  border-radius: 9px;
+  /* margin: auto; */
+  margin-bottom: 20px;
   color: #fff;
 }
 
@@ -25,6 +25,7 @@
   height: 100%;
   padding: 20px;
   background-color: rgba(34, 66, 134, 0.8392156863);
+  border-radius: 10px 0px 0px 10px;
 }
 
 .profile {
@@ -38,8 +39,8 @@
   align-items: center;
 }
 .profile img {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
@@ -123,11 +124,11 @@
   list-style: none;
 }
 .box-of-boxes li {
-  font-size: 0.8em;
+  font-size: 0.6em;
   border-radius: 5px;
   background-color: #28a9d8;
   padding: 5px;
-  margin: 5px;
+  margin: 3px;
   color: #ffffff;
 }
 
@@ -152,12 +153,12 @@ progress::-moz-progress-bar {
 }
 
 h2 {
-  font-size: 1em;
-  margin-bottom: 10px;
+  font-size: .85em;
+  margin-bottom: 5px;
 }
 
 h6 {
-  font-size: 0.8em;
+  font-size: 0.5em;
   margin-bottom: 5px;
 }
 
@@ -167,17 +168,18 @@ h6 {
   padding: 20px;
   background-color: #fff;
   color: #000;
+  border-radius: 0px 10px 10px 0px;
 }
-.main p {
-  font-size: 0.8em;
+p {
+  font-size: 0.5em;
   margin-bottom: 10px;
 }
 .main li {
-  font-size: 0.8em;
-  margin-left: 20px;
+  font-size: 0.5em;
+  margin-left: 30px;
 }
 .main h3 {
-  font-size: 0.8em;
+  font-size: 0.6em;
   margin-bottom: 10px;
 }
 
@@ -188,7 +190,6 @@ h6 {
   align-items: flex-start;
   align-content: left;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .experience {
@@ -198,7 +199,7 @@ h6 {
   align-items: flex-start;
   align-content: left;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .experience div {
   margin-bottom: 10px;
@@ -211,7 +212,7 @@ h6 {
   align-items: flex-start;
   align-content: left;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .education div {
   margin-bottom: 10px;
@@ -224,7 +225,7 @@ h6 {
   align-items: flex-start;
   align-content: left;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .certifications div {
   margin-bottom: 10px;
@@ -246,4 +247,6 @@ h6 {
 
 .hide {
   display: none;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
