@@ -2,9 +2,10 @@ import './Form.css'
 import * as form from '../../../../slices/formReducer'
 import { useDispatch, useSelector } from 'react-redux'
 
+let idCounter = 2
 const Form = () => {
     const dispatch = useDispatch()
-    let idCounter = 2
+    
     let key = 0;
     //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
     const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName))
@@ -63,6 +64,7 @@ const Form = () => {
                 jobDescription: '',
                 achievements: [],
             }
+            console.log(idCounter)
             idCounter++
             SetExperience([...experienceArr, newExperience])
         },

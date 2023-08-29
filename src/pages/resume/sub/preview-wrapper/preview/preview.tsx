@@ -138,7 +138,7 @@ const Preview = ({ color }: PreviewProps) => {
                 </h3>
                 <ul>
                   {experience.achievements.map((achievement) => {
-                    return <li key={achievement}>{achievement}</li>;
+                    return <li key={Math.random()}>{achievement}</li>;
                   })}
                 </ul>
               </div>
