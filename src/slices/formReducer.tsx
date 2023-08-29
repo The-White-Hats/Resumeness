@@ -143,12 +143,7 @@ const formCollection = createSlice({
     },
     setInterests: (state, action:PayloadAction<interest[]>) => {
       state.interests = action.payload;
-    },
-    
-
-
-    
-
+    }
   },
 });
 

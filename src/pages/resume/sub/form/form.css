@@ -1,39 +1,62 @@
-.Form {
+.form-wrapper {
   width: 60%;
 }
-.Form .title {
+.form-wrapper .title {
   font-size: 2rem;
   font-weight: 600;
   padding: 1rem;
   margin-bottom: 1rem;
   text-align: center;
 }
-.Form .sub-title {
+.form-wrapper form .sub-title {
   font-size: 1.5rem;
   font-weight: 600;
   padding: 1rem;
 }
-.Form form {
+.form-wrapper form .Form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-block: 1rem;
   padding-inline: 3rem;
 }
-.Form form .form-element {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-bottom: 1rem;
+.form-wrapper form .Form .big {
+  grid-column: 1/3;
 }
-.Form form .form-element label {
-  font-size: 1.2rem;
-  font-weight: lighter;
-  margin-bottom: 0.5rem;
-}
-.Form form .form-element input {
+.form-wrapper form .Form button {
   padding: 0.5rem;
   border: 1px solid #cccccc;
   border-radius: 5px;
   background-color: #cccccc;
   font-size: 1rem;
+  cursor: pointer;
+}
+.form-wrapper form .Form button:hover {
+  background-color: #ffffff;
+}
+.form-wrapper form .Form .form-element {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.form-wrapper form .Form .form-element label {
+  font-size: 1.2rem;
+  font-weight: lighter;
+  margin-bottom: 0.5rem;
+}
+.form-wrapper form .Form .form-element input {
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background-color: #cccccc;
+  font-size: 1rem;
+}
+.form-wrapper form .Form .form-element textarea {
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background-color: #cccccc;
+  font-size: 1rem;
+  height: 4rem;
+  resize: vertical;
 }/*# sourceMappingURL=Form.css.map */
