@@ -1,6 +1,7 @@
 import Reviews from "./sub/Reviews/Reviews";
 import './About.css';
 import Creators from "./sub/Creators/Creators";
+import Footer from "../../components/Footer/Footer";
 
 const About = () => {
   return (
@@ -25,6 +26,7 @@ const About = () => {
         <h1>300K+</h1>
         <p>Resumes and Cover-Letters Created daily</p>
       </section>
+      <Footer />
     </section>
   );
 }
