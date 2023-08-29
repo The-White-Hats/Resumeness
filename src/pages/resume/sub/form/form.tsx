@@ -503,7 +503,7 @@ const Form = () => {
                                                         String(experience.id) +
                                                         String(secondIndex)
                                                     }
-                                                    className="form-element achievement"
+                                                    className="form-element sub-form"
                                                 >
                                                     <textarea
                                                         defaultValue={
@@ -522,6 +522,136 @@ const Form = () => {
                                                         type="button"
                                                         onClick={() =>
                                                             handleExperience.updateAchievement(
+                                                                index,
+                                                                secondIndex
+                                                            )
+                                                        }
+                                                    >
+                                                        <img
+                                                            src="/delete.png"
+                                                            alt="delete"
+                                                        />
+                                                    </button>
+                                                </div>
+                                            )
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+                <div className="sub-title">Education</div>
+                <button type="button" onClick={handleEducation.addEducation}>
+                    Add Education
+                </button>
+                <div>
+                    {educationArr.map((education, index) => {
+                        return (
+                            <div className="Form" key={education.id}>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        handleEducation.deleteEducation(index)
+                                    }
+                                >
+                                    <img src="/delete.png" alt="delete" />
+                                </button>
+                                <div className="form-element">
+                                    <label>Degree</label>
+                                    <input
+                                        type="text"
+                                        defaultValue={education.degree}
+                                        onChange={(event) =>
+                                            handleEducation.updateEducation(
+                                                event,
+                                                index,
+                                                'degree' as keyof form.education
+                                            )
+                                        }
+                                    />
+                                </div>
+                                <div className="form-element">
+                                    <label>Study Field</label>
+                                    <input
+                                        type="text"
+                                        defaultValue={education.studyField}
+                                        onChange={(event) =>
+                                            handleEducation.updateEducation(
+                                                event,
+                                                index,
+                                                'studyField' as keyof form.education
+                                            )
+                                        }
+                                    />
+                                </div>
+                                <div className="form-element">
+                                    <label>School</label>
+                                    <input
+                                        type="date"
+                                        defaultValue={education.school}
+                                        onChange={(event) =>
+                                            handleEducation.updateEducation(
+                                                event,
+                                                index,
+                                                'school' as keyof form.education
+                                            )
+                                        }
+                                    />
+                                </div>
+                                <div className="form-element">
+                                    <label>Graduation Date</label>
+                                    <input
+                                        type="date"
+                                        defaultValue={education.graduationDate}
+                                        onChange={(event) =>
+                                            handleEducation.updateEducation(
+                                                event,
+                                                index,
+                                                'graduationDate' as keyof form.education
+                                            )
+                                        }
+                                    />
+                                </div>
+                                <div className="form-element big">
+                                    <label>Awards</label>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handleEducation.updateAward(
+                                                index
+                                            )
+                                        }
+                                    >
+                                        Add Awards
+                                    </button>
+                                    {education.awards.map(
+                                        (awards, secondIndex) => {
+                                            return (
+                                                <div
+                                                    key={
+                                                        String(education.id) +
+                                                        String(secondIndex)
+                                                    }
+                                                    className="form-element sub-form"
+                                                >
+                                                    <textarea
+                                                        defaultValue={
+                                                            awards
+                                                        }
+                                                        onChange={(event) =>
+                                                            handleEducation.updateEducation(
+                                                                event,
+                                                                index,
+                                                                'awards' as keyof form.education,
+                                                                secondIndex
+                                                            )
+                                                        }
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            handleEducation.updateAward(
                                                                 index,
                                                                 secondIndex
                                                             )

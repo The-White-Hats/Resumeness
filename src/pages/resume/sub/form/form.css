@@ -73,18 +73,18 @@
   margin: 0.5rem 0px 2rem 0px;
   width: 50%;
 }
-.form-wrapper form .Form .form-element .achievement {
+.form-wrapper form .Form .form-element .sub-form {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
-.form-wrapper form .Form .form-element .achievement textarea {
+.form-wrapper form .Form .form-element .sub-form textarea {
   width: 100%;
 }
-.form-wrapper form .Form .form-element .achievement button {
+.form-wrapper form .Form .form-element .sub-form button {
   margin: 1rem 0px 1rem 1rem;
   width: 2.5rem;
 }
-.form-wrapper form .Form .form-element .achievement button img {
+.form-wrapper form .Form .form-element .sub-form button img {
   width: 100%;
 }/*# sourceMappingURL=Form.css.map */

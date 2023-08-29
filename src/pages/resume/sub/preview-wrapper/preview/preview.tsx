@@ -169,7 +169,7 @@ const Preview = ({ color }: PreviewProps) => {
                 </h3>
                 <ul>
                   {education.awards.map((award) => {
-                    return <li key={award}>{award}</li>;
+                    return <li key={Math.random()}>{award}</li>;
                   })}
                 </ul>
               </div>
