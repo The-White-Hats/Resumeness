@@ -1,0 +1,30 @@
+#creators {
+  background-color: orangered;
+  color: white;
+  padding: 3vh 0;
+
+  h2 {
+    text-align: center;
+    padding: 20px 0 12px 0;
+  }
+
+  #creators-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 1vw 10px 1vw;
+  
+    div {
+      img {
+        width: 18vw;
+        border-radius: 50%;
+        margin-bottom: 2vh;
+      }
+  
+      h3 {
+        text-align: center;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
