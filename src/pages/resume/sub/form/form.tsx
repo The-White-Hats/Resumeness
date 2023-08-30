@@ -6,7 +6,7 @@ let idCounter = 2
 const Form = () => {
     const dispatch = useDispatch()
 
-    const SetImgURL = (imgURL: string) => dispatch(form.setImgURL(imgURL))
+    const SetImg = (img: string | ArrayBuffer | null) => dispatch(form.setImg(img))
     //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
     const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName))
     const SetLastName = (lName: string) => dispatch(form.setLastName(lName))
@@ -32,7 +32,7 @@ const Form = () => {
     const SetInterests = (interests: form.interest[]) =>
         dispatch(form.setInterests(interests))
 
-    const imgURL = useSelector(form.selectImgURL)      
+    const img = useSelector(form.selectImg)      
     const experienceArr = useSelector(form.selectExperience)
     const educationArr = useSelector(form.selectEducation)
     const skillArr = useSelector(form.selectSkills)
@@ -313,9 +313,15 @@ const Form = () => {
             <form>
                 <div className="sub-title">Personal Information</div>
                 <div className='img-file-container'>
-                    <div className='img-container'><img src={imgURL} alt="" /></div>
+                    <div className='img-container'>{img&&(<img src={img} alt="personal image" className='img'/>)}</div>
                     <div className='text'>Upload photo</div> 
-                    <input type="file" className='file' onChange={(event)=>{SetImgURL(event.target.value)}}/>
+                    <input type="file" className='file' onChange={
+                        (event)=>{
+                            const reader = new FileReader()
+                            reader.onload =()=>SetImg(reader.result)
+                            reader.readAsDataURL(event.target.files[0])
+                        }
+                        }/>
                 </div>
                 <div className="Form">
                     <div className="form-element">

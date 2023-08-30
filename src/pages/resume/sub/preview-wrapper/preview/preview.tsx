@@ -6,6 +6,7 @@ type PreviewProps = {
   color: string;
 };
 const Preview = ({ color }: PreviewProps) => {
+  const img = useSelector(form.selectImg);
   const picURL = useSelector(form.selectPicURL);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
@@ -28,11 +29,11 @@ const Preview = ({ color }: PreviewProps) => {
     <div className="preview">
       <div className="side-bar" style={{ backgroundColor: color }}>
         <div className="profile">
-          <img
-            src={picURL}
+          {img&&(<img
+            src={img}
             alt="profile picture"
-            className={picURL === "" ? "hide" : ""}
-          />
+            className={img === null ? "hide" : ""}
+          />)}
           <h1>{firstName} {lastName}</h1>
           <hr />
           <h6>{title}</h6>

@@ -43,7 +43,7 @@ interface interest {
 
 
 interface FormCollectionState {
-  imgURL :string,
+  img : string | ArrayBuffer | null;
   picURL: string;
   firstName: string;
   lastName: string;
@@ -63,7 +63,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  imgURL: personalImg,
+  img: personalImg,
   picURL: 'https://cdn.shopify.com/s/files/1/2393/5817/products/Despicable-Me-Minion-Face-Boys-Pyjamas-Logo-Web_1400x.jpg?v=1549882040',
   firstName: '3m',
   lastName: 'ibrahim',
@@ -92,8 +92,8 @@ const formCollection = createSlice({
   name: 'formCollection',
   initialState,
   reducers: {
-    setImgURL: (state, action: PayloadAction<string>) => {
-      state.imgURL = action.payload;
+    setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
+      state.img = action.payload;
     },
     setPicURL: (state, action: PayloadAction<string>) => {
       state.picURL = action.payload;
@@ -145,7 +145,7 @@ const formCollection = createSlice({
     }
   },
 });
-export const selectImgURL = (state: { formCollection: FormCollectionState }) => state.formCollection.imgURL;
+export const selectImg = (state: { formCollection: FormCollectionState }) => state.formCollection.img;
 export const selectPicURL = (state: { formCollection: FormCollectionState }) => state.formCollection.picURL;
 export const selectFirstName = (state: { formCollection: FormCollectionState }) => state.formCollection.firstName;
 export const selectLastName = (state: { formCollection: FormCollectionState }) => state.formCollection.lastName;
@@ -164,5 +164,5 @@ export const selectCertifications = (state: { formCollection: FormCollectionStat
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
 export type {experience, education, skill, language, certification, interest};
-export const {setImgURL,setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setInterests } = formCollection.actions;
+export const {setImg,setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setInterests } = formCollection.actions;
 export default formCollection.reducer;
