@@ -88,3 +88,32 @@
 .form-wrapper form .Form .form-element .sub-form button img {
   width: 100%;
 }/*# sourceMappingURL=Form.css.map */
+
+
+
+
+
+
+.img-file-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 50px;
+  cursor: pointer;
+  width: 190px;
+}
+.text{
+  margin-left: 10px;
+}
+.img-container{
+  transition: all .8s ease-in-out;
+}
+.img-file-container:hover .img-container{
+  transform: scale(1.1);
+}
+.file{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}

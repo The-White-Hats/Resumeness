@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import personalImg from "../assets/personal-img.svg"
 interface experience {
   id: number;
   jobTitle: string;
@@ -43,6 +43,7 @@ interface interest {
 
 
 interface FormCollectionState {
+  imgURL :string,
   picURL: string;
   firstName: string;
   lastName: string;
@@ -62,6 +63,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
+  imgURL: personalImg,
   picURL: 'https://cdn.shopify.com/s/files/1/2393/5817/products/Despicable-Me-Minion-Face-Boys-Pyjamas-Logo-Web_1400x.jpg?v=1549882040',
   firstName: '3m',
   lastName: 'ibrahim',
@@ -90,6 +92,9 @@ const formCollection = createSlice({
   name: 'formCollection',
   initialState,
   reducers: {
+    setImgURL: (state, action: PayloadAction<string>) => {
+      state.imgURL = action.payload;
+    },
     setPicURL: (state, action: PayloadAction<string>) => {
       state.picURL = action.payload;
     },
@@ -140,7 +145,7 @@ const formCollection = createSlice({
     }
   },
 });
-
+export const selectImgURL = (state: { formCollection: FormCollectionState }) => state.formCollection.imgURL;
 export const selectPicURL = (state: { formCollection: FormCollectionState }) => state.formCollection.picURL;
 export const selectFirstName = (state: { formCollection: FormCollectionState }) => state.formCollection.firstName;
 export const selectLastName = (state: { formCollection: FormCollectionState }) => state.formCollection.lastName;
@@ -159,5 +164,5 @@ export const selectCertifications = (state: { formCollection: FormCollectionStat
 export const selectInterests = (state: { formCollection: FormCollectionState }) => state.formCollection.interests;
 
 export type {experience, education, skill, language, certification, interest};
-export const {setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setInterests } = formCollection.actions;
+export const {setImgURL,setPicURL, setFirstName, setLastName, setEmail, setTitle, setAddress, setPhone, setLinkedInURL, setPortfolioURL, setProfessionalSummary, setExperience, setEducation, setSkills, setLanguages, setCertifications, setInterests } = formCollection.actions;
 export default formCollection.reducer;

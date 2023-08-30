@@ -1,11 +1,12 @@
-import './Form.css'
-import * as form from '../../../../slices/formReducer'
 import { useDispatch, useSelector } from 'react-redux'
-
+import personalImg from "../../../../assets/personal-img.svg"
+import * as form from '../../../../slices/formReducer'
+import './Form.css'
 let idCounter = 2
 const Form = () => {
     const dispatch = useDispatch()
 
+    const SetImgURL = (imgURL: string) => dispatch(form.setImgURL(imgURL))
     //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
     const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName))
     const SetLastName = (lName: string) => dispatch(form.setLastName(lName))
@@ -31,6 +32,7 @@ const Form = () => {
     const SetInterests = (interests: form.interest[]) =>
         dispatch(form.setInterests(interests))
 
+    const imgURL = useSelector(form.selectImgURL)      
     const experienceArr = useSelector(form.selectExperience)
     const educationArr = useSelector(form.selectEducation)
     const skillArr = useSelector(form.selectSkills)
@@ -310,6 +312,11 @@ const Form = () => {
             <div className="title">Form</div>
             <form>
                 <div className="sub-title">Personal Information</div>
+                <div className='img-file-container'>
+                    <div className='img-container'><img src={imgURL} alt="" /></div>
+                    <div className='text'>Upload photo</div> 
+                    <input type="file" className='file' onChange={(event)=>{SetImgURL(event.target.value)}}/>
+                </div>
                 <div className="Form">
                     <div className="form-element">
                         <label>First Name</label>
@@ -506,7 +513,7 @@ const Form = () => {
                                                     className="form-element sub-form"
                                                 >
                                                     <textarea
-                                                        defaultValue={
+                                                        value={
                                                             achievement
                                                         }
                                                         onChange={(event) =>
@@ -636,7 +643,7 @@ const Form = () => {
                                                     className="form-element sub-form"
                                                 >
                                                     <textarea
-                                                        defaultValue={
+                                                        value={
                                                             awards
                                                         }
                                                         onChange={(event) =>
