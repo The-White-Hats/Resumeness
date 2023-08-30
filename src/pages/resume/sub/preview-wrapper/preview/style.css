@@ -1,6 +1,7 @@
 .preview {
   aspect-ratio: 1/1.4142;
-  width: 600px;
+  width: 33vw;
+  max-width: 600px;
   display: flex;
   flex-direction: row;
   border-radius: 10px;
