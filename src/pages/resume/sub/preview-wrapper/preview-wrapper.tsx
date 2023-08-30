@@ -9,17 +9,15 @@ const Wrapper = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const { color } = useAppSelector((state) => state.color);
   return (
-    <>
-      <div className="wrapper">
-        <div className="absolute">
-          <Colors />
-        </div>
-        <div className="container">
-          <Preview color={color} />
-        </div>
+    <div className="wrapper">
+      <div className="absolute">
+        <Colors />
+      </div>
+      <div className="container">
+        <Preview color={color} />
       </div>
       <PreviewButton />
-    </>
+    </div>
   );
 };
 
