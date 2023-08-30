@@ -325,225 +325,87 @@ const Form = () => {
                 </div>
                 <div className="Form">
                     <div className="form-element">
-                        <label>First Name</label>
-                        <input
-                            type="text"
-                            onChange={(event) =>
-                                handleInputChange(event, SetFirstName)
-                            }
-                            required
-                        />
+                        <label htmlFor='first-name'>First Name</label>
+                        <input id='first-name' type="text" onChange={(event) => handleInputChange(event, SetFirstName)} required/>
                     </div>
                     <div className="form-element">
-                        <label>Last Name</label>
-                        <input
-                            type="text"
-                            onChange={(event) =>
-                                handleInputChange(event, SetLastName)
-                            }
-                            required
-                        />
+                        <label htmlFor='last-name'>Last Name</label>
+                        <input id='last-name' type="text" onChange={(event) => handleInputChange(event, SetLastName)} required/>
                     </div>
                     <div className="form-element">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            onChange={(event) =>
-                                handleInputChange(event, SetEmail)
-                            }
-                            required
-                        />
+                        <label htmlFor='email'>Email</label>
+                        <input id='email' type="email" onChange={(event) => handleInputChange(event, SetEmail)} required/>
                     </div>
                     <div className="form-element">
-                        <label>Title</label>
-                        <input
-                            type="text"
-                            onChange={(event) =>
-                                handleInputChange(event, SetTitle)
-                            }
-                            required
-                        />
+                        <label htmlFor='title'>Title</label>
+                        <input id='title' type="text" onChange={(event) => handleInputChange(event, SetTitle)} required/>
                     </div>
                     <div className="form-element">
-                        <label>Phone Number</label>
-                        <input
-                            type="tel"
-                            onChange={(event) =>
-                                handleInputChange(event, SetPhone)
-                            }
-                            required
-                        />
+                        <label htmlFor='phone-number'>Phone Number</label>
+                        <input id='phone-number' type="tel" onChange={(event) => handleInputChange(event, SetPhone)} required/>
                     </div>
                     <div className="form-element">
-                        <label>Address</label>
-                        <input
-                            type="text"
-                            onChange={(event) =>
-                                handleInputChange(event, SetAddress)
-                            }
-                            required
-                        />
+                        <label htmlFor='address'>Address</label>
+                        <input id='address' type="text" onChange={(event) => handleInputChange(event, SetAddress)} required/>
                     </div>
                     <div className="form-element">
-                        <label>LinkedIn URL (if available)</label>
-                        <input
-                            type="url"
-                            onChange={(event) =>
-                                handleInputChange(event, SetLinkedInURL)
-                            }
-                        />
+                        <label htmlFor='linkedin-url'>LinkedIn URL (if available)</label>
+                        <input id='linkedin-url' type="url" onChange={(event) => handleInputChange(event, SetLinkedInURL)} />
                     </div>
                     <div className="form-element">
-                        <label>Portfolio URL (if applicable)</label>
-                        <input
-                            type="url"
-                            onChange={(event) =>
-                                handleInputChange(event, SetPortfolioURL)
-                            }
-                        />
+                        <label htmlFor='portfolio-url'>Portfolio URL (if applicable)</label>
+                        <input id='portfolio-url' type="url" onChange={(event) => handleInputChange(event, SetPortfolioURL)} />
                     </div>
                     <div className="form-element big">
-                        <label>Professional Summary</label>
-                        <textarea
-                            onChange={(event) =>
-                                handleInputChange(event, SetProfessionalSummary)
-                            }
-                        />
+                        <label htmlFor='professional-summary'>Professional Summary</label>
+                        <textarea id='professional-summary' onChange={(event) => handleInputChange(event, SetProfessionalSummary)} />
                     </div>
                 </div>
                 <div className="sub-title">Experience</div>
-                <button type="button" onClick={handleExperience.addExperience}>
-                    Add Experience
-                </button>
+                <button type="button" onClick={handleExperience.addExperience}>Add Experience</button>
                 <div>
                     {experienceArr.map((experience, index) => {
                         return (
                             <div className="Form" key={experience.id}>
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        handleExperience.deleteExperience(index)
-                                    }
-                                >
+                                <button type="button" onClick={() => handleExperience.deleteExperience(index)}>
                                     <img src="/delete.png" alt="delete" />
                                 </button>
                                 <div className="form-element">
-                                    <label>Job Title</label>
-                                    <input
-                                        type="text"
-                                        defaultValue={experience.jobTitle}
-                                        onChange={(event) =>
-                                            handleExperience.updateExperience(
-                                                event,
-                                                index,
-                                                'jobTitle' as keyof form.experience
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='job-title'>Job Title</label>
+                                    <input id='job-title' type="text" defaultValue={experience.jobTitle} 
+                                    onChange={(event) => handleExperience.updateExperience( event, index, 'jobTitle' as keyof form.experience)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>Company</label>
-                                    <input
-                                        type="text"
-                                        defaultValue={experience.company}
-                                        onChange={(event) =>
-                                            handleExperience.updateExperience(
-                                                event,
-                                                index,
-                                                'company' as keyof form.experience
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='company'>Company</label>
+                                    <input id='company' type="text" defaultValue={experience.company} 
+                                    onChange={(event) => handleExperience.updateExperience( event, index, 'company' as keyof form.experience)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>Start Date</label>
-                                    <input
-                                        type="date"
-                                        defaultValue={experience.startDate}
-                                        onChange={(event) =>
-                                            handleExperience.updateExperience(
-                                                event,
-                                                index,
-                                                'startDate' as keyof form.experience
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='start-date'>Start Date</label>
+                                    <input id='start-date' type="date" defaultValue={experience.startDate} 
+                                    onChange={(event) => handleExperience.updateExperience( event, index, 'startDate' as keyof form.experience)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>End Date</label>
-                                    <input
-                                        type="date"
-                                        defaultValue={experience.endDate}
-                                        onChange={(event) =>
-                                            handleExperience.updateExperience(
-                                                event,
-                                                index,
-                                                'endDate' as keyof form.experience
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='end-date'>End Date</label>
+                                    <input id='end-date' type="date" defaultValue={experience.endDate}
+                                    onChange={(event) => handleExperience.updateExperience( event, index, 'endDate' as keyof form.experience)}/>
                                 </div>
                                 <div className="form-element big">
-                                    <label>Description</label>
-                                    <textarea
-                                        defaultValue={experience.jobDescription}
-                                        onChange={(event) =>
-                                            handleExperience.updateExperience(
-                                                event,
-                                                index,
-                                                'jobDescription' as keyof form.experience
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='description'>Description</label>
+                                    <textarea id='description' defaultValue={experience.jobDescription}
+                                    onChange={(event) => handleExperience.updateExperience(event, index, 'jobDescription' as keyof form.experience)}/>
                                 </div>
                                 <div className="form-element big">
                                     <label>Achievements</label>
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            handleExperience.updateAchievement(
-                                                index
-                                            )
-                                        }
-                                    >
-                                        Add Achievements
-                                    </button>
+                                    <button type="button" onClick={() => handleExperience.updateAchievement(index)}>Add Achievements</button>
                                     {experience.achievements.map(
                                         (achievement, secondIndex) => {
                                             return (
-                                                <div
-                                                    key={
-                                                        String(experience.id) +
-                                                        String(secondIndex)
-                                                    }
-                                                    className="form-element sub-form"
-                                                >
-                                                    <textarea
-                                                        value={
-                                                            achievement
-                                                        }
-                                                        onChange={(event) =>
-                                                            handleExperience.updateExperience(
-                                                                event,
-                                                                index,
-                                                                'achievements' as keyof form.experience,
-                                                                secondIndex
-                                                            )
-                                                        }
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            handleExperience.updateAchievement(
-                                                                index,
-                                                                secondIndex
-                                                            )
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/delete.png"
-                                                            alt="delete"
-                                                        />
+                                                <div key={String(experience.id) + String(secondIndex)} className="form-element sub-form">
+                                                    <textarea value={  achievement }
+                                                    onChange={(event) => handleExperience.updateExperience(event, index, 'achievements' as keyof form.experience, secondIndex)}/>
+                                                    <button type="button" onClick={() => handleExperience.updateAchievement( index, secondIndex)}>
+                                                        <img src="/delete.png" alt="delete" />
                                                     </button>
                                                 </div>
                                             )
@@ -555,125 +417,46 @@ const Form = () => {
                     })}
                 </div>
                 <div className="sub-title">Education</div>
-                <button type="button" onClick={handleEducation.addEducation}>
-                    Add Education
-                </button>
+                <button type="button" onClick={handleEducation.addEducation}>Add Education</button>
                 <div>
                     {educationArr.map((education, index) => {
                         return (
                             <div className="Form" key={education.id}>
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        handleEducation.deleteEducation(index)
-                                    }
-                                >
+                                <button type="button" onClick={() => handleEducation.deleteEducation(index)}>
                                     <img src="/delete.png" alt="delete" />
                                 </button>
                                 <div className="form-element">
-                                    <label>Degree</label>
-                                    <input
-                                        type="text"
-                                        defaultValue={education.degree}
-                                        onChange={(event) =>
-                                            handleEducation.updateEducation(
-                                                event,
-                                                index,
-                                                'degree' as keyof form.education
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='degree'>Degree</label>
+                                    <input id='degree' type="text" defaultValue={education.degree}
+                                        onChange={(event) => handleEducation.updateEducation(event, index, 'degree' as keyof form.education)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>Study Field</label>
-                                    <input
-                                        type="text"
-                                        defaultValue={education.studyField}
-                                        onChange={(event) =>
-                                            handleEducation.updateEducation(
-                                                event,
-                                                index,
-                                                'studyField' as keyof form.education
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='study-field'>Study Field</label>
+                                    <input id='study-field' type="text" defaultValue={education.studyField}
+                                        onChange={(event) => handleEducation.updateEducation(event, index, 'studyField' as keyof form.education)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>School</label>
-                                    <input
-                                        type="date"
-                                        defaultValue={education.school}
-                                        onChange={(event) =>
-                                            handleEducation.updateEducation(
-                                                event,
-                                                index,
-                                                'school' as keyof form.education
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='school'>School</label>
+                                    <input id='school' type="date" defaultValue={education.school}
+                                        onChange={(event) => handleEducation.updateEducation(event, index, 'school' as keyof form.education)}/>
                                 </div>
                                 <div className="form-element">
-                                    <label>Graduation Date</label>
-                                    <input
-                                        type="date"
-                                        defaultValue={education.graduationDate}
-                                        onChange={(event) =>
-                                            handleEducation.updateEducation(
-                                                event,
-                                                index,
-                                                'graduationDate' as keyof form.education
-                                            )
-                                        }
-                                    />
+                                    <label htmlFor='grad-date'>Graduation Date</label>
+                                    <input id='grad-date' type="date" defaultValue={education.graduationDate}
+                                        onChange={(event) => handleEducation.updateEducation(event, index,'graduationDate' as keyof form.education)}/>
                                 </div>
                                 <div className="form-element big">
                                     <label>Awards</label>
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            handleEducation.updateAward(
-                                                index
-                                            )
-                                        }
-                                    >
-                                        Add Awards
-                                    </button>
+                                    <button type="button" onClick={() => handleEducation.updateAward(index)}>Add Awards</button>
                                     {education.awards.map(
                                         (awards, secondIndex) => {
                                             return (
-                                                <div
-                                                    key={
-                                                        String(education.id) +
-                                                        String(secondIndex)
-                                                    }
-                                                    className="form-element sub-form"
-                                                >
-                                                    <textarea
-                                                        value={
-                                                            awards
-                                                        }
-                                                        onChange={(event) =>
-                                                            handleEducation.updateEducation(
-                                                                event,
-                                                                index,
-                                                                'awards' as keyof form.education,
-                                                                secondIndex
-                                                            )
-                                                        }
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            handleEducation.updateAward(
-                                                                index,
-                                                                secondIndex
-                                                            )
-                                                        }
-                                                    >
-                                                        <img
-                                                            src="/delete.png"
-                                                            alt="delete"
-                                                        />
+                                                <div key={ String(education.id) + String(secondIndex)} className="form-element sub-form">
+                                                    <textarea value={ awards }
+                                                        onChange={(event) => handleEducation.updateEducation(event, index, 'awards' as keyof form.education,secondIndex)}/>
+                                                    <button type="button"
+                                                        onClick={() => handleEducation.updateAward( index,secondIndex)}>
+                                                        <img src="/delete.png" alt="delete" />
                                                     </button>
                                                 </div>
                                             )
@@ -689,4 +472,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default Form;
