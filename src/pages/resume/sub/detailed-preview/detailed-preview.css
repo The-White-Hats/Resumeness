@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   overflow: hidden;
 }
 .scale {
@@ -15,14 +14,14 @@
 }
 .fixed {
   position: fixed;
-  top: 59px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: 10%;
+  transform: translate(-50%,-50%);
   z-index: 100;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .customize {
   position: absolute;

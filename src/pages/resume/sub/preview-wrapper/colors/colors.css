@@ -1,8 +1,8 @@
 .color-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
-  margin: 20px;
+  margin-bottom: 10px;
 }
 .color {
   width: 40px;

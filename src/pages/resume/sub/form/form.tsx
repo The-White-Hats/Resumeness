@@ -91,7 +91,7 @@ const Form = () => {
         },
         updateAchievement: (index: number, secondIndex: number = -1) => {
             const newArray = [...experienceArr]
-            let updatedObject = { ...newArray[index] }
+            const updatedObject = { ...newArray[index] }
             const achievements = [
                 ...updatedObject.achievements.slice(0, secondIndex),
                 ...updatedObject.achievements.slice(secondIndex + 1),
@@ -152,7 +152,7 @@ const Form = () => {
         },
         updateAward: (index: number, secondIndex: number = -1) => {
             const newArray = [...educationArr]
-            let updatedObject = { ...newArray[index] }
+            const updatedObject = { ...newArray[index] }
             const achievements = [
                 ...updatedObject.awards.slice(0, secondIndex),
                 ...updatedObject.awards.slice(secondIndex + 1),

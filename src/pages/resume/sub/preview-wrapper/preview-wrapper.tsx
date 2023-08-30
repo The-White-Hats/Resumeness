@@ -11,8 +11,10 @@ const Wrapper = () => {
   return (
     <>
       <div className="wrapper">
-        <div className="container">
+        <div className="absolute">
           <Colors />
+        </div>
+        <div className="container">
           <Preview color={color} />
         </div>
       </div>
