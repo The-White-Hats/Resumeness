@@ -1,7 +1,5 @@
-.preview-button {
+.button {
   position: fixed;
-  right: 2%;
-  bottom: 50px;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
@@ -12,17 +10,22 @@
   transition: width 1s ease-in-out;
   width: 60px;
   height: 60px;
+  z-index: 888;
 }
-.preview-button:hover {
+.preview-button{
+  right: 2%;
+  bottom: 50px;
+}
+.button:hover {
     width: 150px;
 }
-.previewIcon {
+.Icon {
   position: absolute;
   width: 20px;
   height: auto;
   right: 20px;
 }
-.preview-text {
+.button-text {
   margin-right: 10px;
   font-size: 1.3em;
   font-weight: 700;
@@ -33,7 +36,7 @@
   transition: all .2s ease-out;
   transition-delay:  .1s;
 }
-.preview-button:hover .preview-text {
+.button:hover .button-text{
   opacity: 1;
   transition-delay:  .8s;
 }

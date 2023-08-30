@@ -1,12 +1,12 @@
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import plus from "../../../../assets/plus-solid.svg";
+import { updateColor } from "../../../../slices/colorReducer";
 import type { RootState } from "../../../../slices/store";
+import DownloadButton from "../download-button/download-button";
 import Colors from "../preview-wrapper/colors/colors";
 import Preview from "../preview-wrapper/preview/preview";
 import "./detailed-preview.css";
-
-import { updateColor } from "../../../../slices/colorReducer";
 
 const DetailedPreview = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -14,8 +14,9 @@ const DetailedPreview = () => {
   const dispatch = useDispatch();
   return (
     <>
+      <DownloadButton style="download-container" />
       <div className="fixed">
-        <Colors  />
+        <Colors />
         <div className="customize-container">
           <input
             type="color"

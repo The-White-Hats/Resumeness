@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const PreviewButton = ()=>{
     return (
         <Link to="/resume/preview">
-        <button className="preview-button">
-           <div className="preview-text">Preview</div> 
-            <img src={previewIcon} alt="preview" className="previewIcon"/>
+        <button className="preview-button button">
+           <div className="button-text">Preview</div> 
+            <img src={previewIcon} alt="preview" className="Icon"/>
         </button>
         </Link>
     );

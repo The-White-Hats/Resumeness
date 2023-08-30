@@ -80,3 +80,6 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   height: 45px;
   border-radius: 50%;
 }
+.download-container{
+  left: 2%;
+}
