@@ -22,15 +22,17 @@ const LetterPreview = () => {
         <h2>{title}</h2>
       </div>
       <div className="letter-body">
-        <h3 className={company === "" && hiringManager === "" ? "hide" : ""}>
-          To: {hiringManager}, {company}
-        </h3>
-        <p>{letterDetails}</p>
-      </div>
-      <div className="letter-footer">
-        <h6>
-          {address} • {phone} • {email}
-        </h6>
+        <div className="letter-details">
+          <h3 className={company === "" && hiringManager === "" ? "hide" : ""}>
+            To: {hiringManager}, {company}
+          </h3>
+          <p>{letterDetails}</p>
+        </div>
+        <div className="letter-footer ">
+          <h4>
+            {address} {address !== "" && (phone !== "" || email !== "") ? "•" : ""} {phone} {phone !== "" && email !== "" ? "•" : ""} {email}
+          </h4>
+        </div>
       </div>
     </div>
   );

@@ -2,12 +2,41 @@
   aspect-ratio: 1/1.4142;
   width: 33vw;
   max-width: 600px;
-  display: flex;
-  flex-direction: row;
   border-radius: 10px;
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(255, 255, 255);
   border-radius: 9px;
   margin-bottom: 20px;
+  padding:20px;
   color: #000000;
   overflow: hidden;
+  
+}
+
+.letter-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+.letter-footer h4{
+    position: absolute;
+    bottom: 13%;
+}
+
+.letter-details p{
+    margin: 0;
+    padding: 0;
+    line-height: 1.2rem;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #000000;
+}
+
+h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    padding: 0;
 }

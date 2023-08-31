@@ -344,6 +344,7 @@ const Form = () => {
         <label htmlFor="letterDetails">Letter Details</label>
         <textarea
           id="letterDetails"
+          maxLength={2500}
           value={letterDetails}
           onChange={(event) => handleInputChange(event, SetLetterDetails)}
           required
