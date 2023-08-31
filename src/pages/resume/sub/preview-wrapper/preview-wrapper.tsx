@@ -6,6 +6,7 @@ import PreviewButton from "../preview-button/preview-button";
 import Colors from "./colors/colors";
 import "./preview-wrapper.css";
 import Preview from "./preview/preview";
+import LetterPreview from "../../../cover-letter/sub/preview";
 const Wrapper = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const { color } = useAppSelector((state) => state.color);
