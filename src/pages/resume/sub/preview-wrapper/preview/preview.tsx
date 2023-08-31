@@ -7,7 +7,7 @@ type PreviewProps = {
 };
 const Preview = ({ color }: PreviewProps) => {
   const img = useSelector(form.selectImg);
-  const picURL = useSelector(form.selectPicURL);
+  // const picURL = useSelector(form.selectPicURL);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);

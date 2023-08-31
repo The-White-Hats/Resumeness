@@ -16,18 +16,23 @@ const LetterPreview = () => {
   return (
     <div className="letter-preview">
       <div className="letter-header">
-        <h1>{fname} {lname}</h1>
+        <h1>
+          {fname} {lname}
+        </h1>
         <h2>{title}</h2>
       </div>
       <div className="letter-body">
-        <h3 className={(company === '' && hiringManager === '') ? "hide" : ""}>To: {hiringManager}, {company}</h3>
+        <h3 className={company === "" && hiringManager === "" ? "hide" : ""}>
+          To: {hiringManager}, {company}
+        </h3>
         <p>{letterDetails}</p>
       </div>
       <div className="letter-footer">
-        <h6>{address} • {phone} • {email}</h6>
+        <h6>
+          {address} • {phone} • {email}
+        </h6>
       </div>
     </div>
-      );
-}
+  );
+};
 export default LetterPreview;
-
