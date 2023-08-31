@@ -5,11 +5,15 @@ nav {
   left: 0;
   z-index: 1000;
   height: 4vh;
-  background-color: rgb(71, 239, 62);
+  background-color: #e74d3c;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+}
+nav h1 {
+  color: white;
+  font-size: 2rem;
 }
 nav #links {
   display: flex;
@@ -18,7 +22,7 @@ nav #links {
 }
 nav #links span {
   text-decoration: none;
-  color: black;
+  color: white;
   display: inline-block;
   font-size: 1.25rem;
   font-weight: bold;
