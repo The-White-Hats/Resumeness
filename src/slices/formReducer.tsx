@@ -151,7 +151,16 @@ const formCollection = createSlice({
     },
     setInterests: (state, action: PayloadAction<interest[]>) => {
       state.interests = action.payload;
-    }
+    },
+    setCompany: (state, action: PayloadAction<string>) => {
+      state.company = action.payload;
+    },
+    setHiringManager: (state, action: PayloadAction<string>) => {
+      state.hiringManager = action.payload;
+    },
+    setLetterDetails: (state, action: PayloadAction<string>) => {
+      state.letterDetails = action.payload;
+    },
   },
 });
 export const selectImg = (state: { formCollection: FormCollectionState }) => state.formCollection.img;
