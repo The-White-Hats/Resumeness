@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Resume from "./pages/resume/resume";
 import DetailedPreview from "./pages/resume/sub/detailed-preview/detailed-preview";
 import store from "./slices/store";
+import About from "./pages/About/About";
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -18,7 +20,7 @@ const App = () => {
             path="/cover-letter/preview"
             Component={DetailedPreview}
           ></Route>
-          <Route path="/about"></Route>
+          <Route path="/about" Component={About} />
         </Routes>
       </Router>
     </Provider>

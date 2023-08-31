@@ -1,0 +1,50 @@
+#about {
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  #we-are {
+    background-color: rgb(237, 237, 237);
+    display: flex;
+    justify-content: center;
+    padding: 70px 0;
+  
+    div {
+      width: 60vw;
+      max-width: 600px;
+      margin-left: 3vw;
+  
+      h2 {
+        padding: 15px 0;
+      }
+  
+      p {
+        font-size: 1.4rem;
+        padding: 8px 0;
+        text-indent: 8px;
+      }
+    }
+  }
+
+  #across-globe {
+    background-color: goldenrod;
+    padding: 3vh 0;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+
+    text-align: center;
+    h2, p {
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 10px;
+    }
+
+    p {
+      font-size: 1.4rem;
+    }
+  }
+}
