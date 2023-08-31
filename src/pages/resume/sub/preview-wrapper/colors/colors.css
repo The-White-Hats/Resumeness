@@ -1,0 +1,40 @@
+.color-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hide {
+  display: none;
+  animation: grow 0.5s ease-in-out;
+}
+.small-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: auto;
+  background-color: aliceblue;
+  animation: grow 0.2s ease-in-out;
+}
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.color:hover {
+  transform: scale(1.2);
+}

@@ -9,8 +9,9 @@ nav {
   right: 0;
   left: 0;
   z-index: 1000;
+  height: 4vh;
 
-  background-color: white;
+  background-color: rgb(71, 239, 62);
 
   @include flexCenter();
   justify-content: space-between;

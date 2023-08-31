@@ -1,0 +1,42 @@
+.button {
+  position: fixed;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background-color: #5ACCFF;
+  box-shadow: 00px 0px 24px 0px rgba(90, 204, 255, 1);
+  transition: width 1s ease-in-out;
+  width: 60px;
+  height: 60px;
+  z-index: 888;
+}
+.preview-button{
+  right: 2%;
+  bottom: 50px;
+}
+.button:hover {
+    width: 150px;
+}
+.Icon {
+  position: absolute;
+  width: 20px;
+  height: auto;
+  right: 20px;
+}
+.button-text {
+  margin-right: 10px;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: azure;
+  position: absolute;
+  left: 20px;
+  opacity: 0;
+  transition: all .2s ease-out;
+  transition-delay:  .1s;
+}
+.button:hover .button-text{
+  opacity: 1;
+  transition-delay:  .8s;
+}

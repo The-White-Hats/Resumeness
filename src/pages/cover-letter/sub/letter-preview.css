@@ -1,0 +1,13 @@
+.letter-preview {
+  aspect-ratio: 1/1.4142;
+  width: 33vw;
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: rgb(226, 226, 226);
+  border-radius: 9px;
+  margin-bottom: 20px;
+  color: #000000;
+  overflow: hidden;
+}

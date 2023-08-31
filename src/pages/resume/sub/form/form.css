@@ -1,0 +1,132 @@
+hr {
+  margin: 2rem;
+  opacity: 0;
+}
+
+.form-wrapper {
+  flex: 1;
+  height: 92vh;
+  overflow-y: scroll;
+  background-color: rgb(255, 255, 255);
+}
+.form-wrapper .title {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+}
+.form-wrapper form .sub-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 2rem 0px 1rem 0px;
+}
+.form-wrapper form label {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  padding-left: 4px;
+}
+.form-wrapper form button {
+  padding: 0.5rem;
+  margin-left: 5rem;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  background-color: #f2f7fa;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.form-wrapper form button:hover {
+  background-color: #ffffff;
+}
+.form-wrapper form .Form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-block: 1rem;
+  padding-inline: 5rem;
+  -moz-column-gap: 8rem;
+       column-gap: 8rem;
+}
+.form-wrapper form .Form button {
+  grid-column: 1/3;
+  margin: 1rem 0px 1rem 0px;
+  width: 2.5rem;
+}
+.form-wrapper form .Form button img {
+  width: 100%;
+}
+.form-wrapper form .Form .form-element {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.form-wrapper form .Form .form-element input {
+  padding: 0.5rem;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  background-color: #f2f7fa;
+  font-size: 1rem;
+}
+.form-wrapper form .Form .form-element textarea {
+  padding: 0.5rem;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  background-color: #f2f7fa;
+  font-size: 1rem;
+  height: 4rem;
+  resize: vertical;
+}
+.form-wrapper form .Form .form-element button {
+  margin: 0.5rem 0px 2rem 0px;
+  width: 50%;
+}
+.form-wrapper form .Form .form-element .sub-form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.form-wrapper form .Form .form-element .sub-form textarea {
+  width: 100%;
+}
+.form-wrapper form .Form .form-element .sub-form button {
+  margin: 1rem 0px 1rem 1rem;
+  width: 2.5rem;
+}
+.form-wrapper form .Form .form-element .sub-form button img {
+  width: 100%;
+}
+.form-wrapper form .Form .big {
+  grid-column: 1/3;
+  width: 100%;
+}
+.form-wrapper form .img-file-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5rem;
+  cursor: pointer;
+  width: 190px;
+}
+.form-wrapper form .img-file-container .text {
+  margin-left: 10px;
+  font-size: 1.1rem;
+}
+.form-wrapper form .img-file-container .img-container .img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.form-wrapper form .img-file-container:hover .img-container {
+  transform: scale(1.1);
+}
+.form-wrapper form .img-file-container .file {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.form-wrapper form .img-file-container .file::-webkit-file-upload-button {
+  visibility: hidden;
+}/*# sourceMappingURL=Form.css.map */
