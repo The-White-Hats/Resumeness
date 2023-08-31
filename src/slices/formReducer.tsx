@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import personalImg from "../assets/personal-img.svg";
 interface experience {
   id: number;
   jobTitle: string;
@@ -43,7 +42,6 @@ interface interest {
 
 interface FormCollectionState {
   img: string | ArrayBuffer | null;
-  picURL: string;
   //common
   firstName: string;
   lastName: string;
@@ -68,9 +66,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  img: personalImg,
-  picURL:
-    "https://cdn.shopify.com/s/files/1/2393/5817/products/Despicable-Me-Minion-Face-Boys-Pyjamas-Logo-Web_1400x.jpg?v=1549882040",
+  img: null,
   firstName: "",
   lastName: "",
   email: "",
@@ -104,9 +100,6 @@ const formCollection = createSlice({
   reducers: {
     setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
       state.img = action.payload;
-    },
-    setPicURL: (state, action: PayloadAction<string>) => {
-      state.picURL = action.payload;
     },
     setFirstName: (state, action: PayloadAction<string>) => {
       state.firstName = action.payload;
@@ -166,8 +159,6 @@ const formCollection = createSlice({
 });
 export const selectImg = (state: { formCollection: FormCollectionState }) =>
   state.formCollection.img;
-export const selectPicURL = (state: { formCollection: FormCollectionState }) =>
-  state.formCollection.picURL;
 export const selectFirstName = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.firstName;
@@ -220,7 +211,6 @@ export const selectLetterDetails = (state: {
 export type { certification, education, experience, interest, language, skill };
 export const {
   setImg,
-  setPicURL,
   setFirstName,
   setLastName,
   setEmail,

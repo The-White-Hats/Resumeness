@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import * as form from "../../../../slices/formReducer";
+import personalImg from "../../../../assets/personal-img.svg";
 import "./Form.css";
 let idCounter = 2;
 const Form = () => {
   const dispatch = useDispatch();
   const SetImg = (img: string | ArrayBuffer | null) =>
     dispatch(form.setImg(img));
-  //const SetPicURL = (pic: string) => dispatch(form.setPicURL(pic));
   const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName));
   const SetLastName = (lName: string) => dispatch(form.setLastName(lName));
   const SetEmail = (email: string) => dispatch(form.setEmail(email));
@@ -46,7 +46,6 @@ const Form = () => {
   const linkedInURL = useSelector(form.selectLinkedInURL);
   const portfolioURL = useSelector(form.selectPortfolioURL);
   const professionalSummary = useSelector(form.selectProfessionalSummary);
-  const img = useSelector(form.selectImg);
   const experienceArr = useSelector(form.selectExperience);
   const educationArr = useSelector(form.selectEducation);
   const skillArr = useSelector(form.selectSkills);
@@ -783,30 +782,31 @@ const Form = () => {
     </>
   );
   const uploadPhoto = (
-    <>
+    <div className="img-container">
       <div className="img-file-container">
         <div className="img-container">
-          {img && <img src={img} alt="personal image" className="img" />}
+          {personalImg && <img src={personalImg} alt="personal image" className="img" />}
         </div>
         <div className="text">Upload photo</div>
-        <input
+        <input style={{color: "red"}}
           type="file"
           className="file"
           onChange={(event) => {
             const reader = new FileReader();
             reader.onload = () => SetImg(reader.result);
-            reader.readAsDataURL(event.target.files[0]);
+            if (event.target.files)
+                reader.readAsDataURL(event.target.files[0]);
           }}
         />
       </div>
-    </>
+    </div>
   );
   return (
     <div className="form-wrapper">
       <div className="title">Form</div>
       <form>
         <div className="sub-title">Personal Information</div>
-        {location.pathname === "/resume" ? uploadPhoto : <></>}
+        { (location.pathname === "/resume") && uploadPhoto}
         <div className="Form">
           <div className="form-element">
             <label htmlFor="first-name">First Name</label>
@@ -873,6 +873,7 @@ const Form = () => {
             : coverLetterNewFields}
         </div>
         {location.pathname === "/resume" ? resumeFields : <></>}
+        <hr />
       </form>
     </div>
   );

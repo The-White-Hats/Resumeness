@@ -2,6 +2,11 @@ $input-color: #f2f7fa;
 $input-border-color: #c2c2c2;
 $form-left-space: 5rem;
 
+hr {
+    margin: 2rem;
+    opacity: 0;
+}
+
 .form-wrapper {
     flex: 1;
     height: 92vh;
@@ -106,6 +111,7 @@ $form-left-space: 5rem;
         }
 
         .img-file-container{
+            position: relative;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -120,7 +126,7 @@ $form-left-space: 5rem;
             }
             
             .img-container{
-              transition: all .8s ease-in-out;
+              //transition: all .8s ease-in-out;
 
               .img {
                 width: 50px;
