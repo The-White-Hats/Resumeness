@@ -28,11 +28,13 @@ const Preview = ({ color }: PreviewProps) => {
     <div className="preview">
       <div className="side-bar" style={{ backgroundColor: color }}>
         <div className="profile">
-          {img && (<img
+          {img && (<div className="img-container">
+            <img
             src={img as string}
             alt="profile picture"
             className={img === null ? "hide" : ""}
-          />)}
+          />
+          </div>)}
           <h1>{firstName} {lastName}</h1>
           <hr />
           <h6>{title}</h6>
