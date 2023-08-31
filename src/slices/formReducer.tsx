@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import personalImg from "../assets/personal-img.svg"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import personalImg from "../assets/personal-img.svg";
 interface experience {
   id: number;
   jobTitle: string;
@@ -41,9 +41,8 @@ interface interest {
   interest: string;
 }
 
-
 interface FormCollectionState {
-  img : string | ArrayBuffer | null;
+  img: string | ArrayBuffer | null;
   picURL: string;
   //common
   firstName: string;
@@ -90,15 +89,16 @@ const initialState: FormCollectionState = {
   hiringManager: '',
   letterDetails: '',
 };
-export type FormCollectionKey = "experience" | "education" | "skills" | "languages" | "certifications" | "interests";
-
-
-
-
-
+export type FormCollectionKey =
+  | "experience"
+  | "education"
+  | "skills"
+  | "languages"
+  | "certifications"
+  | "interests";
 
 const formCollection = createSlice({
-  name: 'formCollection',
+  name: "formCollection",
   initialState,
   reducers: {
     setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
@@ -134,33 +134,24 @@ const formCollection = createSlice({
     setProfessionalSummary: (state, action: PayloadAction<string>) => {
       state.professionalSummary = action.payload;
     },
-    setExperience: (state, action:PayloadAction<experience[]>) => {
+    setExperience: (state, action: PayloadAction<experience[]>) => {
       state.experience = action.payload;
     },
-    setEducation: (state, action:PayloadAction<education[]>) => {
+    setEducation: (state, action: PayloadAction<education[]>) => {
       state.education = action.payload;
     },
-    setSkills: (state, action:PayloadAction<skill[]>) => {
+    setSkills: (state, action: PayloadAction<skill[]>) => {
       state.skills = action.payload;
     },
-    setLanguages: (state, action:PayloadAction<language[]>) => {
+    setLanguages: (state, action: PayloadAction<language[]>) => {
       state.languages = action.payload;
     },
-    setCertifications: (state, action:PayloadAction<certification[]>) => {
+    setCertifications: (state, action: PayloadAction<certification[]>) => {
       state.certifications = action.payload;
     },
-    setInterests: (state, action:PayloadAction<interest[]>) => {
+    setInterests: (state, action: PayloadAction<interest[]>) => {
       state.interests = action.payload;
-    },
-    setCompany: (state, action: PayloadAction<string>) => {
-      state.company = action.payload;
-    },
-    setHiringManager: (state, action: PayloadAction<string>) => {
-      state.hiringManager = action.payload;
-    },
-    setLetterDetails: (state, action: PayloadAction<string>) => {
-      state.letterDetails = action.payload;
-    },
+    }
   },
 });
 export const selectImg = (state: { formCollection: FormCollectionState }) => state.formCollection.img;
