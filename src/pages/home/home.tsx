@@ -3,7 +3,8 @@ import easy from "../../assets/easy.png";
 import free from "../../assets/free.png";
 import Footer from "../../components/Footer/Footer";
 import "./home.css";
-export default function Home() {
+
+const Home = () => {
   const secure = (
     <svg
       width="480"
@@ -91,4 +92,6 @@ export default function Home() {
       <Footer />
     </>
   );
-}
+};
+
+export default Home;
