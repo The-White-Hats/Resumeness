@@ -12,7 +12,6 @@ const Wrapper = () => {
   const { color } = useAppSelector((state) => state.color);
   return (
     <>
-      <DownloadButton style="" />
       <div className="wrapper">
         {location.pathname === "/resume" ? (
           <div className="absolute">
@@ -22,12 +21,13 @@ const Wrapper = () => {
         <div className="container">
           {location.pathname === "/resume" ? (
             <Preview color={color} />
-          ) : (
-            <LetterPreview />
-          )}
+            ) : (
+              <LetterPreview />
+              )}
         </div>
       </div>
       <PreviewButton />
+      <DownloadButton style="" />
     </>
   );
 };

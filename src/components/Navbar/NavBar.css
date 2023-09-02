@@ -48,3 +48,6 @@ nav #links span {
   font-size: 1.25rem;
   font-weight: bold;
 }
+nav #links span:hover{
+  color: #5accff;
+}
