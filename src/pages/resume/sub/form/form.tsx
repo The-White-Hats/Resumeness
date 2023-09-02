@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import * as form from "../../../../slices/formReducer";
 import personalImg from "../../../../assets/personal-img.svg";
+import * as form from "../../../../slices/formReducer";
 import "./Form.css";
 let idCounter = 2;
 const Form = () => {
@@ -317,7 +317,20 @@ const Form = () => {
       SetInterests(newArray);
     },
   };
-
+  const trashBin = (
+    <svg
+      width="448"
+      height="512"
+      viewBox="0 0 448 512"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64C0 81.7 14.3 96 32 96H416C433.7 96 448 81.7 448 64C448 46.3 433.7 32 416 32H320L312.8 17.7C307.4 6.8 296.3 0 284.2 0H163.8C151.7 0 140.6 6.8 135.2 17.7ZM416 128H32L53.2 467C54.8 492.3 75.8 512 101.1 512H346.9C372.2 512 393.2 492.3 394.8 467L416 128Z"
+        fill="black"
+      />
+    </svg>
+  );
   const coverLetterNewFields = (
     <>
       <div className="form-element">
@@ -354,7 +367,11 @@ const Form = () => {
   const resumeFields = (
     <>
       <div className="sub-title">Experience</div>
-      <button type="button" onClick={handleExperience.addExperience}>
+      <button
+        type="button"
+        onClick={handleExperience.addExperience}
+        className="main_add_button"
+      >
         Add Experience
       </button>
       <div>
@@ -364,8 +381,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleExperience.deleteExperience(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="job-title">Job Title</label>
@@ -446,6 +464,7 @@ const Form = () => {
                 <button
                   type="button"
                   onClick={() => handleExperience.updateAchievement(index)}
+                  className="sub_add_button"
                 >
                   Add Achievements
                 </button>
@@ -471,8 +490,9 @@ const Form = () => {
                         onClick={() =>
                           handleExperience.updateAchievement(index, secondIndex)
                         }
+                        className="delete-button"
                       >
-                        <img src="/delete.png" alt="delete" />
+                        {trashBin}
                       </button>
                     </div>
                   );
@@ -483,7 +503,11 @@ const Form = () => {
         })}
       </div>
       <div className="sub-title">Education</div>
-      <button type="button" onClick={handleEducation.addEducation}>
+      <button
+        type="button"
+        onClick={handleEducation.addEducation}
+        className="main_add_button"
+      >
         Add Education
       </button>
       <div>
@@ -493,8 +517,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleEducation.deleteEducation(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="degree">Degree</label>
@@ -561,6 +586,7 @@ const Form = () => {
                 <button
                   type="button"
                   onClick={() => handleEducation.updateAward(index)}
+                  className="sub_add_button"
                 >
                   Add Awards
                 </button>
@@ -586,8 +612,9 @@ const Form = () => {
                         onClick={() =>
                           handleEducation.updateAward(index, secondIndex)
                         }
+                        className="delete-button"
                       >
-                        <img src="/delete.png" alt="delete" />
+                        {trashBin}
                       </button>
                     </div>
                   );
@@ -598,7 +625,11 @@ const Form = () => {
         })}
       </div>
       <div className="sub-title">Skills</div>
-      <button type="button" onClick={handleSkill.addSkill}>
+      <button
+        type="button"
+        onClick={handleSkill.addSkill}
+        className="main_add_button"
+      >
         Add Skill
       </button>
       <div>
@@ -608,8 +639,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleSkill.deleteSkill(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="skill">Skill</label>
@@ -625,7 +657,11 @@ const Form = () => {
         })}
       </div>
       <div className="sub-title">Interests</div>
-      <button type="button" onClick={handleInterest.addInterest}>
+      <button
+        type="button"
+        onClick={handleInterest.addInterest}
+        className="main_add_button"
+      >
         Add Interest
       </button>
       <div>
@@ -635,8 +671,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleInterest.deleteInterest(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="interest">Interest</label>
@@ -654,7 +691,11 @@ const Form = () => {
         })}
       </div>
       <div className="sub-title">Languages</div>
-      <button type="button" onClick={handleLanguage.addLanguage}>
+      <button
+        type="button"
+        onClick={handleLanguage.addLanguage}
+        className="main_add_button"
+      >
         Add Language
       </button>
       <div>
@@ -664,8 +705,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleLanguage.deleteLanguage(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="language">Language</label>
@@ -702,7 +744,11 @@ const Form = () => {
         })}
       </div>
       <div className="sub-title">Certifications</div>
-      <button type="button" onClick={handleCertification.addCertification}>
+      <button
+        type="button"
+        onClick={handleCertification.addCertification}
+        className="main_add_button"
+      >
         Add Certification
       </button>
       <div>
@@ -712,8 +758,9 @@ const Form = () => {
               <button
                 type="button"
                 onClick={() => handleCertification.deleteCertification(index)}
+                className="delete-button"
               >
-                <img src="/delete.png" alt="delete" />
+                {trashBin}
               </button>
               <div className="form-element">
                 <label htmlFor="certification">Certification</label>
@@ -785,17 +832,19 @@ const Form = () => {
     <div className="img-container">
       <div className="img-file-container">
         <div className="img-container">
-          {personalImg && <img src={personalImg} alt="personal image" className="img" />}
+          {personalImg && (
+            <img src={personalImg} alt="personal image" className="img" />
+          )}
         </div>
         <div className="text">Upload photo</div>
-        <input style={{color: "red"}}
+        <input
+          style={{ color: "red" }}
           type="file"
           className="file"
           onChange={(event) => {
             const reader = new FileReader();
             reader.onload = () => SetImg(reader.result);
-            if (event.target.files)
-                reader.readAsDataURL(event.target.files[0]);
+            if (event.target.files) reader.readAsDataURL(event.target.files[0]);
           }}
         />
       </div>
@@ -806,7 +855,7 @@ const Form = () => {
       <div className="title">Form</div>
       <form>
         <div className="sub-title">Personal Information</div>
-        { (location.pathname === "/resume") && uploadPhoto}
+        {location.pathname === "/resume" && uploadPhoto}
         <div className="Form">
           <div className="form-element">
             <label htmlFor="first-name">First Name</label>
