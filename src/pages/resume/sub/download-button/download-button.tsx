@@ -5,15 +5,10 @@ import FileDown from "../../../../assets/filedown.svg";
 // import { type } from "os";
 import "./download-button.css";
 const htmlStringToPdf = async (location: string) => {
-  //   const blob = await new Blob([document.querySelector(".preview").innerHTML]);
-  //   const docDefinition = {
-  //     content: [blob],
-  //   };
-  //   pdfMake.createPdf(docDefinition).open();
   const capture =
     location === "/resume" || location === "/resume/preview"
-      ? document.querySelector(".preview")
-      : document.querySelector(".letter-preview");
+      ? (document.querySelector(".preview")! as HTMLElement)
+      : (document.querySelector(".letter-preview")! as HTMLElement);
 
   const canvas = await html2canvas(capture, {});
   const imgData = canvas.toDataURL("img/png");
@@ -21,7 +16,7 @@ const htmlStringToPdf = async (location: string) => {
   const height = doc.internal.pageSize.getHeight();
   const width = doc.internal.pageSize.getWidth();
   doc.addImage(imgData, "PNG", 0, 0, width, height);
-  doc.save("CV.pdf");
+  doc.save("Resume.pdf");
 };
 type props = {
   style: string;
