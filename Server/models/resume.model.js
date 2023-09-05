@@ -2,6 +2,11 @@ import { Schema, model } from 'mongoose';
 import Joi from 'joi';
 
 const resumeSchema = new Schema({
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   firstName: String,
   lastName: String,
   email: String,
@@ -51,7 +56,7 @@ const resumeSchema = new Schema({
 
 const Resume = new model('Resume', resumeSchema);
 
-const resumeValidation = Joi.object({
+const ResumeValidation = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -99,4 +104,4 @@ const resumeValidation = Joi.object({
   color: Joi.string().required(),
 });
 
-export default { Resume, resumeValidation };
+export default { Resume, ResumeValidation };

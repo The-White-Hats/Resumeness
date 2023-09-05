@@ -2,6 +2,11 @@ import { Schema, model } from 'mongoose';
 import Joi from 'joi';
 
 const coverLetterSchema = new Schema({
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   firstName: String,
   lastName: String,
   email: String,
@@ -15,7 +20,7 @@ const coverLetterSchema = new Schema({
 
 const CoverLetter = new model('CoverLetter', coverLetterSchema);
 
-const coverLetterValidation = Joi.object({
+const CoverLetterValidation = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -27,4 +32,4 @@ const coverLetterValidation = Joi.object({
   letterDetails: Joi.string().max(2500).required(),
 });
 
-export default { CoverLetter, coverLetterValidation };
+export default { CoverLetter, CoverLetterValidation };
