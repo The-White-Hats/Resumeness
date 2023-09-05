@@ -158,22 +158,26 @@ export default function Register() {
         Gender
       </label>
       <div>
-        <input
-          type="radio"
-          className="gender-input"
-          name="gender"
-          value = "Male"
-          onChange={(e) => setGender(e.target.value)}
-          required
-        />Male
-        <input
-          type="radio"
-          className="gender-input"
-          name="gender"
-          value = "Female"
-          onChange={(e) => setGender(e.target.value)}
-          required
-        />Female
+        <label>
+          <input
+            type="radio"
+            className="gender-input"
+            name="gender"
+            value = "Male"
+            onChange={(e) => setGender(e.target.value)}
+            required
+          />Male
+        </label>
+        <label>
+          <input
+            type="radio"
+            className="gender-input"
+            name="gender"
+            value = "Female"
+            onChange={(e) => setGender(e.target.value)}
+            required
+          />Female
+        </label>
       </div>
     </div>
   );
