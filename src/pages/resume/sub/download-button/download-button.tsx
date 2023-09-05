@@ -16,7 +16,11 @@ const htmlStringToPdf = async (location: string) => {
   const height = doc.internal.pageSize.getHeight();
   const width = doc.internal.pageSize.getWidth();
   doc.addImage(imgData, "PNG", 0, 0, width, height);
-  doc.save("Resume.pdf");
+  doc.save(
+    location === "/resume" || location === "/resume/preview"
+      ? "Resume.pdf"
+      : "Cover Letter.pdf"
+  );
 };
 type props = {
   style: string;

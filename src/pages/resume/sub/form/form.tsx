@@ -36,7 +36,7 @@ const Form = () => {
     dispatch(form.setHiringManager(hiringManager));
   const SetLetterDetails = (letterDetails: string) =>
     dispatch(form.setLetterDetails(letterDetails));
-
+  const img = useSelector(form.selectImg);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);
@@ -834,7 +834,7 @@ const Form = () => {
       <div className="img-file-container">
         <div className="img-container">
           {personalImg && (
-            <img src={personalImg} alt="personal image" className="img" />
+            <img src={img ? img as string :personalImg} alt="personal image" className="img" />
           )}
         </div>
         <div className="text">Upload photo</div>
