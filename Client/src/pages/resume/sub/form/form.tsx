@@ -800,7 +800,7 @@ const Form = () => {
           );
         })}
       </div>
-      
+
     </>
   );
   const resumePersonalInformation = (
@@ -855,6 +855,49 @@ const Form = () => {
       </div>
     </div>
   );
+  const saveCoverLetter = async () => {
+    const coverLetter = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      company: company,
+      hiringManager: hiringManager,
+      letterDetails: letterDetails,
+    };
+    if (id == "") {
+      try {
+        const res = await fetch("http://localhost:8080/cover-letter/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(coverLetter),
+        });
+        const data = await res.json();
+        SetId(data._id.toString());
+        terminal.log(data);
+      } catch (err) {
+        terminal.log(err);
+      }
+    }
+    else {
+      try {
+        const res = await fetch(`http://localhost:8080/cover-letter/edit/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(coverLetter),
+        });
+        const data = await res.json();
+        terminal.log(data);
+      } catch (err) {
+        terminal.log(err);
+      }
+    }
+  }
+
+
   const saveResume = async () => {
     const resume = {
       firstName: firstName,
@@ -873,7 +916,8 @@ const Form = () => {
       certifications: certificationArr,
       interests: interestArr,
     };
-    if (id == "") {
+    if (id == "") { //same id for resume and cover letter !!!!! if user switched tabs and created a new resume, the cover letter will be overwritten
+                    //temp fix: refresh page after switching tabs
       try {
         const res = await fetch("http://localhost:8080/resume/create", {
           method: "POST",
@@ -915,7 +959,13 @@ const Form = () => {
     }>Save</button>
   )
   const saveCoverLetterButton = (
-    <button id="save" className="cover-letter" onClick={(event) => event.preventDefault()}>Save</button>
+    <button id="save" className="cover-letter" onClick={(event) => {
+      event.preventDefault();
+      saveCoverLetter();
+      terminal.log("Cover Letter saved");
+    }
+    }
+    >Save</button>
   )
   return (
     <div className="form-wrapper">
@@ -989,11 +1039,11 @@ const Form = () => {
             : coverLetterNewFields
           }
         </div>
-        {location.pathname === "/resume" ? {...resumeFields} : <></>}
-        {location.pathname === "/resume" 
-            ? saveResumeButton
-            : saveCoverLetterButton
-          }
+        {location.pathname === "/resume" ? { ...resumeFields } : <></>}
+        {location.pathname === "/resume"
+          ? saveResumeButton
+          : saveCoverLetterButton
+        }
         <hr />
       </form>
     </div>
