@@ -5,7 +5,7 @@ const CoverLetterController = {
     const coverLetter = req.body;
     const {error} = CoverLetterValidation(coverLetter);
     if (error) {
-      return res.status(400).json(error.details[0].message);
+      return res.status(400).json(error.details);
     }
     const newCoverLetter = new CoverLetter(coverLetter);
     try {

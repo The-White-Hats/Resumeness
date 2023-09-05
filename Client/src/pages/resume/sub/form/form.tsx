@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { terminal } from 'virtual:terminal'
 import personalImg from "../../../../assets/personal-img.svg";
 import * as form from "../../../../slices/formReducer";
 import "./Form.css";
@@ -7,6 +8,7 @@ const Form = () => {
   const dispatch = useDispatch();
   const SetImg = (img: string | ArrayBuffer | null) =>
     dispatch(form.setImg(img));
+  const SetId = (id: string) => dispatch(form.setId(id));
   const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName));
   const SetLastName = (lName: string) => dispatch(form.setLastName(lName));
   const SetEmail = (email: string) => dispatch(form.setEmail(email));
@@ -37,6 +39,7 @@ const Form = () => {
   const SetLetterDetails = (letterDetails: string) =>
     dispatch(form.setLetterDetails(letterDetails));
 
+  const id = useSelector(form.selectId);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);
@@ -556,7 +559,7 @@ const Form = () => {
                 <label htmlFor="school">School</label>
                 <input
                   id="school"
-                  type="date"
+                  type="text"
                   defaultValue={education.school}
                   onChange={(event) =>
                     handleEducation.updateEducation(
@@ -797,6 +800,7 @@ const Form = () => {
           );
         })}
       </div>
+      
     </>
   );
   const resumePersonalInformation = (
@@ -851,6 +855,68 @@ const Form = () => {
       </div>
     </div>
   );
+  const saveResume = async () => {
+    const resume = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      title: title,
+      phone: phone,
+      address: address,
+      linkedInURL: linkedInURL,
+      portfolioURL: portfolioURL,
+      professionalSummary: professionalSummary,
+      experience: experienceArr,
+      education: educationArr,
+      skills: skillArr,
+      languages: languageArr,
+      certifications: certificationArr,
+      interests: interestArr,
+    };
+    if (id == "") {
+      try {
+        const res = await fetch("http://localhost:8080/resume/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(resume),
+        });
+        const data = await res.json();
+        SetId(data._id.toString());
+        terminal.log(data._id.toString());
+      } catch (err) {
+        terminal.log(err);
+      }
+    }
+    else {
+      try {
+        const res = await fetch(`http://localhost:8080/resume/edit/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(resume),
+        });
+        const data = await res.json();
+        terminal.log(data);
+      } catch (err) {
+        terminal.log(err);
+      }
+    }
+  }
+  const saveResumeButton = (
+    <button id="save" className="resume" onClick={(event) => {
+      event.preventDefault();
+      saveResume();
+      terminal.log("Resume saved");
+    }
+
+    }>Save</button>
+  )
+  const saveCoverLetterButton = (
+    <button id="save" className="cover-letter" onClick={(event) => event.preventDefault()}>Save</button>
+  )
   return (
     <div className="form-wrapper">
       <div className="title">Form</div>
@@ -920,9 +986,14 @@ const Form = () => {
           </div>
           {location.pathname === "/resume"
             ? resumePersonalInformation
-            : coverLetterNewFields}
+            : coverLetterNewFields
+          }
         </div>
-        {location.pathname === "/resume" ? resumeFields : <></>}
+        {location.pathname === "/resume" ? {...resumeFields} : <></>}
+        {location.pathname === "/resume" 
+            ? saveResumeButton
+            : saveCoverLetterButton
+          }
         <hr />
       </form>
     </div>
