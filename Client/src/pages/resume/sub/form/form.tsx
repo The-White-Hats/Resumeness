@@ -917,7 +917,7 @@ const Form = () => {
       interests: interestArr,
     };
     if (id == "") { //same id for resume and cover letter !!!!! if user switched tabs and created a new resume, the cover letter will be overwritten
-                    //temp fix: refresh page after switching tabs
+                    //temp fix: refresh page after switching tabs or create a new id for cover letter
       try {
         const res = await fetch("http://localhost:8080/resume/create", {
           method: "POST",
