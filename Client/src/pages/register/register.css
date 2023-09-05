@@ -1,0 +1,94 @@
+.contact-form-container {
+  width: 100vw;
+  height: 100vh;
+  background: black;
+}
+.contact-form {
+  color: white;
+  box-sizing: border-box;
+  width: 25em;
+  height: 30em;
+  padding: 3.75rem;
+  background: #00ccff;
+  border-radius: 30px;
+  box-shadow: 0px 0px 24px 8px rgba(0, 207, 255, 1);
+  /** Center the div */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact-form-container .contact-form form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+.contact-form-container .contact-form svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.input-control {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  outline: none;
+  background: transparent;
+  margin-bottom: 60px;
+  font-size: 1rem;
+  padding-bottom: 5px;
+  color: white;
+}
+.input-box {
+  position: relative;
+}
+.label-control {
+  font-weight: 500;
+  font-size: 1.6rem;
+  position: absolute;
+  left: 0;
+  top: -26px;
+  transition: 0.2s ease-in-out;
+}
+.input-icon {
+  display: flex;
+  position: relative;
+}
+
+.input-control:focus + .label-control {
+  top: -35px;
+}
+.submit {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.7em;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+}
+.noAccount {
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.register {
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  color: white;
+}
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  height: auto;
+}

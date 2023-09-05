@@ -6,7 +6,7 @@ import DetailedPreview from "./pages/resume/sub/detailed-preview/detailed-previe
 import store from "./slices/store";
 import About from "./pages/About/About";
 import Home from "./pages/home/home";
-
+import Register from "./pages/register/register";
 const App = () => {
   return (
     <Provider store={store}>
@@ -22,6 +22,8 @@ const App = () => {
             Component={DetailedPreview}
           ></Route>
           <Route path="/about" Component={About} />
+          <Route path="/logIn" Component={Register} />
+          <Route path="/signUp" Component={Register} />
         </Routes>
       </Router>
     </Provider>

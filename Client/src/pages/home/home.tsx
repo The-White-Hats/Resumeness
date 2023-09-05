@@ -1,10 +1,15 @@
+import type { TypedUseSelectorHook } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import easy from "../../assets/easy.png";
 import free from "../../assets/free.png";
 import Footer from "../../components/Footer/Footer";
+import { RootState } from "../../slices/store";
 import "./home.css";
 
 const Home = () => {
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const loggedIn = useAppSelector((state) => state.user.loggedIn);
   const secure = (
     <svg
       width="480"
@@ -32,10 +37,10 @@ const Home = () => {
           <div className="start-container">
             <div className="start">Let's Start!</div>
             <div className="start-button">
-              <Link to="/resume">
+              <Link to={!loggedIn ? "/logIn" : "/resume"}>
                 <button className="resume">Resume</button>
               </Link>
-              <Link to="/cover-letter">
+              <Link to={!loggedIn ? "/logIn" : "/cover-letter"}>
                 <button className="cover-letter">Cover Letter</button>
               </Link>
             </div>
