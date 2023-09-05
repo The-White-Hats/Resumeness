@@ -7,7 +7,7 @@
   color: white;
   box-sizing: border-box;
   width: 25em;
-  height: 30em;
+  /* height: 30em; */
   padding: 3.75rem;
   background: #00ccff;
   border-radius: 30px;
@@ -53,6 +53,29 @@
   left: 0;
   top: -26px;
   transition: 0.2s ease-in-out;
+}
+.gender-box{
+  margin-top: -35px;
+  margin-bottom: 45px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gender-box div{
+  padding-top: 4px;
+  font-size: 1.1rem;
+}
+.gender-label {
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-right: 20px;
+}
+.gender-input {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 5px;
+  transform: translateY(1px);
 }
 .input-icon {
   display: flex;

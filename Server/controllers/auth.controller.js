@@ -8,6 +8,7 @@ const authController = {
     if (error) {
       return res.status(422).json(error.details);
     }
+
     try {
       const { email, password } = req.body;
       // Check if the user already exists
@@ -15,14 +16,17 @@ const authController = {
       if (user) {
         return res.status(400).json({ error: "Email is already taken" });
       }
+
       // Hash the password before saving it to the database
       const hashedPassword = await bcrypt.hash(password, 10);
       user = new User({ ...req.body, password: hashedPassword });
+
       await user.save();
        // Generate a JWT token containing the user's id
        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
       });
+
       res.status(201).json({ message: "User created successfully", user , token });
     } catch (error) {
       console.log(error);
@@ -38,8 +42,10 @@ const authController = {
     if (error) {
       return res.status(422).json(error.details);
     }
+
     try {
       const { email, password } = req.body;
+
       // Check if the user exists
       const user = await User.findOne({ email }, "+password");
       if (!user) {
@@ -54,6 +60,7 @@ const authController = {
           error: "Invalid password",
         });
       }
+
       // Generate a JWT token containing the user's id
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
@@ -66,6 +73,7 @@ const authController = {
       });
     }
   },
+  
   // This is a protected route that requires the user to be logged in
   // This controller is used to fetch the data of the logged in user
   me: (req, res) => {

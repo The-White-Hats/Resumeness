@@ -3,13 +3,16 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { updateLoggedIn } from "../../slices/userReducer";
 import "./register.css";
+
 export default function Register() {
   const dispatch = useDispatch();
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
+  const [Gender, setGender] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+
   const onSubmit = () => {
     const url = `http://localhost:8080/auth${location.pathname}`;
     const logIn = {
@@ -19,6 +22,7 @@ export default function Register() {
     const signUp = {
       name: UserName,
       email: Email,
+      gender: Gender,
       password: Password,
       confirmPassword: ConfirmPassword,
     };
@@ -42,6 +46,7 @@ export default function Register() {
         console.log(err);
       });
   };
+
   const username = (
     <div className="input-box">
       <input
@@ -68,6 +73,7 @@ export default function Register() {
       </svg>
     </div>
   );
+
   const email = (
     <div className="input-box">
       <input
@@ -91,6 +97,7 @@ export default function Register() {
       </svg>
     </div>
   );
+
   const password = (
     <div className="input-box">
       <input
@@ -117,6 +124,7 @@ export default function Register() {
       </svg>
     </div>
   );
+
   const confirmPassword = (
     <div className="input-box">
       <input
@@ -143,12 +151,41 @@ export default function Register() {
       </svg>
     </div>
   );
+
+  const gender = (
+    <div className="input-box gender-box">
+      <label className="gender-label">
+        Gender
+      </label>
+      <div>
+        <input
+          type="radio"
+          className="gender-input"
+          name="gender"
+          value = "Male"
+          onChange={(e) => setGender(e.target.value)}
+          required
+        />Male
+        <input
+          type="radio"
+          className="gender-input"
+          name="gender"
+          value = "Female"
+          onChange={(e) => setGender(e.target.value)}
+          required
+        />Female
+      </div>
+    </div>
+  );
+
   const elements = [
     location.pathname === "/signUp" && username,
     email,
+    location.pathname === "/signUp" && gender,
     password,
     location.pathname === "/signUp" && confirmPassword,
   ];
+
   const signUp = (
     <p className="noAccount">
       {`Don't have an account? `}
@@ -157,6 +194,7 @@ export default function Register() {
       </Link>
     </p>
   );
+
   const form = (
     <div className="contact-form-container">
       <div className="contact-form">
@@ -181,5 +219,6 @@ export default function Register() {
       </div>
     </div>
   );
+
   return form;
 }
