@@ -24,6 +24,7 @@ const userSchema = new Schema({
 });
 
 const User = model("User", userSchema);
+
 // Sign up validation schema
 const signUpSchema = Joi.object({
   name: Joi.string().min(3).max(25).required(),
@@ -33,10 +34,13 @@ const signUpSchema = Joi.object({
     .valid(Joi.ref("password"))
     .required()
     .messages({ "any.only": "Passwords don't match" }),
+  gender: Joi.string().valid("Male", "Female").required()
 });
+
 // Log in validation schema
 const logInSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).max(16).required(),
 });
+
 export { User, logInSchema, signUpSchema };
