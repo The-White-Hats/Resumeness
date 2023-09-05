@@ -7,6 +7,8 @@ import store from "./slices/store";
 import About from "./pages/About/About";
 import Home from "./pages/home/home";
 import Register from "./pages/register/register";
+import profile from "./pages/profile/profile";
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/about" Component={About} />
           <Route path="/logIn" Component={Register} />
           <Route path="/signUp" Component={Register} />
+          <Route path="/profile" Component={profile} />
         </Routes>
       </Router>
     </Provider>
