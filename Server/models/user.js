@@ -16,7 +16,13 @@ const userSchema = new Schema({
     select: false,
     unique: true,
   },
+  gender: {
+    type: String,
+    required: true,
+    enum: ["Male", "Female"]
+  }
 });
+
 const User = model("User", userSchema);
 // Sign up validation schema
 const signUpSchema = Joi.object({
