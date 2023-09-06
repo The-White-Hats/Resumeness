@@ -50,7 +50,7 @@ const authController = {
       const user = await User.findOne({ email }, "+password");
       if (!user) {
         return res.status(400).json({
-          error: "Invalid email or password",
+          error: "Invalid email",
         });
       }
       // Check if the password is correct

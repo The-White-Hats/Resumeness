@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { updateLoggedIn } from "../../slices/userReducer";
@@ -11,9 +11,14 @@ export default function Register() {
   const [Gender, setGender] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState(false);
+  const EmailRef = useRef<HTMLInputElement>(null);
+  const PasswordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   const onSubmit = () => {
+    let ok = false;
     const url = `http://localhost:8080/auth${location.pathname}`;
     const logIn = {
       email: Email,
@@ -35,12 +40,41 @@ export default function Register() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(location.pathname === "/logIn" ? logIn : signUp),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        ok = res.ok;
+        return res.json();
+      })
       .then((data) => {
-        localStorage.setItem("token", data.token);
-        dispatch(updateLoggedIn(true));
-        navigate("/");
-        console.log(localStorage.getItem("token"));
+        if (ok) {
+          localStorage.setItem("token", data.token);
+          dispatch(updateLoggedIn(true));
+          navigate("/");
+          setWrongEmail(false);
+          setWrongPassword(false);
+          if (EmailRef.current)
+            EmailRef.current.style.borderBottomColor = "white";
+          if (PasswordRef.current)
+            PasswordRef.current.style.borderBottomColor = "white";
+        } else {
+          if (data.error === "Invalid email") {
+            if (EmailRef.current) {
+              EmailRef.current.value = "";
+              EmailRef.current.style.borderBottomColor = "red";
+            }
+            setWrongEmail(true);
+          }
+          if (data.error === "Invalid password") {
+            if (PasswordRef.current) {
+              PasswordRef.current.value = "";
+              PasswordRef.current.style.borderBottomColor = "red";
+            }
+            setWrongPassword(true);
+            setWrongEmail(false);
+            if (EmailRef.current)
+              EmailRef.current.style.borderBottomColor = "white";
+          }
+        }
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -81,9 +115,13 @@ export default function Register() {
         className="input-control"
         name="Email"
         id="email"
+        ref={EmailRef}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+      {wrongEmail && (
+        <div className="wrong">Email doesn't exist please try again</div>
+      )}
       <label htmlFor="email" className="label-control">
         Email
       </label>
@@ -106,8 +144,12 @@ export default function Register() {
         name="Password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
+        ref={PasswordRef}
         required
       />
+      {wrongPassword && (
+        <div className="wrong">Wrong password please try again</div>
+      )}
       <label htmlFor="password" className="label-control">
         Password
       </label>
@@ -154,29 +196,29 @@ export default function Register() {
 
   const gender = (
     <div className="input-box gender-box">
-      <label className="gender-label">
-        Gender
-      </label>
+      <label className="gender-label">Gender</label>
       <div>
         <label>
           <input
             type="radio"
             className="gender-input"
             name="gender"
-            value = "Male"
+            value="Male"
             onChange={(e) => setGender(e.target.value)}
             required
-          />Male
+          />
+          Male
         </label>
         <label>
           <input
             type="radio"
             className="gender-input"
             name="gender"
-            value = "Female"
+            value="Female"
             onChange={(e) => setGender(e.target.value)}
             required
-          />Female
+          />
+          Female
         </label>
       </div>
     </div>

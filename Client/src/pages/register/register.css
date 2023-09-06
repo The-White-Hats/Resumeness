@@ -115,3 +115,10 @@
   align-items: center;
   height: auto;
 }
+.input-box .wrong {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  color:red;
+  font-size: .7rem;
+}
