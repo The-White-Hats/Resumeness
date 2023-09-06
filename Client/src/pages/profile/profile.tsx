@@ -17,7 +17,7 @@ const Profile = () => {
 
   const [user, setUser] = useState({name: 'Amal Ashraf', gender: 'Female', email: 'amal@gmail.com'});
   const dummyUserWork = [
-    {title: 'this is my first resume created with love', type:'resume'},
+    {title: 'this is my first resume created with love', type:'resume', _id: ''},
     {title: 'Die golato die ryal madrid', type:'cover-letter'},
     {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
     {title: 'omg omg omg omg omg omg omg', type:'resume'},{title: 'c2', type:'cover-letter'},
@@ -70,10 +70,13 @@ const Profile = () => {
   // getUserWork();
 
   const DeletePieceOfWork = async (work : any) => {
+    const id = work._id;
     try {
-      await fetch(`http://localhost:8080/${work.type}/delete`, {
+      const response = await fetch(`http://localhost:8080/${work.type}/delete/${id}`, {
         method: "DELETE"
       });
+      if(!response.ok) throw new Error(`${response.status}`)
+      setUserWork(userWork.filter(work=>work._id !== id));
     } catch (error : any) {
       console.log({status: 'failed deleting a piece of work', error: error.message});
     }
@@ -127,7 +130,7 @@ const Profile = () => {
             <button className="options-button">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512" fill={colors[`${user.gender}Dark`]}><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg>
             </button>
-            <div className="card-buttons">
+            <div className="card-buttons" style={{borderColor: colors[`${user.gender}Dark`]}}>
               <button className="edit-card">Edit</button>
               <button className="edit-card">download</button>
               <button className="delete-card" onClick={()=>DeletePieceOfWork(work)}>Delete</button>
