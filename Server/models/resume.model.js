@@ -16,7 +16,7 @@ const resumeSchema = new Schema({
     id: Number,
     skill: String
   }],
-  experiences: [{
+  experience: [{
     id: Number,
     jobTitle: String,
     company: String,
@@ -50,7 +50,7 @@ const resumeSchema = new Schema({
   color: String,
 });
 
-export const Resume = new model('Resume', resumeSchema);
+const Resume = new model('Resume', resumeSchema);
 
 const ResumeValidation = Joi.object({
   firstName: Joi.string().required(),
@@ -59,14 +59,14 @@ const ResumeValidation = Joi.object({
   title: Joi.string().required(),
   phone: Joi.string().required(),
   address: Joi.string(),
-  linkedInURL: Joi.string(),
-  portfolioURL: Joi.string(),
+  linkedInURL: Joi.string().uri().optional(),
+  portfolioURL: Joi.string().uri().optional(),
   professionalSummary: Joi.string().max(500).required(),
   skills: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     skill: Joi.string().required(),
-  })),
-  experiences: Joi.array().items(Joi.object({
+  })).optional(),
+  experience: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     jobTitle: Joi.string().required(),
     company: Joi.string().required(),
@@ -74,7 +74,7 @@ const ResumeValidation = Joi.object({
     endDate: Joi.string().required(),
     jobDescription: Joi.string().required(),
     achievements: Joi.array().items(Joi.string()),
-  })),
+  })).optional(),
   education: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     degree: Joi.string().required(),
@@ -82,22 +82,22 @@ const ResumeValidation = Joi.object({
     school: Joi.string().required(),
     graduationDate: Joi.string().required(),
     awards: Joi.array().items(Joi.string()),
-  })),
+  })).optional(),
   languages: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     language: Joi.string().required(),
     fluency: Joi.number().required(),
-  })),
+  })).optional(),
   certifications: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     certification: Joi.string().required(),
     date: Joi.string().required(),
-  })),
+  })).optional(),
   interests: Joi.array().items(Joi.object({
     id: Joi.number().required(),
     interest: Joi.string().required(),
-  })),
+  })).optional(),
   color: Joi.string().required(),
 });
 
-export {ResumeValidation} ;
+export {ResumeValidation, Resume};

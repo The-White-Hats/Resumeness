@@ -4,11 +4,11 @@ const ResumeController = {
   create: async (req, res) => {
     const resume = req.body;
     console.log(req.body);
-    /*const {error} = ResumeValidation.validate(resume);
+    const {error} = ResumeValidation.validate(resume);
     if (error) {
       console.log(error);
       return res.status(400).json(error.details);
-    }*/
+    }
     const newResume = new Resume(resume);
     try {
       await newResume.save();
