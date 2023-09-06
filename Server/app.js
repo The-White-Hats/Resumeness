@@ -23,8 +23,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/auth", authRouter);
-app.use("/resume", resumeRouter);
-app.use("/cover-letter", coverLetterRouter);
+app.use("/resume", authMiddleware, resumeRouter);
+app.use("/cover-letter", authMiddleware, coverLetterRouter);
 
 
 app.get("/", (req, res) => {

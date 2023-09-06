@@ -25,9 +25,12 @@ const ResumeController = {
     const id = req.params.id;
     try {
       let resume = await Resume.findById(id);
-      console.log(resume);
       if (!resume) {
         return res.status(404).json({ message: "Resume not found" });
+      }
+      console.log(resume);
+      if (resume.userID.toString() !== req.user._id.toString()) {
+        return res.status(401).json({ message: "This is not your Resume" });
       }
       await resume.deleteOne();
       return res.status(201).json({ message: "Resume is successfully deleted", resume });
