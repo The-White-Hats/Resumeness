@@ -56,6 +56,16 @@ const Profile = () => {
   }
   // getUserWork();
 
+  const DeletePieceOfWork = async (work : any) => {
+    try {
+      await fetch(`http://localhost:8080/${work.type}/delete`, {
+        method: "DELETE"
+      });
+    } catch (error : any) {
+      console.log({status: 'failed deleting a piece of work', error: error.message});
+    }
+  };
+
   const loadingScreen = (
     <div id="loading">
       <h1>Loading...</h1>
