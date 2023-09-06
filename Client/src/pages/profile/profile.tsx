@@ -10,10 +10,11 @@ const Profile = () => {
   //Check if the user is logged in
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const loggedIn = useSelector(selectLoggedIn);  
   useEffect(()=> {
     if(!loggedIn) navigate('/logIn');
-    
+    getUserData();
   }, [loggedIn]);
 
   const [user, setUser] = useState({name: 'Amal Ashraf', gender: 'Female', email: 'amal@gmail.com'});
@@ -32,7 +33,7 @@ const Profile = () => {
     {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'}
   ];
   const [userWork, setUserWork] = useState(dummyUserWork);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   // first, get the data of the user from the server
   const getUserData = async () => {
@@ -46,11 +47,11 @@ const Profile = () => {
       });
       const data = await response.json();
       setUser(data.user);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
-  // getUserData();
 
   // second, get the work of that user from the server
   const getUserWork = async () => {
