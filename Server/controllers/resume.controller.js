@@ -21,6 +21,19 @@ const ResumeController = {
   edit: async (req, res) => {
   },
   delete: async (req, res) => {
+    try {
+      const { id } = req.params.id;
+      let resume = await Resume.findById(id);
+      if (!resume) {
+        return res.status(404).json({ message: "Resume not found" });
+      }
+      await Resume.delete(id);
+      res.status(201).json({ message: "Resume is successfully deleted", post });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "An error occurred while deleting Resume. Please try again." });
+    }
   }
 };
 
