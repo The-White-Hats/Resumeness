@@ -1,0 +1,98 @@
+#profile-page, #profile-page * {
+  margin: 0;
+  padding: 0;
+}
+
+
+#profile-page {
+  height: 91vh;
+  display: flex;
+  align-items: center;
+
+  #loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 40vh;
+    }
+  }
+
+  #profile-card {
+    background-color: #9ceafd;
+    width: 30%;
+    max-width: 300px;
+    height: 90%;
+    margin: 0 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+    #profile-img-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding-top: 17%;
+
+      img {
+        width: 80%;
+        z-index: 3;
+      }
+
+      &::before {
+        content: '';
+        background-color: white;
+        aspect-ratio: 1/1;
+        width: 83%;
+        border-radius: 50%;
+        position: absolute;
+      }
+    }
+
+    #user-info {
+      padding-top: 20px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h2 {
+        font-size: 1.8rem;
+        padding-bottom: 8px;
+      }
+      
+      p {
+        display: inline-block;
+        font-size: 1rem;
+        color: #0043b7;
+      }
+    }
+
+    #delete-account {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20%;
+
+      button {
+        border: none;
+        background-color: rgb(255, 20, 20);
+        font-size: 0.8rem;
+        color: white;
+        padding: 0.6rem;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  #user-work-area {
+    flex: 1;
+    background-color: pink;
+  }
+}

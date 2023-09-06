@@ -1,0 +1,85 @@
+#profile-page, #profile-page * {
+  margin: 0;
+  padding: 0;
+}
+
+#profile-page {
+  height: 91vh;
+  display: flex;
+  align-items: center;
+}
+#profile-page #loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#profile-page #loading h1 {
+  font-size: 3rem;
+  margin-top: 40vh;
+}
+#profile-page #profile-card {
+  background-color: #9ceafd;
+  width: 30%;
+  max-width: 300px;
+  height: 90%;
+  margin: 0 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+#profile-page #profile-card #profile-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 17%;
+}
+#profile-page #profile-card #profile-img-container img {
+  width: 80%;
+  z-index: 3;
+}
+#profile-page #profile-card #profile-img-container::before {
+  content: "";
+  background-color: white;
+  aspect-ratio: 1/1;
+  width: 83%;
+  border-radius: 50%;
+  position: absolute;
+}
+#profile-page #profile-card #user-info {
+  padding-top: 20px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#profile-page #profile-card #user-info h2 {
+  font-size: 1.8rem;
+  padding-bottom: 8px;
+}
+#profile-page #profile-card #user-info p {
+  display: inline-block;
+  font-size: 1rem;
+  color: #0043b7;
+}
+#profile-page #profile-card #delete-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+}
+#profile-page #profile-card #delete-account button {
+  border: none;
+  background-color: rgb(255, 20, 20);
+  font-size: 0.8rem;
+  color: white;
+  padding: 0.6rem;
+  border-radius: 10px;
+}
+#profile-page #user-work-area {
+  flex: 1;
+  background-color: pink;
+}
