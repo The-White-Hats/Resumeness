@@ -15,9 +15,10 @@ const Profile = () => {
   useEffect(()=> {
     if(!loggedIn) navigate('/logIn');
     getUserData();
+    // getUserWork();
   }, [loggedIn]);
 
-  const [user, setUser] = useState({name: 'Amal Ashraf', gender: 'Female', email: 'amal@gmail.com'});
+  const [user, setUser] = useState({name: '', gender: '', email: '', _id: ''});
   const dummyUserWork = [
     {title: 'this is my first resume created with love', type:'resume', _id: ''},
     {title: 'Die golato die ryal madrid', type:'cover-letter'},
@@ -69,7 +70,6 @@ const Profile = () => {
       console.log(err);
     }
   }
-  // getUserWork();
 
   const DeletePieceOfWork = async (work : any) => {
     const id = work._id;
