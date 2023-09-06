@@ -3,6 +3,8 @@ import Joi from 'joi';
 
 const resumeSchema = new Schema({
   userID: Schema.Types.ObjectId,
+  type: String,
+  fileName: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -54,6 +56,8 @@ const Resume = new model('Resume', resumeSchema);
 
 const ResumeValidation = Joi.object({
   userID: Joi.string().required(),
+  type: Joi.string().required(),
+  fileName: Joi.string().optional().default("Untitled Resume"),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),

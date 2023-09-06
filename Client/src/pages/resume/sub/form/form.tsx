@@ -867,6 +867,8 @@ const Form = () => {
     const user = await getUser();
     const coverLetter = {
       userID: user,
+      type: "cover-letter",
+      fileName: fileName,
       firstName: firstName,
       lastName: lastName,
       title: title,
@@ -930,6 +932,8 @@ const Form = () => {
     const user = await getUser();
     const resume = {
       userID: user,
+      type: "resume",
+      fileName: fileName,
       firstName: firstName,
       lastName: lastName,
       email: email,
