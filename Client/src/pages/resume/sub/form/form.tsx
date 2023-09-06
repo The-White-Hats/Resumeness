@@ -859,6 +859,8 @@ const Form = () => {
     const coverLetter = {
       firstName: firstName,
       lastName: lastName,
+      title: title,
+      phone: phone,
       email: email,
       company: company,
       hiringManager: hiringManager,

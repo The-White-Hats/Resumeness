@@ -14,7 +14,7 @@ const coverLetterSchema = new Schema({
   letterDetails: String,
 });
 
-export const CoverLetter = new model('CoverLetter', coverLetterSchema);
+const CoverLetter = new model('CoverLetter', coverLetterSchema);
 
 const CoverLetterValidation = Joi.object({
   firstName: Joi.string().required(),
@@ -28,4 +28,4 @@ const CoverLetterValidation = Joi.object({
   letterDetails: Joi.string().max(2500).required(),
 });
 
-export  { CoverLetterValidation };
+export  { CoverLetterValidation , CoverLetter};
