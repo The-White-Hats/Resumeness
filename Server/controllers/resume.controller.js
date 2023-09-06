@@ -1,4 +1,3 @@
-import { Schema } from 'mongoose';
 import {Resume, ResumeValidation} from '../models/resume.model.js';
 
 const ResumeController = {
