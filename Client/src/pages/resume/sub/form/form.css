@@ -178,3 +178,24 @@ hr {
 .form-wrapper form .img-file-container .file::-webkit-file-upload-button {
   visibility: hidden;
 } /*# sourceMappingURL=Form.css.map */
+#save{
+  position: relative;
+  left: 70%;
+  width: 70px;
+  height: 45px;
+  background: #3b6f97;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.15em;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem;
+  margin-left: 5rem;
+  box-shadow: none;
+  animation: none;
+  transition: all 0.8s ease-in-out;
+}
+#save:hover{
+  transform: scale(1.1);
+}
