@@ -1,7 +1,9 @@
+import type { TypedUseSelectorHook } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as form from "../../../slices/formReducer";
+import { RootState } from "../../../slices/store";
 import "./letter-preview.css";
-
 const LetterPreview = () => {
   const fname = useSelector(form.selectFirstName);
   const lname = useSelector(form.selectLastName);
@@ -12,7 +14,12 @@ const LetterPreview = () => {
   const company = useSelector(form.selectCompany);
   const hiringManager = useSelector(form.selectHiringManager);
   const letterDetails = useSelector(form.selectLetterDetails);
-
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const navigate = useNavigate();
+  if (!loggedIn) {
+    navigate("/");
+  }
   return (
     <div className="letter-preview">
       <div className="letter-header">
@@ -30,7 +37,9 @@ const LetterPreview = () => {
         </div>
         <div className="letter-footer ">
           <h4>
-            {address} {address !== "" && (phone !== "" || email !== "") ? "•" : ""} {phone} {phone !== "" && email !== "" ? "•" : ""} {email}
+            {address}{" "}
+            {address !== "" && (phone !== "" || email !== "") ? "•" : ""}{" "}
+            {phone} {phone !== "" && email !== "" ? "•" : ""} {email}
           </h4>
         </div>
       </div>

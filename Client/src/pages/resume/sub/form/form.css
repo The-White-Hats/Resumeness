@@ -126,13 +126,13 @@ hr {
 .form-wrapper form .Form .form-element .sub-form .delete-button:hover {
   transform: scale(1.1);
 }
-svg {
+.form-wrapper form .Form svg {
   margin: 0;
   width: 1.5rem;
   height: auto;
   cursor: pointer;
 }
-svg:hover path {
+.form-wrapper form .Form svg:hover path {
   fill: #c70202;
 }
 .form-wrapper form .Form .form-element .sub-form button img {
@@ -156,16 +156,16 @@ svg:hover path {
   margin-left: 10px;
   font-size: 1.1rem;
 }
-.form-wrapper form .img-file-container:hover .text{
-  color:#5ACCFF;
+.form-wrapper form .img-file-container:hover .text {
+  color: #5accff;
 }
 .form-wrapper form .img-file-container .img-container .img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
-.img-container{
-  transition: all .8s ease-in-out;
+.img-container {
+  transition: all 0.8s ease-in-out;
 }
 .form-wrapper form .img-file-container:hover .img-container {
   transform: scale(1.1);
