@@ -856,7 +856,9 @@ const Form = () => {
     </div>
   );
   const saveCoverLetter = async () => {
+    const user = await getUser();
     const coverLetter = {
+      userID: user,
       firstName: firstName,
       lastName: lastName,
       title: title,
@@ -899,9 +901,27 @@ const Form = () => {
     }
   }
 
-
+  const getUser = async () => {
+    try {
+      const res = await fetch("http://localhost:8080/auth/me", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
+      return(data.user._id);
+    } catch (err) {
+      console.log(err);
+      return(err);
+    }
+  }
   const saveResume = async () => {
+    
+    const user = await getUser();
     const resume = {
+      userID: user,
       firstName: firstName,
       lastName: lastName,
       email: email,

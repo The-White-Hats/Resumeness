@@ -53,6 +53,7 @@ const resumeSchema = new Schema({
 const Resume = new model('Resume', resumeSchema);
 
 const ResumeValidation = Joi.object({
+  userID: Joi.string().required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
