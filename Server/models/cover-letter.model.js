@@ -3,6 +3,8 @@ import Joi from 'joi';
 
 const coverLetterSchema = new Schema({
   userID: Schema.Types.ObjectId,
+  type: String,
+  fileName: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -18,6 +20,8 @@ const CoverLetter = new model('CoverLetter', coverLetterSchema);
 
 const CoverLetterValidation = Joi.object({
   userID: Joi.string().required(),
+  type: Joi.string().required(),
+  fileName: Joi.string().optional().default("Untitled Cover Letter"),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),

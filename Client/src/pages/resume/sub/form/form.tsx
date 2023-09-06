@@ -10,7 +10,9 @@ const Form = () => {
   const dispatch = useDispatch();
   const SetImg = (img: string | ArrayBuffer | null) =>
     dispatch(form.setImg(img));
-  const SetId = (id: string) => dispatch(form.setId(id));
+  const SetResumeId = (id: string) => dispatch(form.setResumeId(id));
+  const SetCoverLetterId = (id: string) => dispatch(form.setCoverLetterId(id));
+  const SetFileName = (title: string) => dispatch(form.setFileName(title));
   const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName));
   const SetLastName = (lName: string) => dispatch(form.setLastName(lName));
   const SetEmail = (email: string) => dispatch(form.setEmail(email));
@@ -43,7 +45,9 @@ const Form = () => {
 
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const currentColor = useAppSelector((state) => state.color.color);
-  const id = useSelector(form.selectId);
+  const resumeId = useSelector(form.selectResumeId);
+  const coverLetterId = useSelector(form.selectCoverLetterId);
+  const fileName = useSelector(form.selectFileName);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);
@@ -863,6 +867,8 @@ const Form = () => {
     const user = await getUser();
     const coverLetter = {
       userID: user,
+      type: "cover-letter",
+      fileName: fileName,
       firstName: firstName,
       lastName: lastName,
       title: title,
@@ -872,7 +878,7 @@ const Form = () => {
       hiringManager: hiringManager,
       letterDetails: letterDetails,
     };
-    if (id == "") {
+    if (coverLetterId == "") {
       try {
         const res = await fetch("http://localhost:8080/cover-letter/create", {
           method: "POST",
@@ -882,7 +888,7 @@ const Form = () => {
           body: JSON.stringify(coverLetter),
         });
         const data = await res.json();
-        SetId(data._id.toString());
+        SetCoverLetterId(data._id.toString());
         terminal.log(data);
       } catch (err) {
         terminal.log(err);
@@ -890,7 +896,7 @@ const Form = () => {
     }
     else {
       try {
-        const res = await fetch(`http://localhost:8080/cover-letter/edit/${id}`, {
+        const res = await fetch(`http://localhost:8080/cover-letter/edit/${coverLetterId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -926,6 +932,8 @@ const Form = () => {
     const user = await getUser();
     const resume = {
       userID: user,
+      type: "resume",
+      fileName: fileName,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -943,8 +951,7 @@ const Form = () => {
       interests: interestArr,
       color:currentColor,
     };
-    if (id == "") { //same id for resume and cover letter !!!!! if user switched tabs and created a new resume, the cover letter will be overwritten
-                    //temp fix: refresh page after switching tabs or create a new id for cover letter
+    if (resumeId == "") { 
       try {
         const res = await fetch("http://localhost:8080/resume/create", {
           method: "POST",
@@ -954,7 +961,7 @@ const Form = () => {
           body: JSON.stringify(resume),
         });
         const data = await res.json();
-        SetId(data._id.toString());
+        SetResumeId(data._id.toString());
         terminal.log(data._id.toString());
       } catch (err) {
         terminal.log(err);
@@ -962,7 +969,7 @@ const Form = () => {
     }
     else {
       try {
-        const res = await fetch(`http://localhost:8080/resume/edit/${id}`, {
+        const res = await fetch(`http://localhost:8080/resume/edit/${resumeId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -998,6 +1005,15 @@ const Form = () => {
     <div className="form-wrapper">
       <div className="title">Form</div>
       <form>
+        <div id = "file-name-container">
+            <input
+              id="file-name"
+              type="text"
+              value={fileName}
+              onChange={(event) => handleInputChange(event, SetFileName)}
+              required
+            />
+          </div>
         <div className="sub-title">Personal Information</div>
         {location.pathname === "/resume" && uploadPhoto}
         <div className="Form">
