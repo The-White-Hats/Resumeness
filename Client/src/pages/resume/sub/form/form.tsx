@@ -924,7 +924,7 @@ const Form = () => {
       return(data.user._id);
     } catch (err) {
       console.log(err);
-      return(err);
+      return ;
     }
   }
   const saveResume = async () => {
