@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { selectLoggedIn } from "../../slices/userReducer";
+import { selectLoggedIn, updateLoggedIn } from "../../slices/userReducer";
 import './profile.css';
 
 
 const Profile = () => {
   //Check if the user is logged in
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const loggedIn = useSelector(selectLoggedIn);  
   useEffect(()=> {
     if(!loggedIn) navigate('/logIn');
@@ -82,6 +83,51 @@ const Profile = () => {
     }
   };
 
+  // Handle deleting the user account action
+  const ensuringMessage = useRef<HTMLParagraphElement>(null);
+  const deleteAccount = useRef<HTMLButtonElement>(null);
+  let timer = 5;
+  let intervalID : string | number | undefined;
+
+  const handleDeleteAccount = () => {
+    if(timer < 5)
+    {
+      clearInterval(intervalID);
+      DeleteUserAccount();
+      return;
+    }
+    
+    if(ensuringMessage.current)
+    ensuringMessage.current.innerHTML = 'All your data will be lost and that can not be undone, are you sure?!';
+    if(deleteAccount.current) deleteAccount.current.innerHTML = `${timer} YES`;
+
+    intervalID = window.setInterval(()=> {
+      if(timer === 0) {
+        clearInterval(intervalID);
+        timer = 5;
+        if(ensuringMessage.current) ensuringMessage.current.innerHTML = '';
+        if(deleteAccount.current) deleteAccount.current.innerHTML = `Delete Account`;
+        return;
+      }
+
+      timer--;
+      if(deleteAccount.current) deleteAccount.current.innerHTML = `${timer} YES`;
+    },1000);
+  }
+
+  const DeleteUserAccount = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/profile/delete/${user._id}`, {
+        method: "DELETE"
+      });
+      if(!response.ok) throw new Error(`${response.status}`)
+      dispatch(updateLoggedIn(false));
+      navigate('/');
+    } catch (error : any) {
+      console.log({status: 'failed deleting a piece of work', error: error.message});
+    }
+  };
+
   const loadingScreen = (
     <div id="loading">
       <h1>Loading...</h1>
@@ -117,7 +163,8 @@ const Profile = () => {
           <p style={{color: colors[`${user.gender}Dark`]}}>{user.email}</p>
         </div>
         <div id="delete-account">
-          <button>Delete Account</button>
+          <p ref={ensuringMessage}></p>
+          <button ref={deleteAccount} onClick={handleDeleteAccount}>Delete Account</button>
         </div>
       </div>
       <div id="user-work-area">
