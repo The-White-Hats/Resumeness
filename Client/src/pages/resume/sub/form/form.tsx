@@ -12,6 +12,7 @@ const Form = () => {
     dispatch(form.setImg(img));
   const SetResumeId = (id: string) => dispatch(form.setResumeId(id));
   const SetCoverLetterId = (id: string) => dispatch(form.setCoverLetterId(id));
+  const SetFileName = (title: string) => dispatch(form.setFileName(title));
   const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName));
   const SetLastName = (lName: string) => dispatch(form.setLastName(lName));
   const SetEmail = (email: string) => dispatch(form.setEmail(email));
@@ -46,6 +47,7 @@ const Form = () => {
   const currentColor = useAppSelector((state) => state.color.color);
   const resumeId = useSelector(form.selectResumeId);
   const coverLetterId = useSelector(form.selectCoverLetterId);
+  const fileName = useSelector(form.selectFileName);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
   const email = useSelector(form.selectEmail);
@@ -999,6 +1001,15 @@ const Form = () => {
     <div className="form-wrapper">
       <div className="title">Form</div>
       <form>
+        <div id = "file-name-container">
+            <input
+              id="file-name"
+              type="text"
+              value={fileName}
+              onChange={(event) => handleInputChange(event, SetFileName)}
+              required
+            />
+          </div>
         <div className="sub-title">Personal Information</div>
         {location.pathname === "/resume" && uploadPhoto}
         <div className="Form">

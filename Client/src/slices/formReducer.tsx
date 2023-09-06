@@ -45,6 +45,7 @@ interface FormCollectionState {
   resumeId: string;
   coverLetterId: string;
   //common
+  fileName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -68,6 +69,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
+  fileName: "Untitled",
   resumeId: "",
   coverLetterId: "",
   img: null,
@@ -107,6 +109,9 @@ const formCollection = createSlice({
     },
     setCoverLetterId: (state, action: PayloadAction<string>) => {
       state.coverLetterId = action.payload;
+    },
+    setFileName: (state, action: PayloadAction<string>) => {
+      state.fileName = action.payload;
     },
     setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
       state.img = action.payload;
@@ -169,6 +174,9 @@ const formCollection = createSlice({
 });
 export const selectImg = (state: { formCollection: FormCollectionState }) =>
   state.formCollection.img;
+export const selectFileName = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.fileName;
 export const selectFirstName = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.firstName;
@@ -230,6 +238,7 @@ export const {
   setResumeId,
   setCoverLetterId,
   setImg,
+  setFileName,
   setFirstName,
   setLastName,
   setEmail,
