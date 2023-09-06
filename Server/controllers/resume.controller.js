@@ -1,3 +1,4 @@
+import { Schema } from 'mongoose';
 import {Resume, ResumeValidation} from '../models/resume.model.js';
 
 const ResumeController = {
@@ -21,18 +22,19 @@ const ResumeController = {
   edit: async (req, res) => {
   },
   delete: async (req, res) => {
+    const id = req.params.id;
     try {
-      const { id } = req.params.id;
       let resume = await Resume.findById(id);
+      console.log(resume);
       if (!resume) {
         return res.status(404).json({ message: "Resume not found" });
       }
-      await Resume.delete(id);
-      res.status(201).json({ message: "Resume is successfully deleted", post });
+      await resume.deleteOne();
+      return res.status(201).json({ message: "Resume is successfully deleted", resume });
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ error: "An error occurred while deleting Resume. Please try again." });
+        return res.status(500).json({ error: "An error occurred while deleting Resume. Please try again." });
     }
   }
 };

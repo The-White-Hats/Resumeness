@@ -18,18 +18,19 @@ const CoverLetterController = {
   edit: async (req, res) => {
   },
   delete: async (req, res) => {
+    const id = req.params.id;
     try {
-      const { id } = req.params.id;
       let coverLetter = await CoverLetter.findById(id);
+      console.log(coverLetter);
       if (!coverLetter) {
         return res.status(404).json({ message: "Cover-Letter not found" });
       }
-      await coverLetter.delete(id);
-      res.status(201).json({ message: "Cover-Letter is successfully deleted", post });
+      await coverLetter.deleteOne();
+      return res.status(201).json({ message: "Cover-Letter is successfully deleted", coverLetter });
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ error: "An error occurred while deleting Cover-Letter. Please try again." });
+        return res.status(500).json({ error: "An error occurred while deleting Cover-Letter. Please try again." });
     }
   }
 };

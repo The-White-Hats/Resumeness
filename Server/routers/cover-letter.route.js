@@ -5,6 +5,6 @@ const letterRouter = Router();
 
 letterRouter.post("/create", CoverLetterController.create);
 //letterRouter.put("/edit", CoverLetterController.update);
-//letterRouter.delete("/delete", CoverLetterController.delete);
+letterRouter.delete("/delete/:id", CoverLetterController.delete);
 
 export default letterRouter;
