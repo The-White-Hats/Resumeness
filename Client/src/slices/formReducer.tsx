@@ -42,7 +42,8 @@ interface interest {
 
 interface FormCollectionState {
   img: string | ArrayBuffer | null;
-  id: string;
+  resumeId: string;
+  coverLetterId: string;
   //common
   firstName: string;
   lastName: string;
@@ -67,7 +68,8 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  id: "",
+  resumeId: "",
+  coverLetterId: "",
   img: null,
   firstName: "",
   lastName: "",
@@ -100,8 +102,11 @@ const formCollection = createSlice({
   name: "formCollection",
   initialState,
   reducers: {
-    setId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload;
+    setResumeId: (state, action: PayloadAction<string>) => {
+      state.resumeId = action.payload;
+    },
+    setCoverLetterId: (state, action: PayloadAction<string>) => {
+      state.coverLetterId = action.payload;
     },
     setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
       state.img = action.payload;
@@ -212,12 +217,18 @@ export const selectHiringManager = (state: {
 export const selectLetterDetails = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.letterDetails;
-export const selectId = (state: { formCollection: FormCollectionState }) => state.formCollection.id;
+export const selectResumeId = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.resumeId;
+export const selectCoverLetterId = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.coverLetterId;
 
 
 export type { certification, education, experience, interest, language, skill };
 export const {
-  setId,
+  setResumeId,
+  setCoverLetterId,
   setImg,
   setFirstName,
   setLastName,
