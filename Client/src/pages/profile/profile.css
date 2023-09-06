@@ -135,6 +135,7 @@
   bottom: 5px;
   border-radius: 15px;
   background-color: white;
+  border: 2px solid;
 }
 #profile-page #user-work-area .work-card .options-button:focus + .card-buttons button {
   border: none;
