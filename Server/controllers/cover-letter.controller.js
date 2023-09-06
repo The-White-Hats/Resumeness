@@ -28,7 +28,7 @@ const CoverLetterController = {
         return res.status(401).json({ message: "This is not your Cover-Letter" });
       }
       await coverLetter.updateOne(newCoverLetter);
-      return res.status(201).json({ message: "Cover-Letter is successfully updated", coverLetter });
+      return res.status(201).json({ message: "Cover-Letter is successfully updated", newCoverLetter });
     }
     catch (error) {
         console.log(error);

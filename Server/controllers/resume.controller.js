@@ -32,7 +32,7 @@ const ResumeController = {
         return res.status(401).json({ message: "This is not your Resume" });
       }
       await resume.updateOne(newResume);
-      return res.status(201).json({ message: "Resume is successfully updated", resume });
+      return res.status(201).json({ message: "Resume is successfully updated", newResume });
     }
     catch (error) {
         console.log(error);
