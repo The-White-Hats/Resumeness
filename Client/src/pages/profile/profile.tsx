@@ -77,7 +77,22 @@ const Profile = () => {
         </div>
       </div>
       <div id="user-work-area">
-        what abput me, why not showing me?
+        {userWork.map((work, index)=>(
+          <div key={index} className="work-card" style={{backgroundColor: colors[`${user.gender}Light`]}}>
+            <div className="card-info">
+              <h2><span>Title:</span> {work.title}</h2>
+              <p style={{color: colors[`${user.gender}Dark`]}}>{work.type}</p>
+            </div>
+            <button className="options-button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512" fill={colors[`${user.gender}Dark`]}><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg>
+            </button>
+            <div className="card-buttons">
+              <button className="edit-card">Edit</button>
+              <button className="edit-card">download</button>
+              <button className="delete-card" onClick={()=>DeletePieceOfWork(work)}>Delete</button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
