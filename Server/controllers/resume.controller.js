@@ -20,6 +20,24 @@ const ResumeController = {
     }
   },
   edit: async (req, res) => {
+    const id = req.params.id;
+    const newResume = req.body;
+    try {
+      let resume = await Resume.findById(id);
+      if (!resume) {
+        return res.status(404).json({ message: "Resume not found" });
+      }
+      console.log(resume);
+      if (resume.userID.toString() !== req.user._id.toString()) {
+        return res.status(401).json({ message: "This is not your Resume" });
+      }
+      await resume.updateOne(newResume);
+      return res.status(201).json({ message: "Resume is successfully updated", resume });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "An error occurred while updating Resume. Please try again." });
+    }
   },
   delete: async (req, res) => {
     const id = req.params.id;
