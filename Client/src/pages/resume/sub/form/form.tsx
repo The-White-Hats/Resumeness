@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { terminal } from 'virtual:terminal'
 import personalImg from "../../../../assets/personal-img.svg";
 import * as form from "../../../../slices/formReducer";
+import type { TypedUseSelectorHook } from "react-redux";
+import type { RootState } from "../../../../slices/store";
 import "./Form.css";
 let idCounter = 2;
 const Form = () => {
@@ -39,6 +41,8 @@ const Form = () => {
   const SetLetterDetails = (letterDetails: string) =>
     dispatch(form.setLetterDetails(letterDetails));
 
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const currentColor = useAppSelector((state) => state.color.color);
   const id = useSelector(form.selectId);
   const firstName = useSelector(form.selectFirstName);
   const lastName = useSelector(form.selectLastName);
@@ -937,7 +941,7 @@ const Form = () => {
       languages: languageArr,
       certifications: certificationArr,
       interests: interestArr,
-      color:"red",
+      color:currentColor,
     };
     if (id == "") { //same id for resume and cover letter !!!!! if user switched tabs and created a new resume, the cover letter will be overwritten
                     //temp fix: refresh page after switching tabs or create a new id for cover letter
