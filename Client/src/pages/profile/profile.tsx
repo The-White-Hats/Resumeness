@@ -10,14 +10,27 @@ const Profile = () => {
   //Check if the user is logged in
   const navigate = useNavigate();
   const loggedIn = useSelector(selectLoggedIn);  
-  if(!loggedIn) navigate('/logIn');
-  // useEffect(()=> {
-  //   setTimeout(() => {
-  //   }, 4000);
-  // }, [loggedIn]);
+  useEffect(()=> {
+    if(!loggedIn) navigate('/logIn');
+    
+  }, [loggedIn]);
 
-  const [user, setUser] = useState({name: 'Ahmed Aladdin', gender: 'Male', email: 'ahmed@gmail.com'});
-  const [userWork, setUserWork] = useState(null);
+  const [user, setUser] = useState({name: 'Amal Ashraf', gender: 'Female', email: 'amal@gmail.com'});
+  const dummyUserWork = [
+    {title: 'this is my first resume created with love', type:'resume'},
+    {title: 'Die golato die ryal madrid', type:'cover-letter'},
+    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
+    {title: 'omg omg omg omg omg omg omg', type:'resume'},{title: 'c2', type:'cover-letter'},
+    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
+    {title: 'bla bla bla bla bla bla bla bla bla', type:'resume'},{title: 'c1', type:'cover-letter'},
+    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
+    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
+    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
+    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
+    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
+    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'}
+  ];
+  const [userWork, setUserWork] = useState(dummyUserWork);
   const [loading, setLoading] = useState(false);
   
   // first, get the data of the user from the server
@@ -98,7 +111,7 @@ const Profile = () => {
         </div>
         <div id="user-info">
           <h2>{user.name}</h2>
-          <p>{user.email}</p>
+          <p style={{color: colors[`${user.gender}Dark`]}}>{user.email}</p>
         </div>
         <div id="delete-account">
           <button>Delete Account</button>
