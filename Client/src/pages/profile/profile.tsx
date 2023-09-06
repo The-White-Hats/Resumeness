@@ -62,9 +62,27 @@ const Profile = () => {
     </div>
   );
 
+  type Colors = {
+    [key: string]: string;
+    'MaleDark':  string;
+    'MaleMedium':  string;
+    'MaleLight':  string;
+    'FemaleDark': string;
+    'FemaleMedium': string;
+    'FemaleLight': string;
+  }
+  const colors: Colors = {
+    'MaleDark': '#0043b7',
+    'MaleMedium': '#9ceafd',
+    'MaleLight': '#c3f1fd',
+    'FemaleDark': '#bf0108',
+    'FemaleMedium': '#ffd8c9',
+    'FemaleLight': '#fff6f1',
+  }
+
   const profileScreen = (
     <>
-      <div id="profile-card">
+      <div id="profile-card" style={{backgroundColor: colors[`${user.gender}Medium`]}}>
         <div id="profile-img-container">
           <img src={`/${user.gender}.png`}></img>
         </div>
