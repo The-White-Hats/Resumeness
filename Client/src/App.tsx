@@ -7,7 +7,7 @@ import store from "./slices/store";
 import About from "./pages/About/About";
 import Home from "./pages/home/home";
 import Register from "./pages/register/register";
-import profile from "./pages/profile/profile";
+import Profile from "./pages/profile/profile";
 
 const App = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/about" Component={About} />
           <Route path="/logIn" Component={Register} />
           <Route path="/signUp" Component={Register} />
-          <Route path="/profile" Component={profile} />
+          <Route path="/profile" Component={Profile} />
         </Routes>
       </Router>
     </Provider>
