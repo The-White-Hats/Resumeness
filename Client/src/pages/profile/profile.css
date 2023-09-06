@@ -23,7 +23,7 @@
   background-color: #9ceafd;
   width: 30%;
   max-width: 300px;
-  height: 90%;
+  height: 92%;
   margin: 0 20px;
   border-radius: 5px;
   display: flex;
@@ -63,7 +63,6 @@
 #profile-page #profile-card #user-info p {
   display: inline-block;
   font-size: 1rem;
-  color: #0043b7;
 }
 #profile-page #profile-card #delete-account {
   display: flex;
@@ -73,7 +72,7 @@
 }
 #profile-page #profile-card #delete-account button {
   border: none;
-  background-color: rgb(255, 20, 20);
+  background-color: #ff1414;
   font-size: 0.8rem;
   color: white;
   padding: 0.6rem;
@@ -81,5 +80,85 @@
 }
 #profile-page #user-work-area {
   flex: 1;
-  background-color: pink;
+  margin-right: 20px;
+  display: grid;
+  justify-content: space-around;
+  grid-template-columns: repeat(4, 260px);
+  row-gap: 25px;
+  height: 92%;
+  overflow-y: scroll;
+}
+#profile-page #user-work-area .work-card {
+  border-radius: 5px;
+  max-height: 300px;
+  padding: 25px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#profile-page #user-work-area .work-card h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(89, 89, 89);
+}
+#profile-page #user-work-area .work-card h2 span {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
+}
+#profile-page #user-work-area .work-card p {
+  margin-top: 10px;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+#profile-page #user-work-area .work-card svg {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  height: 1.9em;
+  cursor: pointer;
+}
+#profile-page #user-work-area .work-card .card-buttons {
+  display: none;
+}
+#profile-page #user-work-area .work-card .options-button:focus + .card-buttons {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  right: 25px;
+  top: 5%;
+  width: 40%;
+  height: 90%;
+  max-height: 110px;
+  bottom: 5px;
+  border-radius: 15px;
+  background-color: white;
+}
+#profile-page #user-work-area .work-card .options-button:focus + .card-buttons button {
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+#profile-page #user-work-area .work-card .options-button:focus + .card-buttons button.delete-card {
+  color: #ff1414;
+}
+
+@media only screen and (max-width: 1400px) {
+  #profile-page #user-work-area {
+    grid-template-columns: repeat(3, 260px);
+  }
+}
+@media only screen and (max-width: 1160px) {
+  #profile-page #user-work-area {
+    grid-template-columns: repeat(2, 45%);
+  }
+}
+@media only screen and (max-width: 830px) {
+  #profile-page #user-work-area {
+    grid-template-columns: repeat(1, 90%);
+  }
 }
