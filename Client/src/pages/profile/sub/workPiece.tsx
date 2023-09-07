@@ -108,6 +108,24 @@ import { Download } from '../../resume/sub/download-button/download-button';
   }
   ///////////////////////////////////////////////////////////////
 
+  /// A functions that handles pressing the edit button
+  const handleEdit = () => {
+    console.log('edit');
+    fillInfo();
+    navigate(`/${work.type}`);
+  }
+  ///////////////////////////////////////////////////////////////
+
+  /// A function that handles downloading the work
+  const handleDownload = () => {
+    fillInfo();
+    setTimeout(() => {
+      Download(`/${work.type}/preview`);
+    }, 200);
+    navigate(`/${work.type}/preview`);
+  }
+  ///////////////////////////////////////////////////////////////
+
   return (
     <div className="work-card" style={{backgroundColor: light}}>
       <div className="card-info">
