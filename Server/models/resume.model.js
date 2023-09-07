@@ -63,7 +63,7 @@ const ResumeValidation = Joi.object({
   email: Joi.string().email().required(),
   title: Joi.string().required(),
   phone: Joi.string().required(),
-  address: Joi.string(),
+  address: Joi.string().allow('').optional(),
   linkedInURL: Joi.string().uri().optional().allow(''),
   portfolioURL: Joi.string().uri().optional().allow(''),
   professionalSummary: Joi.string().max(500).required(),
