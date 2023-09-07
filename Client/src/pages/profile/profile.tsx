@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { selectLoggedIn, updateLoggedIn } from "../../slices/userReducer";
 import './profile.css';
+import WorkPiece from "./sub/workPiece";
 
 
 const Profile = () => {
@@ -70,19 +71,6 @@ const Profile = () => {
       console.log(err);
     }
   }
-
-  const DeletePieceOfWork = async (work : any) => {
-    const id = work._id;
-    try {
-      const response = await fetch(`http://localhost:8080/${work.type}/delete/${id}`, {
-        method: "DELETE"
-      });
-      if(!response.ok) throw new Error(`${response.status}`)
-      setUserWork(userWork.filter(work=>work._id !== id));
-    } catch (error : any) {
-      console.log({status: 'failed deleting a piece of work', error: error.message});
-    }
-  };
 
   // Handle deleting the user account action
   const ensuringMessage = useRef<HTMLParagraphElement>(null);
@@ -170,20 +158,13 @@ const Profile = () => {
       </div>
       <div id="user-work-area">
         {userWork.map((work, index)=>(
-          <div key={index} className="work-card" style={{backgroundColor: colors[`${user.gender}Light`]}}>
-            <div className="card-info">
-              <h2><span>Title:</span> {work.title}</h2>
-              <p style={{color: colors[`${user.gender}Dark`]}}>{work.type}</p>
-            </div>
-            <button className="options-button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512" fill={colors[`${user.gender}Dark`]}><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg>
-            </button>
-            <div className="card-buttons" style={{borderColor: colors[`${user.gender}Dark`]}}>
-              <button className="edit-card">Edit</button>
-              <button className="edit-card">download</button>
-              <button className="delete-card" onClick={()=>DeletePieceOfWork(work)}>Delete</button>
-            </div>
-          </div>
+          <WorkPiece 
+          key={index} 
+          userWork={userWork} 
+          setUserWork={setUserWork} 
+          work={work} 
+          light={colors[`${user.gender}Light`]} 
+          dark={colors[`${user.gender}Dark`]}/>
         ))}
       </div>
     </>
