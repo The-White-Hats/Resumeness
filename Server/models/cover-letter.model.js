@@ -27,7 +27,7 @@ const CoverLetterValidation = Joi.object({
   email: Joi.string().email().required(),
   title: Joi.string().required(),
   phone: Joi.string().required(),
-  address: Joi.string(),
+  address: Joi.string().allow('').optional(),
   company: Joi.string().required(),
   hiringManager: Joi.string().required(),
   letterDetails: Joi.string().max(2000).required(),
