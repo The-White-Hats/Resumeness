@@ -871,9 +871,10 @@ const Form = () => {
       fileName: fileName,
       firstName: firstName,
       lastName: lastName,
+      email: email,
       title: title,
       phone: phone,
-      email: email,
+      address: address,
       company: company,
       hiringManager: hiringManager,
       letterDetails: letterDetails,
@@ -924,7 +925,7 @@ const Form = () => {
       return(data.user._id);
     } catch (err) {
       console.log(err);
-      return(err);
+      return ;
     }
   }
   const saveResume = async () => {
