@@ -76,7 +76,7 @@ const Profile = () => {
   const ensuringMessage = useRef<HTMLParagraphElement>(null);
   const deleteAccount = useRef<HTMLButtonElement>(null);
   let timer = 5;
-  let intervalID : string | number | undefined;
+  let intervalID : number | undefined;
 
   const handleDeleteAccount = () => {
     if(timer < 5)
