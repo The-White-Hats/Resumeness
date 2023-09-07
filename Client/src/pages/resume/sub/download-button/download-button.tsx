@@ -32,4 +32,6 @@ const DownloadButton = ({ style = "" }: props) => {
     </button>
   );
 };
+
+export {htmlStringToPdf as Download};
 export default DownloadButton;
