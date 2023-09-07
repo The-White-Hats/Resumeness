@@ -3,11 +3,11 @@ import {CoverLetter, CoverLetterValidation} from '../models/cover-letter.model.j
 const CoverLetterController = {
   create: async (req, res) => {
     const coverLetter = req.body;
-    const {error} = CoverLetterValidation.validate(coverLetter);
+    const {error} = CoverLetterValidation.validate(coverLetter, {abortEarly: false});
     if (error) {
       return res.status(400).json(error.details);
     }
-    const newCoverLetter = new CoverLetter(coverLetter);
+    const newCoverLetter = new CoverLetter({...coverLetter, userID: req.user._id, type: "cover-letter"});
     try {
       await newCoverLetter.save();
       return res.status(201).json(newCoverLetter);

@@ -4,12 +4,12 @@ const ResumeController = {
   create: async (req, res) => {
     const resume = req.body;
     console.log(req.body);
-    const {error} = ResumeValidation.validate(resume);
+    const {error} = ResumeValidation.validate(resume, {abortEarly: false});
     if (error) {
       console.log(error);
       return res.status(400).json(error.details);
     }
-    const newResume = new Resume(resume);
+    const newResume = new Resume({...resume, userID: req.user._id, type: "resume"});
     try {
       await newResume.save();
       return res.status(201).json(newResume);

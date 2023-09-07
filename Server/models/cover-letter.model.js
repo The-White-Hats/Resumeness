@@ -19,8 +19,6 @@ const coverLetterSchema = new Schema({
 const CoverLetter = new model('CoverLetter', coverLetterSchema);
 
 const CoverLetterValidation = Joi.object({
-  userID: Joi.string().required(),
-  type: Joi.string().required(),
   fileName: Joi.string().optional().default("Untitled Cover Letter"),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
