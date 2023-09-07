@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -16,10 +17,14 @@ const LetterPreview = () => {
   const letterDetails = useSelector(form.selectLetterDetails);
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const fetch = useAppSelector((state) => state.user.fetch);
+  const expires = useAppSelector((state) => state.user.expires);
   const navigate = useNavigate();
-  if (!loggedIn) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if ((!loggedIn && fetch) || expires) {
+      navigate("/");
+    }
+  }, [loggedIn, navigate, fetch, expires]);
   return (
     <div className="letter-preview">
       <div className="letter-header">

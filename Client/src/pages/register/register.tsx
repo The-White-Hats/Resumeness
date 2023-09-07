@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { updateLoggedIn } from "../../slices/userReducer";
+import { updateExpires, updateLoggedIn } from "../../slices/userReducer";
 import "./register.css";
 
 export default function Register() {
@@ -47,6 +47,9 @@ export default function Register() {
       .then((data) => {
         if (ok) {
           localStorage.setItem("token", data.token);
+          setTimeout(() => {
+            dispatch(updateExpires(true));
+          }, 20000);
           dispatch(updateLoggedIn(true));
           navigate("/");
           setWrongEmail(false);

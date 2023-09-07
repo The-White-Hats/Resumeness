@@ -1,13 +1,25 @@
+import { useEffect } from "react";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../slices/store";
-import { updateLoggedIn } from "../../slices/userReducer";
+import {
+  updateExpires,
+  updateFetch,
+  updateLoggedIn,
+} from "../../slices/userReducer";
 import "./Navbar.css";
 const NavBar = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const expires = useAppSelector((state) => state.user.expires);
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (expires) {
+      dispatch(updateLoggedIn(false));
+      dispatch(updateExpires(false));
+    }
+  }, [expires, dispatch]);
   const stillLoggedIn = () => {
     fetch("http://localhost:8080/auth/me", {
       method: "GET",
@@ -18,6 +30,7 @@ const NavBar = () => {
           dispatch(updateLoggedIn(true));
         }
       })
+      .then(() => dispatch(updateFetch(true)))
       .catch((err) => {
         console.log(err);
       });
@@ -32,6 +45,7 @@ const NavBar = () => {
   }
   const logOut = () => {
     dispatch(updateLoggedIn(false));
+    dispatch(updateExpires(true));
     localStorage.setItem("token", "");
   };
   return (
