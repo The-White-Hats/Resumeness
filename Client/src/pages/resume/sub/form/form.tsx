@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import personalImg from "../../../../assets/personal-img.svg";
 import * as form from "../../../../slices/formReducer";
 import "./Form.css";
 let idCounter = 2;
@@ -833,13 +832,7 @@ const Form = () => {
     <div className="img-container">
       <div className="img-file-container">
         <div className="img-container">
-          {personalImg && (
-            <img
-              src={img ? (img as string) : personalImg}
-              alt="personal image"
-              className="img"
-            />
-          )}
+          <img src={img as string} alt="personal image" className="img" />
         </div>
         <div className="text">Upload photo</div>
         <input

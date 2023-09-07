@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import formImg from "../assets/darkuser.png";
 interface experience {
   id: number;
   jobTitle: string;
@@ -41,7 +42,7 @@ interface interest {
 }
 
 interface FormCollectionState {
-  img: string | ArrayBuffer | null;
+  img: string | ArrayBuffer | null | File;
   //common
   firstName: string;
   lastName: string;
@@ -66,7 +67,7 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  img: null,
+  img: formImg,
   firstName: "",
   lastName: "",
   email: "",
@@ -98,7 +99,10 @@ const formCollection = createSlice({
   name: "formCollection",
   initialState,
   reducers: {
-    setImg: (state, action: PayloadAction<string | ArrayBuffer | null>) => {
+    setImg: (
+      state,
+      action: PayloadAction<string | ArrayBuffer | null | File>
+    ) => {
       state.img = action.payload;
     },
     setFirstName: (state, action: PayloadAction<string>) => {

@@ -85,3 +85,7 @@ nav #links .personalImg  {
   background-color: gray;
   cursor: pointer;
 }
+nav #links .personalImg  img{
+  width: 40px;
+  height: 40px;
+}

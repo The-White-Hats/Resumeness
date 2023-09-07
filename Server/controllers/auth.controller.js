@@ -8,7 +8,7 @@ const authController = {
     if (error) {
       return res.status(422).json(error.details);
     }
-
+    console.log(req.body);
     try {
       const { email, password } = req.body;
       // Check if the user already exists
@@ -22,12 +22,14 @@ const authController = {
       user = new User({ ...req.body, password: hashedPassword });
 
       await user.save();
-       // Generate a JWT token containing the user's id
-       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      // Generate a JWT token containing the user's id
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
       });
 
-      res.status(201).json({ message: "User created successfully", user , token });
+      res
+        .status(201)
+        .json({ message: "User created successfully", user, token });
     } catch (error) {
       console.log(error);
       res.status(500).json({
@@ -65,7 +67,9 @@ const authController = {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
       });
-      res.status(200).json({ message: "Logged in successfully", token });
+      console.log(user);
+      const image = user.image;
+      res.status(200).json({ message: "Logged in successfully", token, image });
     } catch (error) {
       console.log(error);
       res.status(500).json({
@@ -73,7 +77,22 @@ const authController = {
       });
     }
   },
-  
+  updateImage: async (req, res) => {
+    try {
+      const { image, id } = req.body;
+
+      const user = await User.findByIdAndUpdate( id ,{ image: image});
+      if(!user ){
+        res.status(404).json({message: "Couldn't find user"});
+      }
+      res.status(200).json({ message: "Updated in successfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        error: "An error occurred while logging you in. Please try again.",
+      });
+    }
+  },
   // This is a protected route that requires the user to be logged in
   // This controller is used to fetch the data of the logged in user
   me: (req, res) => {

@@ -1,10 +1,17 @@
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import type { TypedUseSelectorHook } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
+import { storage } from "../../firebase";
+import { updateImage } from "../../slices/userReducer";
+import { RootState } from "../../slices/store";
 import { updateExpires, updateLoggedIn } from "../../slices/userReducer";
 import "./register.css";
 
 export default function Register() {
+  const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const dispatch = useDispatch();
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
@@ -16,7 +23,31 @@ export default function Register() {
   const EmailRef = useRef<HTMLInputElement>(null);
   const PasswordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-
+  const [uploadImage, setUploadImage] = useState<File | null>(null);
+  const image = useAppSelector((state) => state.user.image);
+  const uploadPhoto = (
+    <div className="img-container">
+      <div className="img-file-container">
+        <div className="img-container">
+          <img src={image as string} alt="personal image" className="img" />
+        </div>
+        <div className="text">Upload photo</div>
+        <input
+          style={{ color: "red" }}
+          type="file"
+          className="file"
+          onChange={(event) => {
+            const reader = new FileReader();
+            reader.onload = () => dispatch(updateImage(reader.result));
+            if (event.target.files) {
+              reader.readAsDataURL(event.target.files[0]);
+              setUploadImage(event.target.files[0]);
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
   const onSubmit = () => {
     let ok = false;
     const url = `http://localhost:8080/auth${location.pathname}`;
@@ -25,16 +56,13 @@ export default function Register() {
       password: Password,
     };
     const signUp = {
+      image: image,
       name: UserName,
       email: Email,
       gender: Gender,
       password: Password,
       confirmPassword: ConfirmPassword,
     };
-    console.log(
-      location.pathname,
-      location.pathname === "/logIn" ? logIn : signUp
-    );
     fetch(url, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -46,6 +74,7 @@ export default function Register() {
       })
       .then((data) => {
         if (ok) {
+          if (data.image !== undefined) dispatch(updateImage(data.image));
           localStorage.setItem("token", data.token);
           setTimeout(() => {
             dispatch(updateExpires(true));
@@ -77,11 +106,43 @@ export default function Register() {
               EmailRef.current.style.borderBottomColor = "white";
           }
         }
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log(location.pathname);
+    if (uploadImage) {
+      const imageName = uploadImage.name + v4();
+      const imageRef = ref(storage, `images/${imageName}`);
+      uploadBytes(imageRef, uploadImage);
+      const imageListRef = ref(storage, `images/`);
+      listAll(imageListRef).then((res) => {
+        getDownloadURL(res.items[res.items.length - 1]).then((urL) => {
+          urL = urL.toString();
+          console.log(localStorage.getItem("token"));
+          fetch("http://localhost:8080/auth/me", {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              fetch("http://localhost:8080/auth/image", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                  image: urL,
+                  id: data.user._id,
+                }),
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      });
+    }
   };
 
   const username = (
@@ -92,7 +153,6 @@ export default function Register() {
         name="Name"
         id="name"
         onChange={(e) => setUserName(e.target.value)}
-        required
       />
       <label htmlFor="name" className="label-control">
         Username
@@ -120,7 +180,6 @@ export default function Register() {
         id="email"
         ref={EmailRef}
         onChange={(e) => setEmail(e.target.value)}
-        required
       />
       {wrongEmail && (
         <div className="wrong">Email doesn't exist please try again</div>
@@ -148,7 +207,6 @@ export default function Register() {
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         ref={PasswordRef}
-        required
       />
       {wrongPassword && (
         <div className="wrong">Wrong password please try again</div>
@@ -178,7 +236,6 @@ export default function Register() {
         name="confirmPassword"
         id="confirmPassword"
         onChange={(e) => setConfirmPassword(e.target.value)}
-        required
       />
       <label htmlFor="password" className="label-control">
         Confirm Password
@@ -208,7 +265,6 @@ export default function Register() {
             name="gender"
             value="Male"
             onChange={(e) => setGender(e.target.value)}
-            required
           />
           Male
         </label>
@@ -219,7 +275,6 @@ export default function Register() {
             name="gender"
             value="Female"
             onChange={(e) => setGender(e.target.value)}
-            required
           />
           Female
         </label>
@@ -248,6 +303,7 @@ export default function Register() {
     <div className="contact-form-container">
       <div className="contact-form">
         <form
+          encType="multipart/form-data"
           autoComplete="on"
           onSubmit={(event) => {
             event.preventDefault();
@@ -255,6 +311,7 @@ export default function Register() {
             return false;
           }}
         >
+          {location.pathname === "/signUp" && uploadPhoto}
           {elements}
           <div className="submit-container">
             <input
