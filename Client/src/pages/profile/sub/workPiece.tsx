@@ -5,6 +5,8 @@ import * as form from "./../../../slices/formReducer";
 import { updateColor } from '../../../slices/colorReducer';
 import { Download } from '../../resume/sub/download-button/download-button';
 
+const WorkPiece = ({ userWork, setUserWork, work, light, dark, navigate } : { userWork:any, setUserWork:any, work: any, light: string, dark: string, navigate: any }) => {
+  const dispatch = useDispatch();
   /// All the setters functions I am gonna need
   const SetResumeId = (id: string) => dispatch(form.setResumeId(id));
   const SetCoverLetterId = (id: string) => dispatch(form.setCoverLetterId(id));
@@ -39,6 +41,7 @@ import { Download } from '../../resume/sub/download-button/download-button';
     dispatch(form.setLetterDetails(letterDetails));
   const SetColor = (color: string) => dispatch(updateColor(color));
   /////////////////////////////////////////////////////////////////////////////
+
   /// Here I handel clicking the options button on a card
   const buttonsCard = useRef<HTMLDivElement>(null); 
   const handleClickingOptions = () => {
@@ -48,11 +51,12 @@ import { Download } from '../../resume/sub/download-button/download-button';
   }
   const focusOut = () => {
     setTimeout(() => {
-    if(buttonsCard.current) buttonsCard.current.classList.add('hide');
+      if(buttonsCard.current) buttonsCard.current.classList.add('hide');
     }, 100);
   }
   ///////////////////////////////////////////////////////
 
+  /// Here I handle deleting a piece of work
   const DeletePieceOfWork = async (work : any) => {
     const id = work._id;
     try {
@@ -65,6 +69,8 @@ import { Download } from '../../resume/sub/download-button/download-button';
       console.log({status: 'failed deleting a piece of work', error: error.message});
     }
   };
+  ///////////////////////////////////////////
+
   /// These two functions are for filling the cover letter resume info
   // First filling the cover letter infos
   const fillCoverLetterInfo = () => {
@@ -129,15 +135,15 @@ import { Download } from '../../resume/sub/download-button/download-button';
   return (
     <div className="work-card" style={{backgroundColor: light}}>
       <div className="card-info">
-        <h2><span>Title:</span> {work.title}</h2>
+        <h2><span>Title:</span> {work.fileName}</h2>
         <p style={{color: dark}}>{work.type}</p>
       </div>
       <button className="options-button" onClick={handleClickingOptions} onBlur={focusOut}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512" fill={dark}><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg>
       </button>
       <div ref={buttonsCard} className="buttons-card hide" style={{borderColor: dark}}>
-        <button className="edit-card">Edit</button>
-        <button className="edit-card">download</button>
+        <button className="edit-card" onClick={handleEdit}>Edit</button>
+        <button className="edit-card" onClick={handleDownload}>download</button>
         <button className="delete-card" onClick={()=>DeletePieceOfWork(work)}>Delete</button>
       </div>
     </div>

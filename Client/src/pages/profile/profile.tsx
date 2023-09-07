@@ -7,7 +7,6 @@ import './profile.css';
 import WorkPiece from "./sub/workPiece";
 import ProfileCard from "./sub/profileCard";
 
-
 const Profile = () => {
   //Check if the user is logged in
   const navigate = useNavigate();
@@ -21,18 +20,13 @@ const Profile = () => {
 
   const [user, setUser] = useState({name: '', gender: '', email: '', _id: ''});
   const dummyUserWork = [
-    {title: 'this is my first resume created with love', type:'resume', _id: ''},
-    {title: 'Die golato die ryal madrid', type:'cover-letter'},
-    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
-    {title: 'omg omg omg omg omg omg omg', type:'resume'},{title: 'c2', type:'cover-letter'},
-    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
-    {title: 'bla bla bla bla bla bla bla bla bla', type:'resume'},{title: 'c1', type:'cover-letter'},
-    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
-    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
-    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
-    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'},
-    {title: 'r1', type:'resume'},{title: 'c1', type:'cover-letter'},
-    {title: 'r2', type:'resume'},{title: 'c2', type:'cover-letter'}
+    {
+      fileName: 'R1', firstName: 'Ahmed', lastName: 'Aladdin',
+      email: 'ahmed@gmail.com', title: 'Software Engineer', phone: '01000000000',
+      address: 'Cairo',
+      company: 'Google', hiringManager: 'Mr. Google',
+      letterDetails: 'I am a software engineer', _id: '1', type: 'cover-letter'
+    }
   ];
   const [userWork, setUserWork] = useState(dummyUserWork);
   const [loading, setLoading] = useState(true);
@@ -107,7 +101,8 @@ const Profile = () => {
           setUserWork={setUserWork} 
           work={work} 
           light={colors[`${user.gender}Light`]} 
-          dark={colors[`${user.gender}Dark`]}/>
+          dark={colors[`${user.gender}Dark`]}
+          navigate={navigate}/>
         ))}
       </div>
     </>
