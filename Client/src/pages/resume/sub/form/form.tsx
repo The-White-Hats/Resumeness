@@ -832,11 +832,13 @@ const Form = () => {
         />
       </div>
       <div className="form-element big">
-        <label htmlFor="professional-summary">Professional Summary</label>
+        <label htmlFor="professional-summary">Professional Summary *</label>
         <textarea
           value={professionalSummary}
           id="professional-summary"
+          maxLength={500}
           onChange={(event) => handleInputChange(event, SetProfessionalSummary)}
+          required
         />
       </div>
     </>
@@ -1019,7 +1021,7 @@ const Form = () => {
         {location.pathname === "/resume" && uploadPhoto}
         <div className="Form">
           <div className="form-element">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="first-name">First Name *</label>
             <input
               id="first-name"
               type="text"
@@ -1029,7 +1031,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="last-name">Last Name *</label>
             <input
               id="last-name"
               type="text"
@@ -1039,7 +1041,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email *</label>
             <input
               id="email"
               type="email"
@@ -1049,7 +1051,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Title *</label>
             <input
               id="title"
               type="text"
@@ -1059,7 +1061,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="phone-number">Phone Number</label>
+            <label htmlFor="phone-number">Phone Number *</label>
             <input
               id="phone-number"
               type="tel"
