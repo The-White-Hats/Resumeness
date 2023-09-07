@@ -5,6 +5,7 @@ const CoverLetterController = {
     const coverLetter = req.body;
     const {error} = CoverLetterValidation.validate(coverLetter, {abortEarly: false});
     if (error) {
+      console.log(error);
       return res.status(400).json(error.details);
     }
     const newCoverLetter = new CoverLetter({...coverLetter, userID: req.user._id, type: "cover-letter"});

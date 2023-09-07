@@ -38,10 +38,23 @@ const Home = () => {
             <div className="start">Let's Start!</div>
             <div className="start-button">
               <Link to={!loggedIn ? "/logIn" : "/resume"}>
-                <button className="resume">Resume</button>
+                <button className="resume" onClick={() => {
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 5);
+                }
+
+                }
+                >Resume</button>
               </Link>
               <Link to={!loggedIn ? "/logIn" : "/cover-letter"}>
-                <button className="cover-letter">Cover Letter</button>
+                <button className="cover-letter" onClick={() => {
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 5);
+                }
+                }
+                >Cover Letter</button>
               </Link>
             </div>
           </div>
