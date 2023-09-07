@@ -345,7 +345,7 @@ const Form = () => {
   const coverLetterNewFields = (
     <>
       <div className="form-element">
-        <label htmlFor="company">Company</label>
+        <label htmlFor="company">Company *</label>
         <input
           id="company"
           type="text"
@@ -355,7 +355,7 @@ const Form = () => {
         />
       </div>
       <div className="form-element">
-        <label htmlFor="hiringManager">Hiring Manager</label>
+        <label htmlFor="hiringManager">Hiring Manager *</label>
         <input
           id="hiringManager"
           type="text"
@@ -365,7 +365,7 @@ const Form = () => {
         />
       </div>
       <div className="form-element big">
-        <label htmlFor="letterDetails">Letter Details</label>
+        <label htmlFor="letterDetails">Letter Details *</label>
         <textarea
           id="letterDetails"
           maxLength={2000}
