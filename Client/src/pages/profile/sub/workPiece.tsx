@@ -65,6 +65,48 @@ import { Download } from '../../resume/sub/download-button/download-button';
       console.log({status: 'failed deleting a piece of work', error: error.message});
     }
   };
+  /// These two functions are for filling the cover letter resume info
+  // First filling the cover letter infos
+  const fillCoverLetterInfo = () => {
+    SetFileName(work.fileName);
+    SetFirstName(work.firstName);
+    SetLastName(work.lastName);
+    SetEmail(work.email);
+    SetTitle(work.title);
+    SetPhone(work.phone);
+    SetAddress(work.address);
+    SetCompany(work.company);
+    SetHiringManager(work.hiringManager);
+    SetLetterDetails(work.letterDetails);
+    SetCoverLetterId(work._id);
+  }
+  // Second filling the resume info
+  const fillResumeInfo = () => {
+    SetFileName(work.fileName);
+    SetFirstName(work.firstName);
+    SetLastName(work.lastName);
+    SetEmail(work.email);
+    SetTitle(work.title);
+    SetPhone(work.phone);
+    SetAddress(work.address);
+    SetLinkedInURL(work.linkedInURL);
+    SetPortfolioURL(work.portfolioURL);
+    SetProfessionalSummary(work.professionalSummary);
+    SetExperience(work.experience);
+    SetEducation(work.education);
+    SetSkills(work.skills);
+    SetLanguages(work.languages);
+    SetCertifications(work.certifications);
+    SetInterests(work.interests);
+    SetColor(work.color);
+    SetResumeId(work._id);
+  }
+  // this functions handles filling the info of the work
+  const fillInfo = () => {
+    if(work.type === 'cover-letter') fillCoverLetterInfo();
+    else fillResumeInfo();
+  }
+  ///////////////////////////////////////////////////////////////
 
   return (
     <div className="work-card" style={{backgroundColor: light}}>
