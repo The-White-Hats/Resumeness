@@ -41,7 +41,7 @@ const ProfileCard = ({user, dark, medium} : {user: any, dark: string, medium: st
 
   const DeleteUserAccount = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/profile/delete`, {
+      const response = await fetch(`http://localhost:8080/profile`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

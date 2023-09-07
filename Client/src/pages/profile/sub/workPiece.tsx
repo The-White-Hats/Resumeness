@@ -52,7 +52,7 @@ const WorkPiece = ({ userWork, setUserWork, work, light, dark, navigate } : { us
   const focusOut = () => {
     setTimeout(() => {
       if(buttonsCard.current) buttonsCard.current.classList.add('hide');
-    }, 100);
+    }, 500);
   }
   ///////////////////////////////////////////////////////
 
@@ -61,7 +61,11 @@ const WorkPiece = ({ userWork, setUserWork, work, light, dark, navigate } : { us
     const id = work._id;
     try {
       const response = await fetch(`http://localhost:8080/${work.type}/delete/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}` 
+        }
       });
       if(!response.ok) throw new Error(`${response.status}`)
       setUserWork(userWork.filter((work: any)=>work._id !== id));
