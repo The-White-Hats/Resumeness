@@ -55,8 +55,6 @@ const resumeSchema = new Schema({
 const Resume = new model('Resume', resumeSchema);
 
 const ResumeValidation = Joi.object({
-  userID: Joi.string().required(),
-  type: Joi.string().required(),
   fileName: Joi.string().optional().default("Untitled Resume"),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),

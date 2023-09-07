@@ -881,11 +881,9 @@ const Form = () => {
       </div>
     </div>
   );
+
   const saveCoverLetter = async () => {
-    const user = await getUser();
     const coverLetter = {
-      userID: user,
-      type: "cover-letter",
       fileName: fileName,
       firstName: firstName,
       lastName: lastName,
@@ -903,6 +901,7 @@ const Form = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           },
           body: JSON.stringify(coverLetter),
         });
@@ -919,6 +918,7 @@ const Form = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           },
           body: JSON.stringify(coverLetter),
         });
@@ -930,28 +930,8 @@ const Form = () => {
     }
   }
 
-  const getUser = async () => {
-    try {
-      const res = await fetch("http://localhost:8080/auth/me", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      const data = await res.json();
-      return(data.user._id);
-    } catch (err) {
-      console.log(err);
-      return ;
-    }
-  }
   const saveResume = async () => {
-    
-    const user = await getUser();
     const resume = {
-      userID: user,
-      type: "resume",
       fileName: fileName,
       firstName: firstName,
       lastName: lastName,
@@ -976,6 +956,7 @@ const Form = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           },
           body: JSON.stringify(resume),
         });
@@ -992,6 +973,7 @@ const Form = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           },
           body: JSON.stringify(resume),
         });

@@ -15,21 +15,11 @@ const Profile = () => {
   useEffect(()=> {
     if(!loggedIn) navigate('/logIn');
     getUserData();
-    /// TODO: uncomment this line when the server is ready
-    // getUserWork();
+    getUserWork();
   }, [loggedIn]);
 
   const [user, setUser] = useState({name: '', gender: '', email: '', _id: ''});
-  const dummyUserWork = [
-    {
-      fileName: 'R1', firstName: 'Ahmed', lastName: 'Aladdin',
-      email: 'ahmed@gmail.com', title: 'Software Engineer', phone: '01000000000',
-      address: 'Cairo',
-      company: 'Google', hiringManager: 'Mr. Google',
-      letterDetails: 'I am a software engineer', _id: '1', type: 'cover-letter'
-    }
-  ];
-  const [userWork, setUserWork] = useState(dummyUserWork);
+  const [userWork, setUserWork] = useState([]);
   const [loading, setLoading] = useState(true);
   
   // first, get the data of the user from the server
@@ -60,8 +50,8 @@ const Profile = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}` 
         }
       });
-      const work = await response.json();
-      setUserWork(work);
+      const allWork = await response.json();
+      setUserWork(allWork.work);
     } catch (err) {
       console.log(err);
     }

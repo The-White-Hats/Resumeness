@@ -4,7 +4,7 @@ import CoverLetterController from "../controllers/cover-letter.controller.js";
 const letterRouter = Router();
 
 letterRouter.post("/create", CoverLetterController.create);
-//letterRouter.put("/edit", CoverLetterController.update);
-//letterRouter.delete("/delete", CoverLetterController.delete);
+letterRouter.put("/edit/:id", CoverLetterController.edit);
+letterRouter.delete("/delete/:id", CoverLetterController.delete);
 
 export default letterRouter;
