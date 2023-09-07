@@ -50,8 +50,8 @@ const Profile = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}` 
         }
       });
-      const work = await response.json();
-      setUserWork(work);
+      const allWork = await response.json();
+      setUserWork(allWork.work);
     } catch (err) {
       console.log(err);
     }
