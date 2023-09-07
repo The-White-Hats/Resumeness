@@ -15,6 +15,7 @@ const Profile = () => {
   useEffect(()=> {
     if(!loggedIn) navigate('/logIn');
     getUserData();
+    /// TODO: uncomment this line when the server is ready
     // getUserWork();
   }, [loggedIn]);
 

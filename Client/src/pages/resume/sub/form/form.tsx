@@ -970,7 +970,6 @@ const Form = () => {
       interests: interestArr,
       color:currentColor,
     };
-    terminal.log(resumeId);
     if (resumeId == "") { 
       try {
         const res = await fetch("http://localhost:8080/resume/create", {
