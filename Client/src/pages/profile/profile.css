@@ -129,10 +129,10 @@
   height: 1.9em;
   cursor: pointer;
 }
-#profile-page #user-work-area .work-card .card-buttons {
+#profile-page #user-work-area .work-card .buttons-card {
   display: none;
 }
-#profile-page #user-work-area .work-card .options-button:focus + .card-buttons {
+#profile-page #user-work-area .work-card .options-button:focus + .buttons-card {
   display: block;
   display: flex;
   flex-direction: column;
@@ -148,14 +148,14 @@
   background-color: white;
   border: 2px solid;
 }
-#profile-page #user-work-area .work-card .options-button:focus + .card-buttons button {
+#profile-page #user-work-area .work-card .options-button:focus + .buttons-card button {
   border: none;
   border-radius: 5px;
   background-color: white;
   text-transform: capitalize;
   cursor: pointer;
 }
-#profile-page #user-work-area .work-card .options-button:focus + .card-buttons button.delete-card {
+#profile-page #user-work-area .work-card .options-button:focus + .buttons-card button.delete-card {
   color: #ff1414;
 }
 

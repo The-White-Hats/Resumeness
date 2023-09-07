@@ -153,11 +153,11 @@ $red:  #ff1414;
         cursor: pointer;
       }
 
-      .card-buttons{
+      .buttons-card{
         display: none;
       }
 
-      .options-button:focus + .card-buttons {
+      .options-button:focus + .buttons-card {
         display: block;
         display: flex;
         flex-direction: column;
