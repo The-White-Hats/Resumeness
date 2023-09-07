@@ -662,6 +662,7 @@ const Form = () => {
                   type="text"
                   defaultValue={skill.skill}
                   onChange={(event) => handleSkill.updateSkill(event, index)}
+                  required
                 />
               </div>
             </div>
