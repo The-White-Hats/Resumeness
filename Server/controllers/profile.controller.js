@@ -9,8 +9,7 @@ const ProfileController = {
             const allCoverLetter = await CoverLetter.find({ userID: user._id })
             return res.status(200).json({
                 message: "Here are All user's resumes and cover-letters",
-                allResume,
-                allCoverLetter
+                work: [...allResume, ...allCoverLetter]
             })
         } catch (error) {
             return res
