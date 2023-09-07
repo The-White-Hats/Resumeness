@@ -43,7 +43,10 @@ interface interest {
 
 interface FormCollectionState {
   img: string | ArrayBuffer | null | File;
+  resumeId: string;
+  coverLetterId: string;
   //common
+  fileName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -68,6 +71,9 @@ interface FormCollectionState {
 
 const initialState: FormCollectionState = {
   img: formImg,
+  fileName: "Untitled",
+  resumeId: "",
+  coverLetterId: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -99,11 +105,17 @@ const formCollection = createSlice({
   name: "formCollection",
   initialState,
   reducers: {
-    setImg: (
-      state,
-      action: PayloadAction<string | ArrayBuffer | null | File>
-    ) => {
+    setImg: (state, action: PayloadAction<string | ArrayBuffer | null | File>) => {
       state.img = action.payload;
+    },
+    setResumeId: (state, action: PayloadAction<string>) => {
+      state.resumeId = action.payload;
+    },
+    setCoverLetterId: (state, action: PayloadAction<string>) => {
+      state.coverLetterId = action.payload;
+    },
+    setFileName: (state, action: PayloadAction<string>) => {
+      state.fileName = action.payload;
     },
     setFirstName: (state, action: PayloadAction<string>) => {
       state.firstName = action.payload;
@@ -163,6 +175,9 @@ const formCollection = createSlice({
 });
 export const selectImg = (state: { formCollection: FormCollectionState }) =>
   state.formCollection.img;
+export const selectFileName = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.fileName;
 export const selectFirstName = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.firstName;
@@ -211,10 +226,20 @@ export const selectHiringManager = (state: {
 export const selectLetterDetails = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.letterDetails;
+export const selectResumeId = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.resumeId;
+export const selectCoverLetterId = (state: {
+  formCollection: FormCollectionState;
+}) => state.formCollection.coverLetterId;
+
 
 export type { certification, education, experience, interest, language, skill };
 export const {
+  setResumeId,
+  setCoverLetterId,
   setImg,
+  setFileName,
   setFirstName,
   setLastName,
   setEmail,

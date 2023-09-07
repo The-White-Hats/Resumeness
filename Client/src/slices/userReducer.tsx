@@ -37,7 +37,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { updateLoggedIn, updateFetch, updateExpires, updateImage } =
-  userSlice.actions;
+export const { updateLoggedIn, updateFetch, updateExpires, updateImage } = userSlice.actions;
+export const selectLoggedIn = (state : {user: UserState}) => state.user.loggedIn;
 
 export default userSlice.reducer;
