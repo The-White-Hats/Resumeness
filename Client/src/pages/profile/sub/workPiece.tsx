@@ -39,17 +39,19 @@ import { Download } from '../../resume/sub/download-button/download-button';
     dispatch(form.setLetterDetails(letterDetails));
   const SetColor = (color: string) => dispatch(updateColor(color));
   /////////////////////////////////////////////////////////////////////////////
+  /// Here I handel clicking the options button on a card
   const buttonsCard = useRef<HTMLDivElement>(null); 
-
   const handleClickingOptions = () => {
     if(buttonsCard.current)
     if(buttonsCard.current.classList.contains('hide')) buttonsCard.current.classList.remove('hide');
     else buttonsCard.current.classList.add('hide');
   }
-
   const focusOut = () => {
+    setTimeout(() => {
     if(buttonsCard.current) buttonsCard.current.classList.add('hide');
+    }, 100);
   }
+  ///////////////////////////////////////////////////////
 
   const DeletePieceOfWork = async (work : any) => {
     const id = work._id;
