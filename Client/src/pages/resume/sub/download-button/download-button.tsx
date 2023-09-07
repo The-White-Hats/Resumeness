@@ -15,8 +15,9 @@ const htmlStringToPdf = async (location: string) => {
   const doc = new jsPDF("p", "mm", "a4");
   const height = doc.internal.pageSize.getHeight();
   const width = doc.internal.pageSize.getWidth();
+  const fileName = (location === "/resume" || location === "/resume/preview") ? "Resume" : "Cover-Letter";
   doc.addImage(imgData, "PNG", 0, 0, width, height);
-  doc.save("Resume.pdf");
+  doc.save(`${fileName}.pdf`);
 };
 type props = {
   style: string;
