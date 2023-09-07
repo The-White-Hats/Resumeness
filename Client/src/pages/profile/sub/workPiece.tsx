@@ -1,4 +1,9 @@
 import { useRef } from 'react';
+import { useDispatch } from "react-redux";
+
+import * as form from "./../../../slices/formReducer";
+import { updateColor } from '../../../slices/colorReducer';
+import { Download } from '../../resume/sub/download-button/download-button';
 
 const WorkPiece = ({ userWork, setUserWork, work, light, dark } : { userWork:any, setUserWork:any, work: any, light: string, dark: string }) => {
   const buttonsCard = useRef<HTMLDivElement>(null); 
