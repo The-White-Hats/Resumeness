@@ -5,6 +5,7 @@ import * as form from "../../../../slices/formReducer";
 import type { TypedUseSelectorHook } from "react-redux";
 import type { RootState } from "../../../../slices/store";
 import "./Form.css";
+import { useRef } from "react";
 let idCounter = 2;
 const Form = () => {
   const dispatch = useDispatch();
@@ -345,7 +346,7 @@ const Form = () => {
   const coverLetterNewFields = (
     <>
       <div className="form-element">
-        <label htmlFor="company">Company</label>
+        <label htmlFor="company">Company *</label>
         <input
           id="company"
           type="text"
@@ -355,7 +356,7 @@ const Form = () => {
         />
       </div>
       <div className="form-element">
-        <label htmlFor="hiringManager">Hiring Manager</label>
+        <label htmlFor="hiringManager">Hiring Manager *</label>
         <input
           id="hiringManager"
           type="text"
@@ -365,7 +366,7 @@ const Form = () => {
         />
       </div>
       <div className="form-element big">
-        <label htmlFor="letterDetails">Letter Details</label>
+        <label htmlFor="letterDetails">Letter Details *</label>
         <textarea
           id="letterDetails"
           maxLength={2000}
@@ -398,7 +399,7 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="job-title">Job Title</label>
+                <label htmlFor="job-title">Job Title *</label>
                 <input
                   id="job-title"
                   type="text"
@@ -410,14 +411,16 @@ const Form = () => {
                       "jobTitle" as keyof form.experience
                     )
                   }
+                  required
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="company">Company</label>
+                <label htmlFor="company">Company *</label>
                 <input
                   id="company"
                   type="text"
                   defaultValue={experience.company}
+                  required
                   onChange={(event) =>
                     handleExperience.updateExperience(
                       event,
@@ -428,11 +431,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="start-date">Start Date</label>
+                <label htmlFor="start-date">Start Date *</label>
                 <input
                   id="start-date"
                   type="date"
                   defaultValue={experience.startDate}
+                  required
                   onChange={(event) =>
                     handleExperience.updateExperience(
                       event,
@@ -443,11 +447,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="end-date">End Date</label>
+                <label htmlFor="end-date">End Date *</label>
                 <input
                   id="end-date"
                   type="date"
                   defaultValue={experience.endDate}
+                  required
                   onChange={(event) =>
                     handleExperience.updateExperience(
                       event,
@@ -458,10 +463,11 @@ const Form = () => {
                 />
               </div>
               <div className="form-element big">
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description">Description *</label>
                 <textarea
                   id="description"
                   defaultValue={experience.jobDescription}
+                  required
                   onChange={(event) =>
                     handleExperience.updateExperience(
                       event,
@@ -534,11 +540,12 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="degree">Degree</label>
+                <label htmlFor="degree">Degree *</label>
                 <input
                   id="degree"
                   type="text"
                   defaultValue={education.degree}
+                  required
                   onChange={(event) =>
                     handleEducation.updateEducation(
                       event,
@@ -549,11 +556,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="study-field">Study Field</label>
+                <label htmlFor="study-field">Study Field *</label>
                 <input
                   id="study-field"
                   type="text"
                   defaultValue={education.studyField}
+                  required
                   onChange={(event) =>
                     handleEducation.updateEducation(
                       event,
@@ -564,11 +572,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="school">School</label>
+                <label htmlFor="school">School *</label>
                 <input
                   id="school"
                   type="text"
                   defaultValue={education.school}
+                  required
                   onChange={(event) =>
                     handleEducation.updateEducation(
                       event,
@@ -579,11 +588,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="grad-date">Graduation Date</label>
+                <label htmlFor="grad-date">Graduation Date *</label>
                 <input
                   id="grad-date"
                   type="date"
                   defaultValue={education.graduationDate}
+                  required
                   onChange={(event) =>
                     handleEducation.updateEducation(
                       event,
@@ -656,12 +666,13 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="skill">Skill</label>
+                <label htmlFor="skill">Skill *</label>
                 <input
                   id="skill"
                   type="text"
                   defaultValue={skill.skill}
                   onChange={(event) => handleSkill.updateSkill(event, index)}
+                  required
                 />
               </div>
             </div>
@@ -688,11 +699,12 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="interest">Interest</label>
+                <label htmlFor="interest">Interest *</label>
                 <input
                   id="interest"
                   type="text"
                   defaultValue={interest.interest}
+                  required
                   onChange={(event) =>
                     handleInterest.updateInterest(event, index)
                   }
@@ -722,11 +734,12 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="language">Language</label>
+                <label htmlFor="language">Language *</label>
                 <input
                   id="language"
                   type="text"
                   defaultValue={language.language}
+                  required
                   onChange={(event) =>
                     handleLanguage.updateLanguage(
                       event,
@@ -737,11 +750,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="fluency">Fluency</label>
+                <label htmlFor="fluency">Fluency *</label>
                 <input
                   id="fluency"
                   type="text"
                   defaultValue={language.fluency}
+                  required
                   onChange={(event) =>
                     handleLanguage.updateLanguage(
                       event,
@@ -775,11 +789,12 @@ const Form = () => {
                 {trashBin}
               </button>
               <div className="form-element">
-                <label htmlFor="certification">Certification</label>
+                <label htmlFor="certification">Certification *</label>
                 <input
                   id="certification"
                   type="text"
                   defaultValue={certification.certification}
+                  required
                   onChange={(event) =>
                     handleCertification.updateCertification(
                       event,
@@ -790,11 +805,12 @@ const Form = () => {
                 />
               </div>
               <div className="form-element">
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">Date *</label>
                 <input
                   id="date"
                   type="date"
                   defaultValue={certification.date}
+                  required
                   onChange={(event) =>
                     handleCertification.updateCertification(
                       event,
@@ -832,11 +848,13 @@ const Form = () => {
         />
       </div>
       <div className="form-element big">
-        <label htmlFor="professional-summary">Professional Summary</label>
+        <label htmlFor="professional-summary">Professional Summary *</label>
         <textarea
           value={professionalSummary}
           id="professional-summary"
+          maxLength={500}
           onChange={(event) => handleInputChange(event, SetProfessionalSummary)}
+          required
         />
       </div>
     </>
@@ -968,26 +986,50 @@ const Form = () => {
   }
   const saveResumeButton = (
     <button id="save" className="resume" onClick={(event) => {
-      event.preventDefault();
-      saveResume();
-      terminal.log("Resume saved");
-    }
-
-    }>Save</button>
+      let Valid: Boolean = false;
+      if(myForm.current) {
+        Valid = myForm.current.checkValidity();
+        
+        if(!Valid)
+        {
+          myForm.current.reportValidity();
+        }
+        else 
+        {
+          event.preventDefault();
+          saveResume();
+          terminal.log("Resume saved");
+        }
+      }
+    }}
+    >Save</button>
   )
   const saveCoverLetterButton = (
     <button id="save" className="cover-letter" onClick={(event) => {
-      event.preventDefault();
-      saveCoverLetter();
-      terminal.log("Cover Letter saved");
-    }
-    }
+      let Valid: Boolean = false;
+      if(myForm.current) {
+        Valid = myForm.current.checkValidity();
+        
+        if(!Valid)
+        {
+          myForm.current.reportValidity();
+        }
+        else 
+        {
+          event.preventDefault();
+          saveCoverLetter();
+          terminal.log("Cover Letter saved");
+        }
+      }
+    }}
     >Save</button>
   )
+
+  const myForm = useRef<HTMLFormElement>(null);
   return (
     <div className="form-wrapper">
       <div className="title">Form</div>
-      <form>
+      <form ref={myForm}>
         <div id = "file-name-container">
             <input
               id="file-name"
@@ -1001,7 +1043,7 @@ const Form = () => {
         {location.pathname === "/resume" && uploadPhoto}
         <div className="Form">
           <div className="form-element">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="first-name">First Name *</label>
             <input
               id="first-name"
               type="text"
@@ -1011,7 +1053,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="last-name">Last Name *</label>
             <input
               id="last-name"
               type="text"
@@ -1021,7 +1063,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email *</label>
             <input
               id="email"
               type="email"
@@ -1031,7 +1073,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Title *</label>
             <input
               id="title"
               type="text"
@@ -1041,7 +1083,7 @@ const Form = () => {
             />
           </div>
           <div className="form-element">
-            <label htmlFor="phone-number">Phone Number</label>
+            <label htmlFor="phone-number">Phone Number *</label>
             <input
               id="phone-number"
               type="tel"
@@ -1057,7 +1099,6 @@ const Form = () => {
               type="text"
               value={address}
               onChange={(event) => handleInputChange(event, SetAddress)}
-              required
             />
           </div>
           {location.pathname === "/resume"

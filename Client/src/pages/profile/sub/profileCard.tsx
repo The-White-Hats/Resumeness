@@ -41,8 +41,12 @@ const ProfileCard = ({user, dark, medium} : {user: any, dark: string, medium: st
 
   const DeleteUserAccount = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/profile/delete/${user._id}`, {
-        method: "DELETE"
+      const response = await fetch(`http://localhost:8080/profile/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}` 
+        }
       });
       if(!response.ok) throw new Error(`${response.status}`)
       dispatch(updateLoggedIn(false));
