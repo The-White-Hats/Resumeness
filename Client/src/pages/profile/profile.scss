@@ -153,11 +153,7 @@ $red:  #ff1414;
         cursor: pointer;
       }
 
-      .buttons-card{
-        display: none;
-      }
-
-      .options-button:focus + .buttons-card {
+      .buttons-card {
         display: block;
         display: flex;
         flex-direction: column;
@@ -187,6 +183,10 @@ $red:  #ff1414;
             color: $red;
           }
         }
+      }
+
+      .hide {
+        display: none;
       }
     }
   }
