@@ -189,6 +189,15 @@ $red:  #ff1414;
         display: none;
       }
     }
+
+    &::-webkit-scrollbar {
+      display: inline-block;
+      width: 15px;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #2727274a;
+      border-radius: 50px;
+    }
   }
 }
 

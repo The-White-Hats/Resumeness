@@ -158,6 +158,14 @@
 #profile-page #user-work-area .work-card .hide {
   display: none;
 }
+#profile-page #user-work-area::-webkit-scrollbar {
+  display: inline-block;
+  width: 15px;
+}
+#profile-page #user-work-area:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(39, 39, 39, 0.2901960784);
+  border-radius: 50px;
+}
 
 @media only screen and (max-width: 1400px) {
   #profile-page #user-work-area {
