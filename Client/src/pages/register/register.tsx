@@ -53,7 +53,6 @@ export default function Register() {
     </div>
   );
   const onSubmit = () => {
-    console.log(image);
     let ok = false;
     let status = 200;
     const url = `http://localhost:8080/auth${location.pathname}`;
@@ -61,8 +60,9 @@ export default function Register() {
       email: Email,
       password: Password,
     };
+    dispatch(updateImage(Gender === "Male" ? "/Male.png" : "/Female.png"));
     const signUp = {
-      image: image,
+      image: Gender === "Male" ? "/Male.png" : "/Female.png",
       name: UserName,
       email: Email,
       gender: Gender,

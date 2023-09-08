@@ -84,6 +84,7 @@ nav #links .personalImg  {
   border-radius: 50%;
   background-color: gray;
   cursor: pointer;
+  overflow: hidden;
 }
 nav #links .personalImg  img{
   width: 40px;
