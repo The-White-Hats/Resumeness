@@ -11,6 +11,9 @@ const WorkPiece = ({ userWork, setUserWork, work, light, dark, navigate } : { us
   const SetResumeId = (id: string) => dispatch(form.setResumeId(id));
   const SetCoverLetterId = (id: string) => dispatch(form.setCoverLetterId(id));
   const SetFileName = (title: string) => dispatch(form.setFileName(title));
+  const SetImg = (img: string) => dispatch(form.setImg(img));
+  const SetUploadImage = (img: string) => dispatch(form.setUploadImage(img));
+  const SetImageName = (imageName: string) => dispatch(form.setImageName(imageName));
   const SetFirstName = (fName: string) => dispatch(form.setFirstName(fName));
   const SetLastName = (lName: string) => dispatch(form.setLastName(lName));
   const SetEmail = (email: string) => dispatch(form.setEmail(email));
@@ -93,6 +96,9 @@ const WorkPiece = ({ userWork, setUserWork, work, light, dark, navigate } : { us
   // Second filling the resume info
   const fillResumeInfo = () => {
     SetFileName(work.fileName);
+    SetImg(work.image);
+    SetUploadImage(work.image);
+    SetImageName(work.imageName);
     SetFirstName(work.firstName);
     SetLastName(work.lastName);
     SetEmail(work.email);

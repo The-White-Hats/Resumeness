@@ -108,7 +108,7 @@ const ProfileCard = ({
   useEffect(() => {
     if (uploadImage) {
       if (user.image !== "/Male.png" && user.image !== "/Female.png") {
-        const prevImageUrl = "images/" + user.imageName;
+        const prevImageUrl = "User Images/" + user.imageName;
         console.log("enter");
         const prevImageRef = ref(storage, prevImageUrl as string); // get the reference from the url
         deleteObject(prevImageRef) // delete the image
@@ -120,7 +120,7 @@ const ProfileCard = ({
           });
       }
       const imageName = uploadImage.name + v4();
-      const imageRef = ref(storage, `images/${imageName}`);
+      const imageRef = ref(storage, `User Images/${imageName}`);
       uploadBytes(imageRef, uploadImage)
         .then(() => {
           console.log("Image uploaded successfully");

@@ -25,7 +25,7 @@
   max-width: 300px;
   height: 92%;
   margin: 0 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -110,7 +110,7 @@
   overflow-y: scroll;
 }
 #profile-page #user-work-area .work-card {
-  border-radius: 5px;
+  border-radius: 15px;
   max-height: 300px;
   padding: 25px 20px;
   position: relative;
@@ -157,7 +157,7 @@
 }
 #profile-page #user-work-area .work-card .buttons-card button {
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: white;
   text-transform: capitalize;
   cursor: pointer;

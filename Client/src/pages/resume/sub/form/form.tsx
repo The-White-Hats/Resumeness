@@ -1,7 +1,15 @@
-import { useRef } from "react";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import { useEffect, useRef, useState } from "react";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 } from "uuid";
 import { terminal } from "virtual:terminal";
+import { storage } from "../../../../firebase";
 import * as form from "../../../../slices/formReducer";
 import type { RootState } from "../../../../slices/store";
 import "./Form.css";
@@ -10,6 +18,9 @@ const Form = () => {
   const dispatch = useDispatch();
   const SetImg = (img: string | ArrayBuffer | null) =>
     dispatch(form.setImg(img));
+  const SetUploadImage = (img: string) => dispatch(form.setUploadImage(img));
+  const SetImageName = (imageName: string) =>
+    dispatch(form.setImageName(imageName));
   const SetResumeId = (id: string) => dispatch(form.setResumeId(id));
   const SetCoverLetterId = (id: string) => dispatch(form.setCoverLetterId(id));
   const SetFileName = (title: string) => dispatch(form.setFileName(title));
@@ -42,9 +53,10 @@ const Form = () => {
     dispatch(form.setHiringManager(hiringManager));
   const SetLetterDetails = (letterDetails: string) =>
     dispatch(form.setLetterDetails(letterDetails));
-
-  const img = useSelector(form.selectImg);
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+  const img = useSelector(form.selectImg);
+  const Image = useAppSelector((state) => state.formCollection.uploadImage);
+  const ImageName = useAppSelector((state) => state.formCollection.ImageName);
   const currentColor = useAppSelector((state) => state.color.color);
   const resumeId = useSelector(form.selectResumeId);
   const coverLetterId = useSelector(form.selectCoverLetterId);
@@ -858,6 +870,10 @@ const Form = () => {
       </div>
     </>
   );
+  /* ----------------------------------------------UPLOAD IMAGE ------------------------------------------*/
+  const [uploadImage, setUploadImage] = useState<File | null>(null);
+  const [save, setSave] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
   const uploadPhoto = (
     <div className="img-container">
       <div className="img-file-container">
@@ -872,23 +888,74 @@ const Form = () => {
           onChange={(event) => {
             const reader = new FileReader();
             reader.onload = () => SetImg(reader.result);
-            if (event.target.files) reader.readAsDataURL(event.target.files[0]);
+            if (event.target.files) {
+              reader.readAsDataURL(event.target.files[0]);
+              setUploadImage(event.target.files[0]);
+            }
           }}
         />
       </div>
     </div>
   );
+  useEffect(() => {
+    if (uploadImage) {
+      if (Image !== "null") {
+        const prevImageUrl = "Resume Personal Image/" + ImageName;
+        console.log("enter");
+        const prevImageRef = ref(storage, prevImageUrl as string); // get the reference from the url
+        deleteObject(prevImageRef) // delete the image
+          .then(() => {
+            console.log("Image deleted successfully");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      const imageName = uploadImage.name + v4();
+      const imageRef = ref(storage, `Resume Personal Image/${imageName}`);
+      uploadBytes(imageRef, uploadImage)
+        .then(() => {
+          console.log("Image uploaded successfully");
+          getDownloadURL(imageRef)
+            .then((url) => {
+              SetUploadImage(url);
+              SetImageName(imageName);
+            })
+            .then(() => {
+              setUploaded(true);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [save]);
+  useEffect(() => {
+    if (uploaded) {
+      console.log(Image, ImageName);
+      saveResume();
+      setUploaded(false);
+    }
+  }, [uploaded]);
+  //  -------------------------------------------------------------------------------------------------------------
+
   const resumeRef = useRef<HTMLButtonElement>(null);
   const coverLetterRef = useRef<HTMLButtonElement>(null);
-  const updateSaveButton = (flag: boolean, ref:React.RefObject<HTMLButtonElement>) => {
-    if(!ref.current) return;
+  const updateSaveButton = (
+    flag: boolean,
+    ref: React.RefObject<HTMLButtonElement>
+  ) => {
+    if (!ref.current) return;
     ref.current.style.backgroundColor = flag ? "green" : "red";
-    ref.current.innerHTML=flag ? "Saved" : "Not saved";
-    setTimeout(()=>{
-      if(!ref.current) return;
+    ref.current.innerHTML = flag ? "Saved" : "Not saved";
+    setTimeout(() => {
+      if (!ref.current) return;
       ref.current.style.backgroundColor = "#5accff";
-      ref.current.innerHTML="Save";
-    },3000);
+      ref.current.innerHTML = "Save";
+    }, 3000);
   };
   const saveCoverLetter = async () => {
     const coverLetter = {
@@ -916,12 +983,12 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
-        updateSaveButton(true,coverLetterRef);
+        updateSaveButton(true, coverLetterRef);
         const data = await res.json();
         SetCoverLetterId(data._id.toString());
         terminal.log(data);
       } catch (err) {
-        updateSaveButton(false,coverLetterRef);
+        updateSaveButton(false, coverLetterRef);
         terminal.log(err);
       }
     } else {
@@ -940,11 +1007,11 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
-        updateSaveButton(true,coverLetterRef);
+        updateSaveButton(true, coverLetterRef);
         const data = await res.json();
         terminal.log(data);
       } catch (err) {
-        updateSaveButton(false,coverLetterRef);
+        updateSaveButton(false, coverLetterRef);
         terminal.log(err);
       }
     }
@@ -953,6 +1020,8 @@ const Form = () => {
   const saveResume = async () => {
     const resume = {
       fileName: fileName,
+      image: Image,
+      imageName: ImageName,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -983,12 +1052,12 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
-        updateSaveButton(true,resumeRef);
+        updateSaveButton(true, resumeRef);
         const data = await res.json();
         SetResumeId(data._id.toString());
         terminal.log(data._id.toString());
       } catch (err) {
-        updateSaveButton(false,resumeRef);
+        updateSaveButton(false, resumeRef);
         terminal.log(err);
       }
     } else {
@@ -1007,11 +1076,11 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
-        updateSaveButton(true,resumeRef);
+        updateSaveButton(true, resumeRef);
         const data = await res.json();
         terminal.log(data);
       } catch (err) {
-        updateSaveButton(false,resumeRef);
+        updateSaveButton(false, resumeRef);
         terminal.log(err);
       }
     }
@@ -1030,8 +1099,7 @@ const Form = () => {
             myForm.current.reportValidity();
           } else {
             event.preventDefault();
-
-            saveResume();
+            setSave(!save);
             terminal.log("Resume saved");
           }
         }
