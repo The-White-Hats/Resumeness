@@ -1,18 +1,18 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
-import personalImg from "../assets/user.png";
+
 export interface UserState {
   loggedIn: boolean;
   fetch: boolean;
   expires: boolean;
-  image: string | ArrayBuffer | null | File;
+  image: string | ArrayBuffer | null ;
 }
 
 const initialState: UserState = {
   loggedIn: false,
   fetch: false,
   expires: false,
-  image: personalImg,
+  image: "/user.png",
 };
 
 export const userSlice = createSlice({
@@ -30,7 +30,7 @@ export const userSlice = createSlice({
     },
     updateImage: (
       state,
-      action: PayloadAction<string | ArrayBuffer | null | File>
+      action: PayloadAction<string | ArrayBuffer | null >
     ) => {
       state.image = action.payload;
     },

@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
 import { storage } from "../../firebase";
-import { updateImage } from "../../slices/userReducer";
 import { RootState } from "../../slices/store";
-import { updateExpires, updateLoggedIn } from "../../slices/userReducer";
+import {
+  updateExpires,
+  updateImage,
+  updateLoggedIn,
+} from "../../slices/userReducer";
 import "./register.css";
 
 export default function Register() {
@@ -20,6 +23,7 @@ export default function Register() {
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongEmail, setWrongEmail] = useState(false);
+  const [EmailTaken, setEmailTaken] = useState(false);
   const EmailRef = useRef<HTMLInputElement>(null);
   const PasswordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -49,6 +53,7 @@ export default function Register() {
     </div>
   );
   const onSubmit = () => {
+    console.log(image);
     let ok = false;
     let status = 200;
     const url = `http://localhost:8080/auth${location.pathname}`;
@@ -70,6 +75,7 @@ export default function Register() {
       body: JSON.stringify(location.pathname === "/logIn" ? logIn : signUp),
     })
       .then((res) => {
+        console.log("🚀 ~ file: register.tsx:77 ~ .then ~ res:", res);
         ok = res.ok;
         status = res.status;
         return res.json();
@@ -77,10 +83,11 @@ export default function Register() {
       .then((data) => {
         if (ok) {
           if (data.image !== undefined) dispatch(updateImage(data.image));
+          console.log(data.taken);
           localStorage.setItem("token", data.token);
           setTimeout(() => {
             dispatch(updateExpires(true));
-          }, 20000);
+          }, 60 * 60 * 1000 * 2);
           dispatch(updateLoggedIn(true));
           navigate("/");
           setWrongEmail(false);
@@ -89,12 +96,10 @@ export default function Register() {
             EmailRef.current.style.borderBottomColor = "white";
           if (PasswordRef.current)
             PasswordRef.current.style.borderBottomColor = "white";
-        }
-        else if (status === 422) {
+        } else if (status === 422) {
           alert(data[0].message);
           console.log(data);
-        }
-        else {
+        } else {
           if (data.error === "Invalid email") {
             if (EmailRef.current) {
               EmailRef.current.value = "";
@@ -112,44 +117,56 @@ export default function Register() {
             if (EmailRef.current)
               EmailRef.current.style.borderBottomColor = "white";
           }
+          if (data.error === "Email is already taken") {
+            setEmailTaken(true);
+            if (EmailRef.current) {
+              EmailRef.current.value = "";
+              EmailRef.current.style.borderBottomColor = "red";
+            }
+          }
         }
       })
       .catch((err) => {
         console.log(err);
       });
     console.log(location.pathname);
-    if (uploadImage) {
-      const imageName = uploadImage.name + v4();
-      const imageRef = ref(storage, `images/${imageName}`);
-      uploadBytes(imageRef, uploadImage);
-      const imageListRef = ref(storage, `images/`);
-      listAll(imageListRef).then((res) => {
-        getDownloadURL(res.items[res.items.length - 1]).then((urL) => {
-          urL = urL.toString();
-          console.log(localStorage.getItem("token"));
-          fetch("http://localhost:8080/auth/me", {
-            method: "GET",
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              fetch("http://localhost:8080/auth/image", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify({
-                  image: urL,
-                  id: data.user._id,
-                }),
-              });
+    setTimeout(() => {
+      if (uploadImage) {
+        const imageName = uploadImage.name + v4();
+        const imageRef = ref(storage, `images/${imageName}`);
+        uploadBytes(imageRef, uploadImage);
+        const imageListRef = ref(storage, `images/`);
+        listAll(imageListRef).then((res) => {
+          getDownloadURL(res.items[res.items.length - 1]).then((urL) => {
+            urL = urL.toString();
+            console.log(
+              localStorage.getItem("token"),
+              "hfkjsahlkfjhaskjdfhlkjashdflkjhsafdlkjhsalkdjfhkasjhdfkjshdflkjshfkjshdfkljhsfkjhasdffkjhalksjfhlkasjhfdksafhdkjsdhjf"
+            );
+            fetch("http://localhost:8080/auth/me", {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
             })
-            .catch((err) => {
-              console.log(err);
-            });
+              .then((res) => res.json())
+              .then((data) => {
+                fetch("http://localhost:8080/auth/image", {
+                  method: "POST",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify({
+                    image: urL,
+                    id: data.user._id,
+                  }),
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          });
         });
-      });
-    }
+      }
+    }, 100);
   };
 
   const username = (
@@ -159,6 +176,7 @@ export default function Register() {
         className="input-control"
         name="Name"
         id="name"
+        required
         onChange={(e) => setUserName(e.target.value)}
       />
       <label htmlFor="name" className="label-control">
@@ -185,12 +203,14 @@ export default function Register() {
         className="input-control"
         name="Email"
         id="email"
+        required
         ref={EmailRef}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {wrongEmail && (
+      {(wrongEmail && (
         <div className="wrong">Email doesn't exist please try again</div>
-      )}
+      )) ||
+        (EmailTaken && <div className="wrong">Email is already taken</div>)}
       <label htmlFor="email" className="label-control">
         Email
       </label>
@@ -213,6 +233,7 @@ export default function Register() {
         name="Password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
+        required
         ref={PasswordRef}
       />
       {wrongPassword && (
@@ -242,6 +263,7 @@ export default function Register() {
         className="input-control"
         name="confirmPassword"
         id="confirmPassword"
+        required
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
       <label htmlFor="confirmPassword" className="label-control">
@@ -281,6 +303,7 @@ export default function Register() {
             className="gender-input"
             name="gender"
             value="Female"
+            required
             onChange={(e) => setGender(e.target.value)}
           />
           Female

@@ -44,7 +44,7 @@ const signUpSchema = Joi.object({
 // Log in validation schema
 const logInSchema = Joi.object({
   email: Joi.string().email().required(),
-  password: Joi.string().min(8).max(16).required(),
+  password: Joi.string().required(),
 });
 
 export { User, logInSchema, signUpSchema };

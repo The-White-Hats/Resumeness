@@ -3,7 +3,6 @@ import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../slices/store";
-import personalImg from "../../assets/user.png";
 import {
   updateExpires,
   updateFetch,
@@ -20,7 +19,7 @@ const NavBar = () => {
   console.log(image);
   useEffect(() => {
     if (expires) {
-      dispatch(updateImage(personalImg));
+      dispatch(updateImage("/user.png"));
       dispatch(updateLoggedIn(false));
       dispatch(updateExpires(false));
     }
