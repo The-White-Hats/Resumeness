@@ -80,11 +80,14 @@ const authController = {
   },
   updateImage: async (req, res) => {
     try {
-      const { image, id } = req.body;
+      const { image, id, imageName } = req.body;
 
-      const user = await User.findByIdAndUpdate( id ,{ image: image});
-      if(!user ){
-        res.status(404).json({message: "Couldn't find user"});
+      const user = await User.findByIdAndUpdate(id, {
+        image: image,
+        imageName: imageName,
+      });
+      if (!user) {
+        res.status(404).json({ message: "Couldn't find user" });
       }
       res.status(200).json({ message: "Updated in successfully" });
     } catch (error) {

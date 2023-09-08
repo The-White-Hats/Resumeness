@@ -1,6 +1,9 @@
 import Joi from "joi";
 import { Schema, model } from "mongoose";
 const userSchema = new Schema({
+  imageName: {
+    type: String,
+  },
   image: {
     type: String,
   },

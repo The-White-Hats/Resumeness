@@ -16,7 +16,6 @@ const NavBar = () => {
   const expires = useAppSelector((state) => state.user.expires);
   const image = useAppSelector((state) => state.user.image);
   const dispatch = useDispatch();
-  console.log(image);
   useEffect(() => {
     if (expires) {
       dispatch(updateImage("/user.png"));
