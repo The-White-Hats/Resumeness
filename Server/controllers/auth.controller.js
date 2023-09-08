@@ -6,14 +6,15 @@ const authController = {
     // Validate the request body against the sign up schema
     const { error } = signUpSchema.validate(req.body, { abortEarly: false });
     if (error) {
+      console.log(error);
       return res.status(422).json(error.details);
     }
-    console.log(req.body);
     try {
       const { email, password } = req.body;
       // Check if the user already exists
       let user = await User.findOne({ email });
       if (user) {
+        console.log("Email is already taken");
         return res.status(400).json({ error: "Email is already taken" });
       }
 
