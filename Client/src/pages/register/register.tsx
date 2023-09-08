@@ -270,7 +270,6 @@ export default function Register() {
             return false;
           }}
         >
-          {location.pathname === "/signUp" && uploadPhoto}
           {elements}
           <div className="submit-container">
             <input
