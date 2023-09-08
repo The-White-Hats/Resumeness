@@ -50,6 +50,7 @@ export default function Register() {
   );
   const onSubmit = () => {
     let ok = false;
+    let status = 200;
     const url = `http://localhost:8080/auth${location.pathname}`;
     const logIn = {
       email: Email,
@@ -70,6 +71,7 @@ export default function Register() {
     })
       .then((res) => {
         ok = res.ok;
+        status = res.status;
         return res.json();
       })
       .then((data) => {
@@ -87,7 +89,12 @@ export default function Register() {
             EmailRef.current.style.borderBottomColor = "white";
           if (PasswordRef.current)
             PasswordRef.current.style.borderBottomColor = "white";
-        } else {
+        }
+        else if (status === 422) {
+          alert(data[0].message);
+          console.log(data);
+        }
+        else {
           if (data.error === "Invalid email") {
             if (EmailRef.current) {
               EmailRef.current.value = "";
@@ -237,7 +244,7 @@ export default function Register() {
         id="confirmPassword"
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <label htmlFor="password" className="label-control">
+      <label htmlFor="confirmPassword" className="label-control">
         Confirm Password
       </label>
       <svg
