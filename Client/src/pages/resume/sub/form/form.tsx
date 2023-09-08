@@ -874,6 +874,8 @@ const Form = () => {
   const [uploadImage, setUploadImage] = useState<File | null>(null);
   const [save, setSave] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const [oldImage, setOldImage] = useState(Image);
+  const [oldImageName, setOldImageName] = useState(ImageName);
   const uploadPhoto = (
     <div className="img-container">
       <div className="img-file-container">
@@ -897,20 +899,22 @@ const Form = () => {
       </div>
     </div>
   );
+  const deleteImage = (Image: string, ImageName: string) => {
+    if (Image !== "null") {
+      const prevImageUrl = "Resume Personal Image/" + ImageName;
+      console.log("enter");
+      const prevImageRef = ref(storage, prevImageUrl as string); // get the reference from the url
+      deleteObject(prevImageRef) // delete the image
+        .then(() => {
+          console.log("Image deleted successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
   useEffect(() => {
     if (uploadImage) {
-      if (Image !== "null") {
-        const prevImageUrl = "Resume Personal Image/" + ImageName;
-        console.log("enter");
-        const prevImageRef = ref(storage, prevImageUrl as string); // get the reference from the url
-        deleteObject(prevImageRef) // delete the image
-          .then(() => {
-            console.log("Image deleted successfully");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
       const imageName = uploadImage.name + v4();
       const imageRef = ref(storage, `Resume Personal Image/${imageName}`);
       uploadBytes(imageRef, uploadImage)
@@ -1052,11 +1056,17 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
+        deleteImage(oldImage as string, oldImageName as string);
+        setOldImage(Image);
+        setOldImageName(ImageName);
         updateSaveButton(true, resumeRef);
         const data = await res.json();
         SetResumeId(data._id.toString());
         terminal.log(data._id.toString());
       } catch (err) {
+        deleteImage(Image as string, ImageName as string);
+        SetUploadImage(oldImage as string);
+        SetImageName(oldImageName as string);
         updateSaveButton(false, resumeRef);
         terminal.log(err);
       }
@@ -1076,10 +1086,16 @@ const Form = () => {
         if (!res.ok) {
           throw new Error(`Error saving resume`);
         }
+        deleteImage(oldImage as string, oldImageName as string);
+        setOldImage(Image);
+        setOldImageName(ImageName);
         updateSaveButton(true, resumeRef);
         const data = await res.json();
         terminal.log(data);
       } catch (err) {
+        deleteImage(Image as string, ImageName as string);
+        SetUploadImage(oldImage as string);
+        SetImageName(oldImageName as string);
         updateSaveButton(false, resumeRef);
         terminal.log(err);
       }
