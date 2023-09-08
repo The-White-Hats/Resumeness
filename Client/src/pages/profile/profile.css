@@ -162,7 +162,7 @@
   text-transform: capitalize;
   cursor: pointer;
 }
-#profile-page #user-work-area .work-card .buttons-card button .delete-card {
+#profile-page #user-work-area .work-card .buttons-card button.delete-card {
   color: #ff1414;
 }
 #profile-page #user-work-area .work-card .hide {
