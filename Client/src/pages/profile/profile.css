@@ -35,17 +35,19 @@
   justify-content: center;
   position: relative;
   padding-top: 17%;
+  padding-bottom: 13%;
   overflow: hidden;
-  height: 200px;
+  height: 220px;
 }
 #profile-page #profile-card #profile-img-container img {
   overflow: hidden;
-  width: 80%;
+  width: auto;
   height: auto;
+  aspect-ratio: 1/1;
   z-index: 3;
-  background-size: cover;
   object-fit: cover;
   border-radius: 50%;
+  box-shadow: 0px 10px 24px 0px rgba(48, 48, 51, 1);
 }
 /* #profile-page #profile-card #profile-img-container::before {
   content: "";
@@ -91,10 +93,10 @@
 #profile-page #profile-card #delete-account button {
   border: none;
   background-color: #ff1414;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: white;
-  padding: 0.6rem;
-  border-radius: 10px;
+  padding: 1rem;
+  border-radius: 15px;
   cursor: pointer;
 }
 #profile-page #user-work-area {
@@ -160,7 +162,7 @@
   text-transform: capitalize;
   cursor: pointer;
 }
-#profile-page #user-work-area .work-card .buttons-card button.delete-card {
+#profile-page #user-work-area .work-card .buttons-card button .delete-card {
   color: #ff1414;
 }
 #profile-page #user-work-area .work-card .hide {
@@ -203,17 +205,16 @@
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  border: 1px solid rgb(0, 0, 0);
   padding: 5px;
-  bottom: 20px;
-  right: 50px;
+  bottom: 50px;
+  right: 70px;
   border-radius: 50%;
-  background-color: #9ceafd ;
+  background-color: #ffffff ;
   box-shadow: 0px 0px 24px -1px rgba(66, 66, 66, 1);
 }
 #profile-page #profile-card #profile-img-container .img-file-container svg {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 #profile-page #profile-card #profile-img-container .img-file-container .file {
   position: absolute;
