@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 import formImg from "../assets/darkuser.png";
 interface experience {
   id: number;
@@ -105,7 +105,7 @@ export type FormCollectionKey =
   | "certifications"
   | "interests";
 
-const formCollection = createSlice({
+const formCollection: Slice = createSlice({
   name: "formCollection",
   initialState,
   reducers: {
