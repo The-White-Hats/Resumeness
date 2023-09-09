@@ -3,6 +3,7 @@ import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../slices/store";
+import {ResetData} from "../ResetData/ResetData";
 import {
   updateExpires,
   updateFetch,
@@ -11,6 +12,7 @@ import {
 } from "../../slices/userReducer";
 import "./Navbar.css";
 const NavBar = () => {
+
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
   const expires = useAppSelector((state) => state.user.expires);
@@ -51,6 +53,7 @@ const NavBar = () => {
     stillLoggedIn();
   }
   const logOut = () => {
+    ResetData(dispatch)
     dispatch(updateLoggedIn(false));
     dispatch(updateExpires(true));
     localStorage.setItem("token", "");

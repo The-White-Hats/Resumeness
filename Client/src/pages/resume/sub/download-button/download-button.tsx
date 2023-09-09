@@ -1,8 +1,6 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import FileDown from "../../../../assets/filedown.svg";
-//import pdfMake from 'pdfmake/build/pdfmake.js';
-// import { type } from "os";
 import "./download-button.css";
 const htmlStringToPdf = async (location: string) => {
   const capture =
