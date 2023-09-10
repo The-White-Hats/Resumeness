@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
-import formImg from "../assets/darkuser.png";
 interface experience {
   id: number;
   jobTitle: string;
@@ -72,9 +71,9 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  img: formImg,
-  uploadImage: "null",
-  ImageName: "null",
+  img: "/darkuser.png",
+  uploadImage: "/darkuser.png",
+  ImageName: "/darkuser.png",
   fileName: "Untitled",
   resumeId: "",
   coverLetterId: "",

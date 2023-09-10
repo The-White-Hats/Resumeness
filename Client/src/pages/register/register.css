@@ -46,8 +46,13 @@
   position: relative;
 }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #00ccff inset !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #000000; /* change this to your desired text color */
+  transition: background-color 5000s ease-in-out 0s; /* this prevents the background from changing back */
 }
 
 .label-control {

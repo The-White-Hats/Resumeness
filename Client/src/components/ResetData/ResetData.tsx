@@ -1,5 +1,3 @@
-
-import formImg from "../../assets/darkuser.png";
 import { updateColor } from "../../slices/colorReducer";
 import * as form from "../../slices/formReducer";
 
@@ -43,9 +41,9 @@ export const ResetData = (dispatch:any) => {
     dispatch(form.setLetterDetails(letterDetails));
   const SetColor = (color: string) => dispatch(updateColor(color));
 
-  SetImg(formImg);
-  SetUploadImage("null");
-  SetImageName("null");
+  SetImg("/darkuser.png");
+  SetUploadImage("/darkuser.png");
+  SetImageName("/darkuser.png");
   SetFileName("Untitled");
   SetResumeId("");
   SetCoverLetterId("");
