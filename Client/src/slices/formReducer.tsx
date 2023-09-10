@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import formImg from "../assets/darkuser.png";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
 interface experience {
   id: number;
   jobTitle: string;
@@ -43,6 +42,8 @@ interface interest {
 
 interface FormCollectionState {
   img: string | ArrayBuffer | null | File;
+  uploadImage: string | null;
+  ImageName: string | null;
   resumeId: string;
   coverLetterId: string;
   //common
@@ -70,7 +71,9 @@ interface FormCollectionState {
 }
 
 const initialState: FormCollectionState = {
-  img: formImg,
+  img: "/darkuser.png",
+  uploadImage: "/darkuser.png",
+  ImageName: "/darkuser.png",
   fileName: "Untitled",
   resumeId: "",
   coverLetterId: "",
@@ -101,12 +104,21 @@ export type FormCollectionKey =
   | "certifications"
   | "interests";
 
-const formCollection = createSlice({
+const formCollection: Slice = createSlice({
   name: "formCollection",
   initialState,
   reducers: {
-    setImg: (state, action: PayloadAction<string | ArrayBuffer | null | File>) => {
+    setImg: (
+      state,
+      action: PayloadAction<string | ArrayBuffer | null | File>
+    ) => {
       state.img = action.payload;
+    },
+    setUploadImage: (state, action: PayloadAction<string>) => {
+      state.uploadImage = action.payload;
+    },
+    setImageName: (state, action: PayloadAction<string>) => {
+      state.ImageName = action.payload;
     },
     setResumeId: (state, action: PayloadAction<string>) => {
       state.resumeId = action.payload;
@@ -233,9 +245,10 @@ export const selectCoverLetterId = (state: {
   formCollection: FormCollectionState;
 }) => state.formCollection.coverLetterId;
 
-
 export type { certification, education, experience, interest, language, skill };
 export const {
+  setUploadImage,
+  setImageName,
   setResumeId,
   setCoverLetterId,
   setImg,

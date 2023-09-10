@@ -28,7 +28,7 @@ const Preview = ({ color }: PreviewProps) => {
     <div className="preview">
       <div className="side-bar" style={{ backgroundColor: color }}>
         <div className="profile">
-          {img && (<div className="img-container">
+          {img!=="/darkuser.png" && (<div className="img-container">
             <img
             src={img as string}
             alt="profile picture"

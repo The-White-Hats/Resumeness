@@ -5,6 +5,8 @@ const resumeSchema = new Schema({
   userID: Schema.Types.ObjectId,
   type: String,
   fileName: String,
+  image:String,
+  imageName: String,
   firstName: String,
   lastName: String,
   email: String,
@@ -56,6 +58,8 @@ const Resume = new model('Resume', resumeSchema);
 
 const ResumeValidation = Joi.object({
   fileName: Joi.string().optional().default("Untitled Resume"),
+  image:Joi.string().optional(),
+  imageName: Joi.string().optional(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),

@@ -99,6 +99,7 @@ const Profile = () => {
         user={user}
         dark={colors[`${user.gender}Dark`]}
         medium={colors[`${user.gender}Medium`]}
+        getUserData={getUserData}
       />
       <div id="user-work-area">
         {userWork.map((work, index) => (

@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import easy from "../../assets/easy.png";
 import free from "../../assets/free.png";
 import Footer from "../../components/Footer/Footer";
+import {ResetData} from "../../components/ResetData/ResetData";
 import { RootState } from "../../slices/store";
+import { useDispatch } from "react-redux";
 import "./home.css";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
   const secure = (
@@ -38,23 +41,24 @@ const Home = () => {
             <div className="start">Let's Start!</div>
             <div className="start-button">
               <Link to={!loggedIn ? "/logIn" : "/resume"}>
-                <button className="resume" onClick={() => {
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 5);
-                }
-
-                }
-                >Resume</button>
+                <button
+                  className="resume"
+                  onClick={() => {
+                    ResetData(dispatch);
+                  }}
+                >
+                  Resume
+                </button>
               </Link>
               <Link to={!loggedIn ? "/logIn" : "/cover-letter"}>
-                <button className="cover-letter" onClick={() => {
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 5);
-                }
-                }
-                >Cover Letter</button>
+                <button
+                  className="cover-letter"
+                  onClick={() => {
+                    ResetData(dispatch);
+                  }}
+                >
+                  Cover Letter
+                </button>
               </Link>
             </div>
           </div>
