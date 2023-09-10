@@ -1,0 +1,93 @@
+nav {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  height: 4vh;
+  padding: 1rem 2rem;
+  background-color: #0c0c28;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav h1 {
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  background-image: linear-gradient(
+    to right,
+    rgb(45, 137, 165),
+    rgb(27, 242, 250),
+    rgb(23, 77, 177)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  animation: movingBackground 3s linear infinite;
+  background-size: 200%;
+}
+@keyframes movingBackground {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+nav #links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+nav #links span , .vertical-line{
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+nav #links span:hover{
+  color: #5accff;
+}
+.vertical-line{
+  align-self: center;
+  justify-self: center;
+  height: 16px;
+  margin-left: 24px;
+  margin-right: 40px;
+}
+nav #links .logIn{
+  color: #83d8ff;
+}
+nav #links .signUp{
+  background-color: #77d2fc;
+  border-radius: 50px;
+  padding: 4px 12px 6px 12px;
+  margin-bottom: -3px
+}
+nav #links .signUp:hover{
+  color: white;
+  background-color: #3abefc;
+}
+nav #links .logOut{
+  cursor: pointer;
+  color:#5accff;
+}
+nav #links .personalImg  {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: gray;
+  cursor: pointer;
+  overflow: hidden;
+}
+nav #links .personalImg  img{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
