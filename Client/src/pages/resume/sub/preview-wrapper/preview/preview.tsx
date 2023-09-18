@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import * as form from "../../../../../slices/formReducer";
-import "./style.css"
+import "./style.css";
 
 type PreviewProps = {
   color: string;
@@ -28,14 +28,18 @@ const Preview = ({ color }: PreviewProps) => {
     <div className="preview">
       <div className="side-bar" style={{ backgroundColor: color }}>
         <div className="profile">
-          {img!=="/darkuser.png" && (<div className="img-container">
-            <img
-            src={img as string}
-            alt="profile picture"
-            className={img === null ? "hide" : ""}
-          />
-          </div>)}
-          <h1>{firstName} {lastName}</h1>
+          {img !== "/darkuser.png" && (
+            <div className="img-container">
+              <img
+                src={img as string}
+                alt="profile picture"
+                className={img === null ? "hide" : ""}
+              />
+            </div>
+          )}
+          <h1>
+            {firstName} {lastName}
+          </h1>
           <hr />
           <h6>{title}</h6>
         </div>
@@ -53,29 +57,25 @@ const Preview = ({ color }: PreviewProps) => {
         </div>
         <div
           className={
-            "links " + ((linkedInURL === "" && portfolioURL === "") ? "hide" : "")
+            "links " + (linkedInURL === "" && portfolioURL === "" ? "hide" : "")
           }
         >
           <h2>Links</h2>
-          <a href={linkedInURL}>
+          <a href={linkedInURL} target="_blank">
             <img
               className={linkedInURL === "" ? " hide" : ""}
               src="https://img.icons8.com/fluent/48/000000/linkedin.png"
               alt="linkedin"
             />
-            <h6
-              className={linkedInURL === "" ? " hide" : ""}
-            > LinkedIn</h6>
+            <h6 className={linkedInURL === "" ? " hide" : ""}> LinkedIn</h6>
           </a>
-          <a href={portfolioURL}>
+          <a href={portfolioURL} target="_blank">
             <img
               className={portfolioURL === "" ? " hide" : ""}
               src="https://img.icons8.com/fluent/48/000000/domain.png"
               alt="portfolio"
             />
-            <h6
-              className={portfolioURL === "" ? " hide" : ""}
-            > Portfolio</h6>
+            <h6 className={portfolioURL === "" ? " hide" : ""}> Portfolio</h6>
           </a>
         </div>
         <div className={"skills " + (skillArr.length === 0 ? "hide" : "")}>
@@ -97,11 +97,8 @@ const Preview = ({ color }: PreviewProps) => {
           {languageArr.map((language) => {
             return (
               <div key={language.id}>
-                <h6 >{language.language}</h6>
-                <progress
-                  value={language.fluency}
-                  max="100"
-                ></progress>
+                <h6>{language.language}</h6>
+                <progress value={language.fluency} max="100"></progress>
               </div>
             );
           })}
@@ -129,10 +126,22 @@ const Preview = ({ color }: PreviewProps) => {
           {experienceArr.map((experience) => {
             return (
               <div key={experience.id}>
-                <h3 className={(experience.jobTitle === "" && experience.company === "") ? "hide" : ""}>
+                <h3
+                  className={
+                    experience.jobTitle === "" && experience.company === ""
+                      ? "hide"
+                      : ""
+                  }
+                >
                   {experience.jobTitle}, {experience.company}
                 </h3>
-                <h3 className={(experience.startDate === "" && experience.endDate === "") ? "hide" : ""}>
+                <h3
+                  className={
+                    experience.startDate === "" && experience.endDate === ""
+                      ? "hide"
+                      : ""
+                  }
+                >
                   <i>
                     {experience.startDate} - {experience.endDate}
                   </i>

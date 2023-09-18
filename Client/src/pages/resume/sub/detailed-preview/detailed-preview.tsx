@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import plus from "../../../../assets/plus-solid.svg";
 import { updateColor } from "../../../../slices/colorReducer";
 import type { RootState } from "../../../../slices/store";
@@ -8,10 +10,20 @@ import DownloadButton from "../download-button/download-button";
 import Colors from "../preview-wrapper/colors/colors";
 import Preview from "../preview-wrapper/preview/preview";
 import "./detailed-preview.css";
+
 const DetailedPreview = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
   const { color } = useAppSelector((state) => state.color);
+  const loggedIn = useAppSelector((state) => state.user.loggedIn);
+  const fetch = useAppSelector((state) => state.user.fetch);
+  const expires = useAppSelector((state) => state.user.expires);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    if ((!loggedIn && fetch) || expires) {
+      navigate("/");
+    }
+  }, [loggedIn, navigate, fetch, expires]);
   return (
     <>
       <DownloadButton style="download-container" />
